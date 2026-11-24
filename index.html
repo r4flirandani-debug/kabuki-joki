@@ -46,7 +46,6 @@
     color: #111827;
   }
 
-  /* 2 kolom rapi di layar HP maupun desktop */
   .joki-grid-2 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -96,7 +95,6 @@
     border: 1px solid rgba(255, 255, 255, 0.35);
   }
 
-  /* Dua tombol tab: Rank per Bintang & Paket 10 Bintang */
   .joki-tab-row {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -128,7 +126,6 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
   }
 
-  /* Grid 2 kolom kartu jasa joki seperti foto kedua */
   .joki-package-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -199,7 +196,10 @@
     line-height: 1.1;
   }
 
-  /* Banner ungu & sticky bottom bar */
+  #serviceSelect {
+    display: none;
+  }
+
   .joki-bottom-wrap {
     position: sticky;
     bottom: 0;
@@ -536,7 +536,7 @@
   </div>
 </section>
 
-<!-- FORM ORDER (SESUAI 2 FOTO REFERENSI) -->
+<!-- FORM ORDER -->
 <section class="section section-wrap order-layout" id="order">
 
   <div class="order-intro">
@@ -561,12 +561,10 @@
 
       <div class="joki-grid-2">
         <label class="joki-field">
-          <span class="sr-only">Masukkan Email</span>
           <input type="text" name="accountEmail" autocomplete="username" required placeholder="Masukkan Email">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Masukkan Password</span>
           <div style="position:relative;display:flex;align-items:center;">
             <input type="password" name="accountPassword" id="accountPassword" autocomplete="current-password" required placeholder="Masukkan Password" style="padding-right:32px;">
             <button type="button" id="togglePassword" aria-label="Tampilkan atau sembunyikan password" style="position:absolute;right:6px;background:none;border:none;color:#111827;cursor:pointer;font-size:0.85rem;padding:2px;">👁</button>
@@ -574,7 +572,6 @@
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Pilih Login Via</span>
           <select name="loginVia" id="loginViaSelect" required>
             <option value="" disabled selected hidden>Pilih Login Via</option>
             <option value="Moonton">Moonton</option>
@@ -586,37 +583,30 @@
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Nick Name</span>
           <input type="text" name="nickname" autocomplete="nickname" required placeholder="Nick Name">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">ID (Server)</span>
           <input type="text" name="userServerId" required placeholder="ID ( Server )">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Request 3 Hero</span>
           <input type="text" name="requestHeroes" placeholder="Request 3 Hero">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Rank Awal</span>
           <input type="text" name="currentRank" required placeholder="Rank Awal">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Rank Tujuan</span>
           <input type="text" name="targetRank" required placeholder="Rank Tujuan">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Catatan U/ Penjoki</span>
           <input type="text" name="notes" placeholder="Catatan U/ Penjoki">
         </label>
 
         <label class="joki-field">
-          <span class="sr-only">Jumlah Bintang</span>
           <input type="text" name="quantity" id="quantityInput" placeholder="Jumlah Bintang (opsional)">
         </label>
       </div>
@@ -633,13 +623,12 @@
         <span>Pilih Jasa Joki</span>
       </div>
 
-      <!-- Tab Switcher: Rank per Bintang / Paket 10 Bintang -->
       <div class="joki-tab-row" role="tablist">
         <button type="button" class="joki-tab-btn active" data-tab="per-star">✨ Rank per Bintang</button>
         <button type="button" class="joki-tab-btn" data-tab="package">✨ Paket 10 Bintang</button>
       </div>
 
-      <select name="service" id="serviceSelect" class="sr-only" aria-hidden="true">
+      <select name="service" id="serviceSelect" aria-hidden="true" tabindex="-1">
         <option value="Grandmaster / Bintang">Grandmaster / Bintang</option>
         <option value="Epic / Bintang">Epic / Bintang</option>
         <option value="Legend / Bintang">Legend / Bintang</option>
@@ -657,7 +646,6 @@
         <option value="10 Bintang Immortal + 2 ⭐ BONUS">10 Bintang Immortal + 2 ⭐ BONUS</option>
       </select>
 
-      <!-- Tab 1: Rank per Bintang -->
       <div class="joki-package-grid" id="tab-per-star">
         <button type="button" class="joki-item-btn active" data-service="Grandmaster / Bintang">
           <div class="joki-card-top">
@@ -737,7 +725,6 @@
         </button>
       </div>
 
-      <!-- Tab 2: Paket 10 Bintang (+ 2 Bonus = 12 Bintang) -->
       <div class="joki-package-grid" id="tab-package" style="display:none;">
         <button type="button" class="joki-item-btn" data-service="10 Bintang Epic + 2 ⭐ BONUS">
           <div class="joki-card-top">
@@ -811,7 +798,6 @@
       </small>
     </div>
 
-    <!-- BANNER UNGU & STICKY BOTTOM BAR -->
     <div class="joki-bottom-wrap" aria-live="polite">
       <div class="joki-promo-banner" id="promoBannerText">
         Siap Push Rank Bareng Kabuki Joki!
@@ -899,10 +885,8 @@ rel="noopener noreferrer"
 aria-label="Chat WhatsApp">✆</a>
 
 <script>
-/* Tahun otomatis */
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* Menu HP */
 const menuToggle = document.getElementById("menuToggle");
 const mainNav = document.getElementById("mainNav");
 
@@ -918,7 +902,6 @@ mainNav.querySelectorAll("a").forEach(function(link) {
   });
 });
 
-/* Toggle lihat/sembunyikan password */
 const accountPasswordInput = document.getElementById("accountPassword");
 const togglePasswordBtn = document.getElementById("togglePassword");
 
@@ -928,7 +911,6 @@ togglePasswordBtn.addEventListener("click", function() {
   togglePasswordBtn.textContent = isHidden ? "🙈" : "👁";
 });
 
-/* Katalog harga & icon layanan */
 const PRICE_CATALOG = {
   "Warrior / Bintang": { type: "per-star", rate: 2500, icon: "./1795549271618.png" },
   "Elite / Bintang": { type: "per-star", rate: 3500, icon: "./1795549422933.png" },
@@ -1027,7 +1009,6 @@ function updatePriceEstimate() {
   return `${formattedTotal} (${stars} bintang)`;
 }
 
-/* Pilih layanan dari kartu jasa joki, daftar harga, atau layanan */
 document.querySelectorAll("[data-service]").forEach(function(item) {
   item.addEventListener("click", function(e) {
     const href = item.getAttribute("href");
@@ -1055,7 +1036,6 @@ document.querySelectorAll("[data-service]").forEach(function(item) {
 quantityInput.addEventListener("input", updatePriceEstimate);
 updatePriceEstimate();
 
-/* Konfirmasi Pesanan -> WhatsApp */
 document.getElementById("orderForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
@@ -1071,7 +1051,7 @@ document.getElementById("orderForm").addEventListener("submit", function(e) {
   const targetRank = form.get("targetRank").trim();
   const notes = (form.get("notes") || "").trim() || "-";
   const quantity = (form.get("quantity") || "").trim() || "-";
-  const service = form.get("service");
+  const service = serviceSelect.value;
   const estimateText = updatePriceEstimate();
 
   const message =
