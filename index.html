@@ -20,6 +20,7 @@
     color: #111827;
     box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
     border: 1px solid rgba(255, 255, 255, 0.35);
+    min-width: 0;
   }
 
   .joki-step-badge {
@@ -93,9 +94,9 @@
     color: #111827;
     box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
     border: 1px solid rgba(255, 255, 255, 0.35);
+    min-width: 0;
   }
 
-  /* Baris tab kategori jasa joki (scroll menyamping agar semua menu muat & rapi) */
   .joki-tab-row {
     display: flex;
     gap: 8px;
@@ -111,7 +112,7 @@
     justify-content: center;
     gap: 6px;
     flex: 0 0 auto;
-    padding: 9px 14px;
+    padding: 9px 13px;
     border-radius: 999px;
     border: 2px solid rgba(255, 255, 255, 0.75);
     background: rgba(255, 255, 255, 0.18);
@@ -189,7 +190,6 @@
     color: #854d0e;
     font-weight: 900;
     font-size: 0.72rem;
-    letter-spacing: 0.04em;
     flex-shrink: 0;
   }
 
@@ -216,68 +216,16 @@
     line-height: 1.1;
   }
 
-  .joki-qty-box {
-    margin-top: 14px;
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: linear-gradient(155deg, #f8b4a0 0%, #f59e0b 100%);
-    color: #111827;
-    box-shadow: 0 12px 26px rgba(249, 115, 22, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-  }
-
-  .joki-stepper {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .joki-stepper input {
-    flex: 1;
-    min-width: 0;
-    padding: 10px 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(17, 24, 39, 0.14);
-    background: #fff7ed;
-    color: #111827;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 800;
-  }
-
-  .joki-step-btn {
-    width: 42px;
-    height: 42px;
-    border: none;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: #ffffff;
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-
-  .joki-step-minus {
-    background: #f97316;
-  }
-
-  .joki-step-plus {
-    background: #ef4444;
-  }
-
   #serviceSelect {
     display: none;
   }
 
   .joki-bottom-wrap {
-    position: sticky;
-    bottom: 0;
-    z-index: 30;
+    grid-column: 1 / -1;
     margin-top: 14px;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
   }
 
   .joki-promo-banner {
@@ -318,10 +266,6 @@
 
   .joki-confirm-btn:hover {
     background: #dc2626;
-  }
-
-  body {
-    padding-bottom: 108px;
   }
 </style>
 </head>
@@ -656,8 +600,12 @@
           <input type="text" name="targetRank" required placeholder="Rank Tujuan">
         </label>
 
-        <label class="joki-field" style="grid-column: 1 / -1;">
+        <label class="joki-field">
           <input type="text" name="notes" placeholder="Catatan U/ Penjoki">
+        </label>
+
+        <label class="joki-field">
+          <input type="text" name="quantity" id="quantityInput" placeholder="Jumlah Bintang (opsional)">
         </label>
       </div>
 
@@ -673,7 +621,6 @@
         <span>Pilih Jasa Joki</span>
       </div>
 
-      <!-- Tab Kategori Sesuai Foto -->
       <div class="joki-tab-row" role="tablist">
         <button type="button" class="joki-tab-btn active" data-tab="per-star">✨ Rank per Bintang</button>
         <button type="button" class="joki-tab-btn" data-tab="package">✨ Paket 10 Bintang</button>
@@ -1112,24 +1059,11 @@
       </div>
 
       <small id="estimateBreakdown" style="display:block;margin-top:10px;font-weight:700;color:#111827;line-height:1.35;">
-        Tarif Grandmaster Rp4.000/bintang. Atur Jumlah Order di bawah untuk hitung estimasi total.
+        Tarif Grandmaster Rp4.000/bintang. Isi jumlah bintang untuk hitung estimasi total.
       </small>
     </div>
 
-    <!-- JUMLAH ORDER (- / +) -->
-    <div class="joki-qty-box">
-      <div class="joki-step-title" style="margin-bottom:8px;">
-        <span class="joki-step-badge">3</span>
-        <span>Jumlah Order</span>
-      </div>
-      <div class="joki-stepper">
-        <input type="number" name="quantity" id="quantityInput" min="1" value="1" required>
-        <button type="button" class="joki-step-btn joki-step-minus" id="qtyMinus" aria-label="Kurangi jumlah order">−</button>
-        <button type="button" class="joki-step-btn joki-step-plus" id="qtyPlus" aria-label="Tambah jumlah order">+</button>
-      </div>
-    </div>
-
-    <!-- BANNER UNGU & STICKY BOTTOM BAR -->
+    <!-- BANNER UNGU & BAR KONFIRMASI -->
     <div class="joki-bottom-wrap" aria-live="polite">
       <div class="joki-promo-banner" id="promoBannerText">
         Siap Push Rank Bareng Kabuki Joki!
@@ -1244,71 +1178,63 @@ togglePasswordBtn.addEventListener("click", function() {
 });
 
 const PRICE_CATALOG = {
-  /* Rank per Bintang */
-  "Grandmaster / Bintang": { tab: "per-star", price: 4000, unit: "bintang", icon: "./1795549575556.png" },
-  "Epic / Bintang": { tab: "per-star", price: 4500, unit: "bintang", icon: "./1795549566753.png" },
-  "Legend / Bintang": { tab: "per-star", price: 5000, unit: "bintang", icon: "./1795549947864.png" },
-  "Mythic / Bintang": { tab: "per-star", price: 8000, unit: "bintang", icon: "./1795549587923.png" },
-  "Mythic Honor / Bintang": { tab: "per-star", price: 9000, unit: "bintang", icon: "./1795549659938.png" },
-  "Mythic Glory / Bintang": { tab: "per-star", price: 13000, unit: "bintang", icon: "./1795550190064.png" },
-  "Mythic Immortal / Bintang": { tab: "per-star", price: 18000, unit: "bintang", icon: "./1795549607805.png" },
+  "Grandmaster / Bintang": { type: "per-star", rate: 4000, tab: "per-star", icon: "./1795549575556.png" },
+  "Epic / Bintang": { type: "per-star", rate: 4500, tab: "per-star", icon: "./1795549566753.png" },
+  "Legend / Bintang": { type: "per-star", rate: 5000, tab: "per-star", icon: "./1795549947864.png" },
+  "Mythic / Bintang": { type: "per-star", rate: 8000, tab: "per-star", icon: "./1795549587923.png" },
+  "Mythic Honor / Bintang": { type: "per-star", rate: 9000, tab: "per-star", icon: "./1795549659938.png" },
+  "Mythic Glory / Bintang": { type: "per-star", rate: 13000, tab: "per-star", icon: "./1795550190064.png" },
+  "Mythic Immortal / Bintang": { type: "per-star", rate: 18000, tab: "per-star", icon: "./1795549607805.png" },
 
-  /* Paket 10 Bintang + 2 Bonus */
-  "10 Bintang Epic + 2 ⭐ BONUS": { tab: "package", price: 40000, unit: "paket", icon: "./1795549566753.png" },
-  "10 Bintang Legend + 2 ⭐ BONUS": { tab: "package", price: 50000, unit: "paket", icon: "./1795549947864.png" },
-  "10 Bintang Mythic + 2 ⭐ BONUS": { tab: "package", price: 80000, unit: "paket", icon: "./1795549587923.png" },
-  "10 Bintang Honor + 2 ⭐ BONUS": { tab: "package", price: 85000, unit: "paket", icon: "./1795549659938.png" },
-  "10 Bintang Glory + 2 ⭐ BONUS": { tab: "package", price: 130000, unit: "paket", icon: "./1795550190064.png" },
-  "10 Bintang Immortal + 2 ⭐ BONUS": { tab: "package", price: 180000, unit: "paket", icon: "./1795549607805.png" },
+  "10 Bintang Epic + 2 ⭐ BONUS": { type: "package", price: 40000, tab: "package", icon: "./1795549566753.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Legend + 2 ⭐ BONUS": { type: "package", price: 50000, tab: "package", icon: "./1795549947864.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Mythic + 2 ⭐ BONUS": { type: "package", price: 80000, tab: "package", icon: "./1795549587923.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Honor + 2 ⭐ BONUS": { type: "package", price: 85000, tab: "package", icon: "./1795549659938.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Glory + 2 ⭐ BONUS": { type: "package", price: 130000, tab: "package", icon: "./1795550190064.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Immortal + 2 ⭐ BONUS": { type: "package", price: 180000, tab: "package", icon: "./1795549607805.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
 
-  /* Paket Rank Grandmaster */
-  "[PAKET] Grandmaster 5 - Grandmaster 4": { tab: "pkg-gm", price: 95000, unit: "paket", icon: "./1795549575556.png" },
-  "[PAKET] Grandmaster 5 - Grandmaster 3": { tab: "pkg-gm", price: 185000, unit: "paket", icon: "./1795549575556.png" },
-  "[PAKET] Grandmaster 1 - Epic 5": { tab: "pkg-gm", price: 225000, unit: "paket", icon: "./1795549575556.png" },
-  "[PAKET] Grandmaster 2 - Epic 5": { tab: "pkg-gm", price: 245000, unit: "paket", icon: "./1795549575556.png" },
-  "[PAKET] Grandmaster 3 - Epic 5": { tab: "pkg-gm", price: 265000, unit: "paket", icon: "./1795549575556.png" },
-  "[PAKET] Grandmaster 4 - Epic 5": { tab: "pkg-gm", price: 285000, unit: "paket", icon: "./1795549575556.png" },
-  "[PAKET] Grandmaster 5 - Epic 5": { tab: "pkg-gm", price: 300000, unit: "paket", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 5 - Grandmaster 4": { type: "package", price: 95000, tab: "pkg-gm", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 5 - Grandmaster 3": { type: "package", price: 185000, tab: "pkg-gm", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 1 - Epic 5": { type: "package", price: 225000, tab: "pkg-gm", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 2 - Epic 5": { type: "package", price: 245000, tab: "pkg-gm", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 3 - Epic 5": { type: "package", price: 265000, tab: "pkg-gm", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 4 - Epic 5": { type: "package", price: 285000, tab: "pkg-gm", icon: "./1795549575556.png" },
+  "[PAKET] Grandmaster 5 - Epic 5": { type: "package", price: 300000, tab: "pkg-gm", icon: "./1795549575556.png" },
 
-  /* Paket Rank Epic */
-  "[PAKET] Epic 5 - Legend 5": { tab: "pkg-epic", price: 84000, unit: "paket", icon: "./1795549566753.png" },
-  "[PAKET] Epic 1 - Mythic 1": { tab: "pkg-epic", price: 125000, unit: "paket", icon: "./1795549566753.png" },
-  "[PAKET] Epic 2 - Mythic 1": { tab: "pkg-epic", price: 145000, unit: "paket", icon: "./1795549566753.png" },
-  "[PAKET] Epic 3 - Mythic 1": { tab: "pkg-epic", price: 157000, unit: "paket", icon: "./1795549566753.png" },
-  "[PAKET] Epic 4 - Mythic 1": { tab: "pkg-epic", price: 177000, unit: "paket", icon: "./1795549566753.png" },
-  "[PAKET] Epic 5 - Mythic 1": { tab: "pkg-epic", price: 189000, unit: "paket", icon: "./1795549566753.png" },
+  "[PAKET] Epic 5 - Legend 5": { type: "package", price: 84000, tab: "pkg-epic", icon: "./1795549566753.png" },
+  "[PAKET] Epic 1 - Mythic 1": { type: "package", price: 125000, tab: "pkg-epic", icon: "./1795549566753.png" },
+  "[PAKET] Epic 2 - Mythic 1": { type: "package", price: 145000, tab: "pkg-epic", icon: "./1795549566753.png" },
+  "[PAKET] Epic 3 - Mythic 1": { type: "package", price: 157000, tab: "pkg-epic", icon: "./1795549566753.png" },
+  "[PAKET] Epic 4 - Mythic 1": { type: "package", price: 177000, tab: "pkg-epic", icon: "./1795549566753.png" },
+  "[PAKET] Epic 5 - Mythic 1": { type: "package", price: 189000, tab: "pkg-epic", icon: "./1795549566753.png" },
 
-  /* Paket Rank Legend */
-  "[PAKET] Legend 3 - Mythic 1": { tab: "pkg-legend", price: 65000, unit: "paket", icon: "./1795549947864.png" },
-  "[PAKET] Legend 4 - Mythic 1": { tab: "pkg-legend", price: 90000, unit: "paket", icon: "./1795549947864.png" },
-  "[PAKET] Legend 5 - Mythic 1": { tab: "pkg-legend", price: 105000, unit: "paket", icon: "./1795549947864.png" },
-  "[PAKET] Legend 5 - Mythic Honor": { tab: "pkg-legend", price: 255000, unit: "paket", icon: "./1795549947864.png" },
+  "[PAKET] Legend 3 - Mythic 1": { type: "package", price: 65000, tab: "pkg-legend", icon: "./1795549947864.png" },
+  "[PAKET] Legend 4 - Mythic 1": { type: "package", price: 90000, tab: "pkg-legend", icon: "./1795549947864.png" },
+  "[PAKET] Legend 5 - Mythic 1": { type: "package", price: 105000, tab: "pkg-legend", icon: "./1795549947864.png" },
+  "[PAKET] Legend 5 - Mythic Honor": { type: "package", price: 255000, tab: "pkg-legend", icon: "./1795549947864.png" },
 
-  /* Paket Rank Mythic */
-  "[PAKET] Mythic Full Placement": { tab: "pkg-mythic", price: 80000, unit: "paket", icon: "./1795549587923.png" },
-  "[PAKET] Mythic 1 - Mythic 25": { tab: "pkg-mythic", price: 150000, unit: "paket", icon: "./1795549587923.png" },
-  "[PAKET] Mythic 25 - Mythic 50": { tab: "pkg-mythic", price: 168000, unit: "paket", icon: "./1795549659938.png" },
-  "[PAKET] Mythic 1 - Mythic 50": { tab: "pkg-mythic", price: 318000, unit: "paket", icon: "./1795549587923.png" },
-  "[PAKET] Mythic 50 - Mythic 100": { tab: "pkg-mythic", price: 546000, unit: "paket", icon: "./1795549607805.png" },
+  "[PAKET] Mythic Full Placement": { type: "package", price: 80000, tab: "pkg-mythic", icon: "./1795549587923.png" },
+  "[PAKET] Mythic 1 - Mythic 25": { type: "package", price: 150000, tab: "pkg-mythic", icon: "./1795549587923.png" },
+  "[PAKET] Mythic 25 - Mythic 50": { type: "package", price: 168000, tab: "pkg-mythic", icon: "./1795549659938.png" },
+  "[PAKET] Mythic 1 - Mythic 50": { type: "package", price: 318000, tab: "pkg-mythic", icon: "./1795549587923.png" },
+  "[PAKET] Mythic 50 - Mythic 100": { type: "package", price: 546000, tab: "pkg-mythic", icon: "./1795549607805.png" },
 
-  /* Joki Gendong */
-  "Gendong Epic": { tab: "gendong", price: 6000, unit: "match", icon: "./1795549566753.png" },
-  "Gendong Legend": { tab: "gendong", price: 7000, unit: "match", icon: "./1795549947864.png" },
-  "Gendong Mythic": { tab: "gendong", price: 11000, unit: "match", icon: "./1795549587923.png" },
-  "Gendong Honor": { tab: "gendong", price: 13000, unit: "match", icon: "./1795549659938.png" },
-  "Gendong Glory": { tab: "gendong", price: 20000, unit: "match", icon: "./1795550190064.png" },
-  "Gendong Immortal": { tab: "gendong", price: 25000, unit: "match", icon: "./1795549607805.png" },
+  "Gendong Epic": { type: "per-star", rate: 6000, tab: "gendong", icon: "./1795549566753.png" },
+  "Gendong Legend": { type: "per-star", rate: 7000, tab: "gendong", icon: "./1795549947864.png" },
+  "Gendong Mythic": { type: "per-star", rate: 11000, tab: "gendong", icon: "./1795549587923.png" },
+  "Gendong Honor": { type: "per-star", rate: 13000, tab: "gendong", icon: "./1795549659938.png" },
+  "Gendong Glory": { type: "per-star", rate: 20000, tab: "gendong", icon: "./1795550190064.png" },
+  "Gendong Immortal": { type: "per-star", rate: 25000, tab: "gendong", icon: "./1795549607805.png" },
 
-  /* Joki Classic */
-  "Classic 3 Win": { tab: "classic", price: 15000, unit: "order", icon: "./1795548864898.png" },
-  "Classic 5 Win": { tab: "classic", price: 25000, unit: "order", icon: "./1795548864898.png" },
-  "[PAKET] Classic 10 Win": { tab: "classic", price: 45000, unit: "paket", icon: "./1795548864898.png" },
-  "Classic Rank Honor 3 Win": { tab: "classic", price: 18000, unit: "order", icon: "./1795548864898.png" },
-  "Classic Rank Honor 5 Win": { tab: "classic", price: 30000, unit: "order", icon: "./1795548864898.png" },
-  "[PAKET] Classic Rank Honor 10 Win": { tab: "classic", price: 55000, unit: "paket", icon: "./1795548864898.png" },
-  "Classic Rank Glory++ 3 Win": { tab: "classic", price: 21000, unit: "order", icon: "./1795548864898.png" },
-  "Classic Rank Glory++ 5 Win": { tab: "classic", price: 35000, unit: "order", icon: "./1795548864898.png" },
-  "[PAKET] Classic Rank Glory++ 10 Win": { tab: "classic", price: 65000, unit: "paket", icon: "./1795548864898.png" }
+  "Classic 3 Win": { type: "package", price: 15000, tab: "classic", icon: "./1795548864898.png" },
+  "Classic 5 Win": { type: "package", price: 25000, tab: "classic", icon: "./1795548864898.png" },
+  "[PAKET] Classic 10 Win": { type: "package", price: 45000, tab: "classic", icon: "./1795548864898.png" },
+  "Classic Rank Honor 3 Win": { type: "package", price: 18000, tab: "classic", icon: "./1795548864898.png" },
+  "Classic Rank Honor 5 Win": { type: "package", price: 30000, tab: "classic", icon: "./1795548864898.png" },
+  "[PAKET] Classic Rank Honor 10 Win": { type: "package", price: 55000, tab: "classic", icon: "./1795548864898.png" },
+  "Classic Rank Glory++ 3 Win": { type: "package", price: 21000, tab: "classic", icon: "./1795548864898.png" },
+  "Classic Rank Glory++ 5 Win": { type: "package", price: 35000, tab: "classic", icon: "./1795548864898.png" },
+  "[PAKET] Classic Rank Glory++ 10 Win": { type: "package", price: 65000, tab: "classic", icon: "./1795548864898.png" }
 };
 
 const ALL_TABS = ["per-star", "package", "pkg-gm", "pkg-epic", "pkg-legend", "pkg-mythic", "gendong", "classic"];
@@ -1333,9 +1259,11 @@ function formatRupiah(amount) {
   return "Rp" + Number(amount).toLocaleString("id-ID");
 }
 
-function getOrderQty() {
-  const n = parseInt(quantityInput.value, 10);
-  return Number.isFinite(n) && n > 0 ? n : 1;
+function parseStarCount(rawText) {
+  const match = String(rawText || "").match(/\d+/);
+  if (!match) return null;
+  const num = parseInt(match[0], 10);
+  return num > 0 ? num : null;
 }
 
 function switchTab(tabName) {
@@ -1370,7 +1298,7 @@ function syncActiveCards(selectedValue) {
 function updatePriceEstimate() {
   const selectedService = serviceSelect.value;
   const rule = PRICE_CATALOG[selectedService];
-  const qty = getOrderQty();
+  const rawQty = quantityInput.value.trim();
 
   selectedServiceLabelEl.textContent = selectedService;
   selectedServiceIconEl.src = (rule && rule.icon) ? rule.icon : "./1795548864898.png";
@@ -1383,29 +1311,29 @@ function updatePriceEstimate() {
     return "Konfirmasi Admin";
   }
 
-  const total = rule.price * qty;
+  if (rule.type === "package") {
+    const formatted = formatRupiah(rule.price);
+    estimatedTotalEl.textContent = formatted;
+    estimateBreakdownEl.textContent = `Paket tetap ${formatted}.`;
+    promoBannerTextEl.textContent = `Paket Terpilih: ${formatted}`;
+    return formatted;
+  }
+
+  const parsedStars = parseStarCount(rawQty);
+  const count = parsedStars || 1;
+  const total = rule.rate * count;
   const formattedTotal = formatRupiah(total);
 
   estimatedTotalEl.textContent = formattedTotal;
-  estimateBreakdownEl.textContent = `${qty} × ${formatRupiah(rule.price)} (${selectedService}) = ${formattedTotal}.`;
-  promoBannerTextEl.textContent = `Jumlah Order: ${qty} · Estimasi ${formattedTotal}`;
+  estimateBreakdownEl.textContent = parsedStars
+    ? `${count} × ${formatRupiah(rule.rate)} = ${formattedTotal}.`
+    : `Tarif ${selectedService} ${formatRupiah(rule.rate)}. Isi jumlah untuk hitung total.`;
+  promoBannerTextEl.textContent = parsedStars
+    ? `Estimasi ${count}: ${formattedTotal}`
+    : "Siap Push Rank Bareng Kabuki Joki!";
 
-  return `${formattedTotal} (${qty} ${rule.unit})`;
+  return `${formattedTotal} (${count})`;
 }
-
-document.getElementById("qtyMinus").addEventListener("click", function() {
-  const next = Math.max(1, getOrderQty() - 1);
-  quantityInput.value = next;
-  updatePriceEstimate();
-});
-
-document.getElementById("qtyPlus").addEventListener("click", function() {
-  const next = getOrderQty() + 1;
-  quantityInput.value = next;
-  updatePriceEstimate();
-});
-
-quantityInput.addEventListener("input", updatePriceEstimate);
 
 document.querySelectorAll("[data-service]").forEach(function(item) {
   item.addEventListener("click", function(e) {
@@ -1419,6 +1347,10 @@ document.querySelectorAll("[data-service]").forEach(function(item) {
     serviceSelect.value = chosen;
     const rule = PRICE_CATALOG[chosen];
     switchTab(item.dataset.tab || rule.tab);
+
+    if (rule.defaultStars && !quantityInput.value.trim()) {
+      quantityInput.value = rule.defaultStars;
+    }
     updatePriceEstimate();
 
     if (item.tagName === "A" || item.classList.contains("price-row")) {
@@ -1427,6 +1359,7 @@ document.querySelectorAll("[data-service]").forEach(function(item) {
   });
 });
 
+quantityInput.addEventListener("input", updatePriceEstimate);
 updatePriceEstimate();
 
 document.getElementById("orderForm").addEventListener("submit", function(e) {
@@ -1443,7 +1376,7 @@ document.getElementById("orderForm").addEventListener("submit", function(e) {
   const currentRank = form.get("currentRank").trim();
   const targetRank = form.get("targetRank").trim();
   const notes = (form.get("notes") || "").trim() || "-";
-  const qty = getOrderQty();
+  const quantity = (form.get("quantity") || "").trim() || "-";
   const service = serviceSelect.value;
   const estimateText = updatePriceEstimate();
 
@@ -1460,9 +1393,9 @@ Data Akun & Login:
 
 Detail Joki:
 - Jasa Joki: ${service}
-- Jumlah Order: ${qty}
 - Rank Awal: ${currentRank}
 - Rank Tujuan: ${targetRank}
+- Jumlah Bintang: ${quantity}
 - Estimasi Biaya: ${estimateText}
 - Catatan U/ Penjoki: ${notes}
 
