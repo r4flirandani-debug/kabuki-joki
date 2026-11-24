@@ -13,13 +13,12 @@
 
 <link rel="stylesheet" href="./style.css">
 <style>
-  /* Nuansa gradasi hangat oranye-kuning & tata letak melebar ke samping */
   .joki-warm-card {
-    padding: 14px;
-    border-radius: 16px;
-    background: linear-gradient(155deg, #f9b19d 0%, #f59e0b 52%, #f97316 100%);
+    padding: 16px;
+    border-radius: 18px;
+    background: linear-gradient(155deg, #f8b4a0 0%, #f59e0b 52%, #f97316 100%);
     color: #111827;
-    box-shadow: 0 14px 32px rgba(249, 115, 22, 0.22);
+    box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
     border: 1px solid rgba(255, 255, 255, 0.35);
   }
 
@@ -27,13 +26,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: 999px;
     background: #ef4444;
     color: #fff;
     font-weight: 800;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     margin-right: 8px;
     flex-shrink: 0;
   }
@@ -42,16 +41,16 @@
     display: flex;
     align-items: center;
     font-weight: 800;
-    font-size: 0.98rem;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-bottom: 12px;
     color: #111827;
   }
 
-  /* Tetap 2 kolom di HP maupun desktop agar tidak menumpuk panjang ke bawah */
+  /* 2 kolom rapi di layar HP maupun desktop */
   .joki-grid-2 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+    gap: 10px;
   }
 
   .joki-field {
@@ -70,13 +69,13 @@
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    padding: 9px 10px;
+    padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid rgba(17, 24, 39, 0.14);
-    background: rgba(255, 255, 255, 0.96);
+    background: #ffffff;
     color: #111827;
     font-family: inherit;
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     font-weight: 600;
     box-shadow: 0 2px 6px rgba(17, 24, 39, 0.06);
   }
@@ -88,36 +87,65 @@
   }
 
   .joki-picker-box {
-    margin-top: 12px;
-    padding: 14px;
-    border-radius: 16px;
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 18px;
     background: linear-gradient(155deg, #fbbf24 0%, #f97316 100%);
     color: #111827;
-    box-shadow: 0 14px 32px rgba(249, 115, 22, 0.22);
+    box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
     border: 1px solid rgba(255, 255, 255, 0.35);
   }
 
-  /* Baris pilihan jasa joki melebar menyamping (horizontal scroll) agar hemat tinggi */
-  .joki-package-row {
+  /* Dua tombol tab: Rank per Bintang & Paket 10 Bintang */
+  .joki-tab-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .joki-tab-btn {
     display: flex;
-    gap: 8px;
-    margin-top: 8px;
-    overflow-x: auto;
-    padding-bottom: 6px;
-    scrollbar-width: thin;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.18);
+    color: #111827;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .joki-tab-btn.active {
+    background: #facc15;
+    border-color: #ffffff;
+    color: #111827;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+  }
+
+  /* Grid 2 kolom kartu jasa joki seperti foto kedua */
+  .joki-package-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .joki-item-btn {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     gap: 8px;
-    flex: 0 0 auto;
-    min-width: 185px;
-    padding: 9px 10px;
-    border-radius: 10px;
-    border: 1px solid rgba(17, 24, 39, 0.14);
-    background: rgba(255, 255, 255, 0.92);
+    width: 100%;
+    min-width: 0;
+    padding: 11px 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(17, 24, 39, 0.12);
+    background: #ffffff;
     color: #111827;
     text-align: left;
     cursor: pointer;
@@ -125,25 +153,25 @@
   }
 
   .joki-item-btn:hover {
-    background: #ffffff;
+    transform: translateY(-1px);
   }
 
   .joki-item-btn.active {
+    background: #facc15;
     border-color: #ef4444;
-    background: #ffffff;
-    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.35);
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.22);
   }
 
-  .joki-item-left {
+  .joki-card-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
     gap: 8px;
-    min-width: 0;
   }
 
-  .joki-item-left img {
-    width: 26px;
-    height: 26px;
+  .joki-card-top img {
+    width: 34px;
+    height: 34px;
     object-fit: contain;
     flex-shrink: 0;
   }
@@ -151,38 +179,50 @@
   .joki-item-name {
     display: block;
     font-weight: 800;
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     line-height: 1.2;
     color: #111827;
-    white-space: nowrap;
   }
 
-  .joki-item-sub {
+  .joki-item-from {
     display: block;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     color: #4b5563;
     font-weight: 600;
-    white-space: nowrap;
+    margin-top: 2px;
   }
 
   .joki-item-price {
     font-weight: 800;
+    font-size: 0.85rem;
+    color: #dc2626;
+    line-height: 1.1;
+  }
+
+  /* Banner ungu & sticky bottom bar */
+  .joki-bottom-wrap {
+    position: sticky;
+    bottom: 0;
+    z-index: 30;
+    margin-top: 14px;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.28);
+  }
+
+  .joki-promo-banner {
+    background: #5b21b6;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 800;
     font-size: 0.78rem;
-    color: #b91c1c;
-    white-space: nowrap;
+    padding: 6px 12px;
   }
 
   .joki-confirm-bar {
-    position: sticky;
-    bottom: 8px;
-    z-index: 30;
-    margin-top: 12px;
-    padding: 10px 12px;
-    border-radius: 14px;
+    padding: 12px 14px;
     background: #ffffff;
     color: #0f172a;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
   }
 
   .joki-confirm-summary {
@@ -190,19 +230,19 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .joki-confirm-btn {
     width: 100%;
-    padding: 11px 14px;
+    padding: 12px 16px;
     border: none;
     border-radius: 999px;
     background: #ef4444;
     color: #ffffff;
     font-family: inherit;
     font-weight: 800;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     cursor: pointer;
   }
 
@@ -211,7 +251,7 @@
   }
 
   body {
-    padding-bottom: 84px;
+    padding-bottom: 108px;
   }
 </style>
 </head>
@@ -316,7 +356,7 @@
       <div class="service-icon">♜</div>
       <h3>Push Rank</h3>
       <p>Bantuan menaikkan rank dari tier saat ini menuju target pilihanmu.</p>
-      <a href="#order" data-service="Push Rank">Pilih layanan ↗</a>
+      <a href="#order" data-service="Grandmaster / Bintang">Pilih layanan ↗</a>
     </article>
 
     <article class="service-card featured">
@@ -324,28 +364,28 @@
       <div class="service-icon">⚡</div>
       <h3>Joki Eceran</h3>
       <p>Pilih jumlah bintang sesuai kebutuhan. Harga dikonfirmasi admin.</p>
-      <a href="#order" data-service="Joki Eceran">Pilih layanan ↗</a>
+      <a href="#order" data-service="Epic / Bintang">Pilih layanan ↗</a>
     </article>
 
     <article class="service-card">
       <div class="service-icon">★</div>
       <h3>Joki Paketan</h3>
       <p>Paket 10 bintang dengan bonus 2 bintang (total 12 bintang).</p>
-      <a href="#order" data-service="Joki Paketan 10 Bintang + Bonus 2">Pilih layanan ↗</a>
+      <a href="#order" data-service="10 Bintang Epic + 2 ⭐ BONUS">Pilih layanan ↗</a>
     </article>
 
     <article class="service-card">
       <div class="service-icon">✦</div>
       <h3>Win Streak</h3>
       <p>Bantuan mengejar kemenangan beruntun dengan target yang disepakati.</p>
-      <a href="#order" data-service="Win Streak">Pilih layanan ↗</a>
+      <a href="#order" data-service="Legend / Bintang">Pilih layanan ↗</a>
     </article>
 
     <article class="service-card">
       <div class="service-icon">◈</div>
       <h3>Placement</h3>
       <p>Bantuan menyelesaikan pertandingan placement sesuai kebutuhan.</p>
-      <a href="#order" data-service="Placement">Pilih layanan ↗</a>
+      <a href="#order" data-service="Mythic / Bintang">Pilih layanan ↗</a>
     </article>
 
   </div>
@@ -369,8 +409,7 @@
       <span>HARGA</span>
     </div>
 
-    <!-- HARGA PER BINTANG -->
-    <div class="price-row" data-service="Warrior" style="cursor:pointer;">
+    <div class="price-row" data-service="Warrior / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549271618.png" alt="Warrior">
         <div><b>Warrior</b><small>Per bintang</small></div>
@@ -378,7 +417,7 @@
       <strong class="price-value">Rp2.500</strong>
     </div>
 
-    <div class="price-row" data-service="Elite" style="cursor:pointer;">
+    <div class="price-row" data-service="Elite / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549422933.png" alt="Elite">
         <div><b>Elite</b><small>Per bintang</small></div>
@@ -386,7 +425,7 @@
       <strong class="price-value">Rp3.500</strong>
     </div>
 
-    <div class="price-row" data-service="Grandmaster" style="cursor:pointer;">
+    <div class="price-row" data-service="Grandmaster / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549575556.png" alt="Grandmaster">
         <div><b>Grandmaster</b><small>Per bintang</small></div>
@@ -394,7 +433,7 @@
       <strong class="price-value">Rp4.000</strong>
     </div>
 
-    <div class="price-row" data-service="Epic" style="cursor:pointer;">
+    <div class="price-row" data-service="Epic / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549566753.png" alt="Epic">
         <div><b>Epic</b><small>Per bintang</small></div>
@@ -402,7 +441,7 @@
       <strong class="price-value">Rp4.500</strong>
     </div>
 
-    <div class="price-row" data-service="Legend" style="cursor:pointer;">
+    <div class="price-row" data-service="Legend / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549947864.png" alt="Legend">
         <div><b>Legend</b><small>Per bintang</small></div>
@@ -410,7 +449,7 @@
       <strong class="price-value">Rp5.000</strong>
     </div>
 
-    <div class="price-row" data-service="Mythic" style="cursor:pointer;">
+    <div class="price-row" data-service="Mythic / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549587923.png" alt="Mythic">
         <div><b>Mythic</b><small>Per bintang</small></div>
@@ -418,7 +457,7 @@
       <strong class="price-value">Rp8.000</strong>
     </div>
 
-    <div class="price-row" data-service="Mythic Honor" style="cursor:pointer;">
+    <div class="price-row" data-service="Mythic Honor / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549659938.png" alt="Mythic Honor">
         <div><b>Mythic Honor</b><small>Per bintang</small></div>
@@ -426,7 +465,7 @@
       <strong class="price-value">Rp9.000</strong>
     </div>
 
-    <div class="price-row" data-service="Mythic Glory" style="cursor:pointer;">
+    <div class="price-row" data-service="Mythic Glory / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795550190064.png" alt="Mythic Glory">
         <div><b>Mythic Glory</b><small>Per bintang</small></div>
@@ -434,7 +473,7 @@
       <strong class="price-value">Rp13.000</strong>
     </div>
 
-    <div class="price-row" data-service="Mythic Immortal" style="cursor:pointer;">
+    <div class="price-row" data-service="Mythic Immortal / Bintang" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549607805.png" alt="Mythic Immortal">
         <div><b>Mythic Immortal</b><small>Per bintang · target tertinggi</small></div>
@@ -442,7 +481,6 @@
       <strong class="price-value">Rp18.000</strong>
     </div>
 
-    <!-- PAKET 10 BINTANG + 2 BONUS -->
     <div class="price-row" data-service="10 Bintang Epic + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549566753.png" alt="Epic">
@@ -498,7 +536,7 @@
   </div>
 </section>
 
-<!-- FORM ORDER -->
+<!-- FORM ORDER (SESUAI 2 FOTO REFERENSI) -->
 <section class="section section-wrap order-layout" id="order">
 
   <div class="order-intro">
@@ -514,30 +552,31 @@
 
   <form class="order-form" id="orderForm">
 
-    <!-- LANGKAH 1: LENGKAPI DATA AKUN -->
+    <!-- 1. LENGKAPI DATA -->
     <div class="joki-warm-card">
       <div class="joki-step-title">
         <span class="joki-step-badge">1</span>
-        <span>Lengkapi Data Akun</span>
+        <span>Lengkapi Data</span>
       </div>
 
       <div class="joki-grid-2">
         <label class="joki-field">
-          <span>Masukkan Email</span>
+          <span class="sr-only">Masukkan Email</span>
           <input type="text" name="accountEmail" autocomplete="username" required placeholder="Masukkan Email">
         </label>
 
         <label class="joki-field">
-          <span>Masukkan Password</span>
+          <span class="sr-only">Masukkan Password</span>
           <div style="position:relative;display:flex;align-items:center;">
-            <input type="password" name="accountPassword" id="accountPassword" autocomplete="current-password" required placeholder="Masukkan Password" style="padding-right:34px;">
-            <button type="button" id="togglePassword" aria-label="Tampilkan atau sembunyikan password" style="position:absolute;right:8px;background:none;border:none;color:#111827;cursor:pointer;font-size:0.9rem;padding:2px;">👁</button>
+            <input type="password" name="accountPassword" id="accountPassword" autocomplete="current-password" required placeholder="Masukkan Password" style="padding-right:32px;">
+            <button type="button" id="togglePassword" aria-label="Tampilkan atau sembunyikan password" style="position:absolute;right:6px;background:none;border:none;color:#111827;cursor:pointer;font-size:0.85rem;padding:2px;">👁</button>
           </div>
         </label>
 
         <label class="joki-field">
-          <span>Pilih Login Via</span>
+          <span class="sr-only">Pilih Login Via</span>
           <select name="loginVia" id="loginViaSelect" required>
+            <option value="" disabled selected hidden>Pilih Login Via</option>
             <option value="Moonton">Moonton</option>
             <option value="Google Play">Google Play</option>
             <option value="Facebook">Facebook</option>
@@ -547,207 +586,248 @@
         </label>
 
         <label class="joki-field">
-          <span>Nick Name</span>
+          <span class="sr-only">Nick Name</span>
           <input type="text" name="nickname" autocomplete="nickname" required placeholder="Nick Name">
         </label>
 
         <label class="joki-field">
-          <span>ID (Server)</span>
-          <input type="text" name="userServerId" required placeholder="12345678 (1234)">
+          <span class="sr-only">ID (Server)</span>
+          <input type="text" name="userServerId" required placeholder="ID ( Server )">
         </label>
 
         <label class="joki-field">
-          <span>Request 3 Hero</span>
-          <input type="text" name="requestHeroes" placeholder="Ling, Joy, Tigreal">
+          <span class="sr-only">Request 3 Hero</span>
+          <input type="text" name="requestHeroes" placeholder="Request 3 Hero">
         </label>
 
         <label class="joki-field">
-          <span>Rank Awal</span>
-          <input type="text" name="currentRank" required placeholder="Grandmaster I">
+          <span class="sr-only">Rank Awal</span>
+          <input type="text" name="currentRank" required placeholder="Rank Awal">
         </label>
 
         <label class="joki-field">
-          <span>Rank Tujuan</span>
-          <input type="text" name="targetRank" required placeholder="Epic V">
+          <span class="sr-only">Rank Tujuan</span>
+          <input type="text" name="targetRank" required placeholder="Rank Tujuan">
         </label>
 
         <label class="joki-field">
-          <span>Catatan U/ Penjoki</span>
+          <span class="sr-only">Catatan U/ Penjoki</span>
           <input type="text" name="notes" placeholder="Catatan U/ Penjoki">
         </label>
 
         <label class="joki-field">
-          <span>Jumlah Bintang</span>
-          <input type="text" name="quantity" id="quantityInput" placeholder="Contoh: 5">
+          <span class="sr-only">Jumlah Bintang</span>
+          <input type="text" name="quantity" id="quantityInput" placeholder="Jumlah Bintang (opsional)">
         </label>
       </div>
 
-      <small style="display:block;margin-top:10px;font-weight:700;color:#111827;text-align:center;">
+      <small style="display:block;margin-top:12px;font-weight:700;color:#111827;text-align:center;">
         Harap Lengkapi Data Untuk Login Ke Akun Mobile Legends.
       </small>
     </div>
 
-    <!-- LANGKAH 2: PILIH JASA JOKI -->
+    <!-- 2. PILIH JASA JOKI -->
     <div class="joki-picker-box">
-      <div class="joki-step-title" style="margin-bottom:8px;">
+      <div class="joki-step-title" style="margin-bottom:10px;">
         <span class="joki-step-badge">2</span>
         <span>Pilih Jasa Joki</span>
       </div>
 
-      <label class="joki-field" style="margin-bottom:8px;">
-        <span>Layanan / Paket Terpilih</span>
-        <select name="service" id="serviceSelect">
-          <option value="Grandmaster / Bintang">Grandmaster / Bintang — Rp4.000</option>
-          <option value="Warrior / Bintang">Warrior / Bintang — Rp2.500</option>
-          <option value="Elite / Bintang">Elite / Bintang — Rp3.500</option>
-          <option value="Epic / Bintang">Epic / Bintang — Rp4.500</option>
-          <option value="Legend / Bintang">Legend / Bintang — Rp5.000</option>
-          <option value="Mythic / Bintang">Mythic / Bintang — Rp8.000</option>
-          <option value="Mythic Honor / Bintang">Mythic Honor / Bintang — Rp9.000</option>
-          <option value="Mythic Glory / Bintang">Mythic Glory / Bintang — Rp13.000</option>
-          <option value="Mythic Immortal / Bintang">Mythic Immortal / Bintang — Rp18.000</option>
-          <option value="10 Bintang Epic + 2 ⭐ BONUS">10 Bintang Epic + 2 ⭐ BONUS — Rp40.000</option>
-          <option value="10 Bintang Legend + 2 ⭐ BONUS">10 Bintang Legend + 2 ⭐ BONUS — Rp50.000</option>
-          <option value="10 Bintang Mythic + 2 ⭐ BONUS">10 Bintang Mythic + 2 ⭐ BONUS — Rp80.000</option>
-          <option value="10 Bintang Honor + 2 ⭐ BONUS">10 Bintang Honor + 2 ⭐ BONUS — Rp85.000</option>
-          <option value="10 Bintang Glory + 2 ⭐ BONUS">10 Bintang Glory + 2 ⭐ BONUS — Rp130.000</option>
-          <option value="10 Bintang Immortal + 2 ⭐ BONUS">10 Bintang Immortal + 2 ⭐ BONUS — Rp180.000</option>
-          <option value="Push Rank">Push Rank — Konfirmasi Admin</option>
-          <option value="Joki Eceran">Joki Eceran — Konfirmasi Admin</option>
-          <option value="Win Streak">Win Streak — Konfirmasi Admin</option>
-          <option value="Placement">Placement — Konfirmasi Admin</option>
-        </select>
-      </label>
+      <!-- Tab Switcher: Rank per Bintang / Paket 10 Bintang -->
+      <div class="joki-tab-row" role="tablist">
+        <button type="button" class="joki-tab-btn active" data-tab="per-star">✨ Rank per Bintang</button>
+        <button type="button" class="joki-tab-btn" data-tab="package">✨ Paket 10 Bintang</button>
+      </div>
 
-      <div class="joki-package-row" id="jokiQuickList">
+      <select name="service" id="serviceSelect" class="sr-only" aria-hidden="true">
+        <option value="Grandmaster / Bintang">Grandmaster / Bintang</option>
+        <option value="Epic / Bintang">Epic / Bintang</option>
+        <option value="Legend / Bintang">Legend / Bintang</option>
+        <option value="Mythic / Bintang">Mythic / Bintang</option>
+        <option value="Mythic Honor / Bintang">Mythic Honor / Bintang</option>
+        <option value="Mythic Glory / Bintang">Mythic Glory / Bintang</option>
+        <option value="Mythic Immortal / Bintang">Mythic Immortal / Bintang</option>
+        <option value="Warrior / Bintang">Warrior / Bintang</option>
+        <option value="Elite / Bintang">Elite / Bintang</option>
+        <option value="10 Bintang Epic + 2 ⭐ BONUS">10 Bintang Epic + 2 ⭐ BONUS</option>
+        <option value="10 Bintang Legend + 2 ⭐ BONUS">10 Bintang Legend + 2 ⭐ BONUS</option>
+        <option value="10 Bintang Mythic + 2 ⭐ BONUS">10 Bintang Mythic + 2 ⭐ BONUS</option>
+        <option value="10 Bintang Honor + 2 ⭐ BONUS">10 Bintang Honor + 2 ⭐ BONUS</option>
+        <option value="10 Bintang Glory + 2 ⭐ BONUS">10 Bintang Glory + 2 ⭐ BONUS</option>
+        <option value="10 Bintang Immortal + 2 ⭐ BONUS">10 Bintang Immortal + 2 ⭐ BONUS</option>
+      </select>
+
+      <!-- Tab 1: Rank per Bintang -->
+      <div class="joki-package-grid" id="tab-per-star">
         <button type="button" class="joki-item-btn active" data-service="Grandmaster / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Grandmaster / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795549575556.png" alt="Grandmaster">
-            <span>
-              <span class="joki-item-name">Grandmaster</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp4.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="Epic / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Epic / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795549566753.png" alt="Epic">
-            <span>
-              <span class="joki-item-name">Epic</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp4.500</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="Legend / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Legend / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795549947864.png" alt="Legend">
-            <span>
-              <span class="joki-item-name">Legend</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp5.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="Mythic / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Mythic / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795549587923.png" alt="Mythic">
-            <span>
-              <span class="joki-item-name">Mythic</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp8.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="Mythic Honor / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Mythic Honor / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795549659938.png" alt="Mythic Honor">
-            <span>
-              <span class="joki-item-name">Mythic Honor</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp9.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="Mythic Glory / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Mythic Glory / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795550190064.png" alt="Mythic Glory">
-            <span>
-              <span class="joki-item-name">Mythic Glory</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp13.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="Mythic Immortal / Bintang">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">Mythic Immortal / Bintang</span>
+              <span class="joki-item-from">Dari</span>
+            </div>
             <img src="./1795549607805.png" alt="Mythic Immortal">
-            <span>
-              <span class="joki-item-name">Mythic Immortal</span>
-              <span class="joki-item-sub">Per bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp18.000</span>
         </button>
+      </div>
 
+      <!-- Tab 2: Paket 10 Bintang (+ 2 Bonus = 12 Bintang) -->
+      <div class="joki-package-grid" id="tab-package" style="display:none;">
         <button type="button" class="joki-item-btn" data-service="10 Bintang Epic + 2 ⭐ BONUS">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">10 Bintang Epic + 2 ⭐ BONUS</span>
+              <span class="joki-item-from">Total 12 bintang</span>
+            </div>
             <img src="./1795549566753.png" alt="Paket Epic">
-            <span>
-              <span class="joki-item-name">10★ Epic + 2⭐</span>
-              <span class="joki-item-sub">Total 12 bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp40.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="10 Bintang Legend + 2 ⭐ BONUS">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">10 Bintang Legend + 2 ⭐ BONUS</span>
+              <span class="joki-item-from">Total 12 bintang</span>
+            </div>
             <img src="./1795549947864.png" alt="Paket Legend">
-            <span>
-              <span class="joki-item-name">10★ Legend + 2⭐</span>
-              <span class="joki-item-sub">Total 12 bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp50.000</span>
         </button>
 
         <button type="button" class="joki-item-btn" data-service="10 Bintang Mythic + 2 ⭐ BONUS">
-          <span class="joki-item-left">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">10 Bintang Mythic + 2 ⭐ BONUS</span>
+              <span class="joki-item-from">Total 12 bintang</span>
+            </div>
             <img src="./1795549587923.png" alt="Paket Mythic">
-            <span>
-              <span class="joki-item-name">10★ Mythic + 2⭐</span>
-              <span class="joki-item-sub">Total 12 bintang</span>
-            </span>
-          </span>
+          </div>
           <span class="joki-item-price">Rp80.000</span>
+        </button>
+
+        <button type="button" class="joki-item-btn" data-service="10 Bintang Honor + 2 ⭐ BONUS">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">10 Bintang Honor + 2 ⭐ BONUS</span>
+              <span class="joki-item-from">Total 12 bintang</span>
+            </div>
+            <img src="./1795549659938.png" alt="Paket Honor">
+          </div>
+          <span class="joki-item-price">Rp85.000</span>
+        </button>
+
+        <button type="button" class="joki-item-btn" data-service="10 Bintang Glory + 2 ⭐ BONUS">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">10 Bintang Glory + 2 ⭐ BONUS</span>
+              <span class="joki-item-from">Total 12 bintang</span>
+            </div>
+            <img src="./1795550190064.png" alt="Paket Glory">
+          </div>
+          <span class="joki-item-price">Rp130.000</span>
+        </button>
+
+        <button type="button" class="joki-item-btn" data-service="10 Bintang Immortal + 2 ⭐ BONUS">
+          <div class="joki-card-top">
+            <div>
+              <span class="joki-item-name">10 Bintang Immortal + 2 ⭐ BONUS</span>
+              <span class="joki-item-from">Total 12 bintang</span>
+            </div>
+            <img src="./1795549607805.png" alt="Paket Immortal">
+          </div>
+          <span class="joki-item-price">Rp180.000</span>
         </button>
       </div>
 
-      <small id="estimateBreakdown" style="display:block;margin-top:8px;font-weight:700;color:#111827;line-height:1.35;">
+      <small id="estimateBreakdown" style="display:block;margin-top:10px;font-weight:700;color:#111827;line-height:1.35;">
         Tarif Grandmaster Rp4.000/bintang. Isi jumlah bintang untuk hitung estimasi total.
       </small>
     </div>
 
-    <!-- BAR RINGKASAN & KONFIRMASI PESANAN -->
-    <div class="joki-confirm-bar" aria-live="polite">
-      <div class="joki-confirm-summary">
-        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
-          <img id="selectedServiceIcon" src="./1795549575556.png" alt="Icon Layanan" style="width:28px;height:28px;object-fit:contain;flex-shrink:0;">
-          <span id="selectedServiceLabel" style="font-weight:700;font-size:0.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Grandmaster / Bintang</span>
-        </div>
-        <strong id="estimatedTotal" style="font-size:0.95rem;color:#0f172a;white-space:nowrap;">Rp4.000</strong>
+    <!-- BANNER UNGU & STICKY BOTTOM BAR -->
+    <div class="joki-bottom-wrap" aria-live="polite">
+      <div class="joki-promo-banner" id="promoBannerText">
+        Siap Push Rank Bareng Kabuki Joki!
       </div>
-      <button class="joki-confirm-btn" type="submit">
-        Konfirmasi Pesanan
-      </button>
+      <div class="joki-confirm-bar">
+        <div class="joki-confirm-summary">
+          <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+            <img id="selectedServiceIcon" src="./1795549575556.png" alt="Icon Layanan" style="width:30px;height:30px;object-fit:contain;flex-shrink:0;">
+            <span id="selectedServiceLabel" style="font-weight:700;font-size:0.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Grandmaster / Bintang</span>
+          </div>
+          <strong id="estimatedTotal" style="font-size:0.95rem;color:#0f172a;white-space:nowrap;">Rp4.000</strong>
+        </div>
+        <button class="joki-confirm-btn" type="submit">
+          Konfirmasi Pesanan
+        </button>
+      </div>
     </div>
 
   </form>
@@ -851,23 +931,14 @@ togglePasswordBtn.addEventListener("click", function() {
 /* Katalog harga & icon layanan */
 const PRICE_CATALOG = {
   "Warrior / Bintang": { type: "per-star", rate: 2500, icon: "./1795549271618.png" },
-  "Warrior": { type: "per-star", rate: 2500, icon: "./1795549271618.png" },
   "Elite / Bintang": { type: "per-star", rate: 3500, icon: "./1795549422933.png" },
-  "Elite": { type: "per-star", rate: 3500, icon: "./1795549422933.png" },
   "Grandmaster / Bintang": { type: "per-star", rate: 4000, icon: "./1795549575556.png" },
-  "Grandmaster": { type: "per-star", rate: 4000, icon: "./1795549575556.png" },
   "Epic / Bintang": { type: "per-star", rate: 4500, icon: "./1795549566753.png" },
-  "Epic": { type: "per-star", rate: 4500, icon: "./1795549566753.png" },
   "Legend / Bintang": { type: "per-star", rate: 5000, icon: "./1795549947864.png" },
-  "Legend": { type: "per-star", rate: 5000, icon: "./1795549947864.png" },
   "Mythic / Bintang": { type: "per-star", rate: 8000, icon: "./1795549587923.png" },
-  "Mythic": { type: "per-star", rate: 8000, icon: "./1795549587923.png" },
   "Mythic Honor / Bintang": { type: "per-star", rate: 9000, icon: "./1795549659938.png" },
-  "Mythic Honor": { type: "per-star", rate: 9000, icon: "./1795549659938.png" },
   "Mythic Glory / Bintang": { type: "per-star", rate: 13000, icon: "./1795550190064.png" },
-  "Mythic Glory": { type: "per-star", rate: 13000, icon: "./1795550190064.png" },
   "Mythic Immortal / Bintang": { type: "per-star", rate: 18000, icon: "./1795549607805.png" },
-  "Mythic Immortal": { type: "per-star", rate: 18000, icon: "./1795549607805.png" },
   "10 Bintang Epic + 2 ⭐ BONUS": { type: "package", price: 40000, icon: "./1795549566753.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
   "10 Bintang Legend + 2 ⭐ BONUS": { type: "package", price: 50000, icon: "./1795549947864.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
   "10 Bintang Mythic + 2 ⭐ BONUS": { type: "package", price: 80000, icon: "./1795549587923.png", defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
@@ -882,6 +953,7 @@ const estimatedTotalEl = document.getElementById("estimatedTotal");
 const estimateBreakdownEl = document.getElementById("estimateBreakdown");
 const selectedServiceLabelEl = document.getElementById("selectedServiceLabel");
 const selectedServiceIconEl = document.getElementById("selectedServiceIcon");
+const promoBannerTextEl = document.getElementById("promoBannerText");
 const orderSection = document.getElementById("order");
 
 function formatRupiah(amount) {
@@ -895,7 +967,21 @@ function parseStarCount(rawText) {
   return num > 0 ? num : null;
 }
 
-function syncActiveQuickButtons(selectedValue) {
+function switchTab(tabName) {
+  document.querySelectorAll(".joki-tab-btn").forEach(function(btn) {
+    btn.classList.toggle("active", btn.dataset.tab === tabName);
+  });
+  document.getElementById("tab-per-star").style.display = tabName === "per-star" ? "grid" : "none";
+  document.getElementById("tab-package").style.display = tabName === "package" ? "grid" : "none";
+}
+
+document.querySelectorAll(".joki-tab-btn").forEach(function(btn) {
+  btn.addEventListener("click", function() {
+    switchTab(btn.dataset.tab);
+  });
+});
+
+function syncActiveCards(selectedValue) {
   document.querySelectorAll(".joki-item-btn").forEach(function(btn) {
     btn.classList.toggle("active", btn.dataset.service === selectedValue);
   });
@@ -908,21 +994,20 @@ function updatePriceEstimate() {
 
   selectedServiceLabelEl.textContent = selectedService;
   selectedServiceIconEl.src = (rule && rule.icon) ? rule.icon : "./1795548864898.png";
-  syncActiveQuickButtons(selectedService);
+  syncActiveCards(selectedService);
 
   if (!rule) {
     estimatedTotalEl.textContent = "Konfirmasi Admin";
-    estimateBreakdownEl.textContent =
-      rawQty
-        ? `Target/jumlah: ${rawQty}. Tarif final dikonfirmasi admin sesuai detail pesanan.`
-        : "Layanan ini disesuaikan dengan kebutuhan & target. Tarif dikonfirmasi admin.";
+    estimateBreakdownEl.textContent = "Tarif dikonfirmasi admin.";
+    promoBannerTextEl.textContent = "Konfirmasi detail pesanan via WhatsApp";
     return "Konfirmasi Admin";
   }
 
   if (rule.type === "package") {
     const formatted = formatRupiah(rule.price);
     estimatedTotalEl.textContent = formatted;
-    estimateBreakdownEl.textContent = `Paket tetap ${formatted} untuk 10 bintang + bonus 2 bintang (total 12 bintang).`;
+    estimateBreakdownEl.textContent = `Paket tetap ${formatted} (10 bintang + 2 bonus = 12 bintang).`;
+    promoBannerTextEl.textContent = "Bonus 2 Bintang (Total 12 Bintang)!";
     return formatted;
   }
 
@@ -933,32 +1018,30 @@ function updatePriceEstimate() {
 
   estimatedTotalEl.textContent = formattedTotal;
   estimateBreakdownEl.textContent = parsedStars
-    ? `${stars} bintang × ${formatRupiah(rule.rate)}/bintang = ${formattedTotal} (estimasi awal).`
-    : `Tarif ${selectedService} ${formatRupiah(rule.rate)}/bintang. Isi jumlah bintang untuk hitung total (saat ini dihitung 1 bintang).`;
+    ? `${stars} bintang × ${formatRupiah(rule.rate)}/bintang = ${formattedTotal}.`
+    : `Tarif ${selectedService} ${formatRupiah(rule.rate)}/bintang. Isi jumlah bintang untuk hitung total.`;
+  promoBannerTextEl.textContent = parsedStars
+    ? `Estimasi ${stars} Bintang: ${formattedTotal}`
+    : "Tarif Per Bintang · Bisa Request Hero";
 
   return `${formattedTotal} (${stars} bintang)`;
 }
 
-/* Pilih layanan dari kartu layanan, daftar harga, atau tombol cepat jasa joki */
+/* Pilih layanan dari kartu jasa joki, daftar harga, atau layanan */
 document.querySelectorAll("[data-service]").forEach(function(item) {
   item.addEventListener("click", function(e) {
     const href = item.getAttribute("href");
     if (!href || href.startsWith("#")) {
       e.preventDefault();
     }
-    let chosen = item.dataset.service;
-    if (!chosen) return;
-
-    if (!Array.from(serviceSelect.options).some(opt => opt.value === chosen)) {
-      const withStarLabel = `${chosen} / Bintang`;
-      if (Array.from(serviceSelect.options).some(opt => opt.value === withStarLabel)) {
-        chosen = withStarLabel;
-      }
-    }
+    const chosen = item.dataset.service;
+    if (!chosen || !PRICE_CATALOG[chosen]) return;
 
     serviceSelect.value = chosen;
     const rule = PRICE_CATALOG[chosen];
-    if (rule && rule.type === "package" && !quantityInput.value.trim()) {
+    switchTab(rule.type === "package" ? "package" : "per-star");
+
+    if (rule.type === "package" && !quantityInput.value.trim()) {
       quantityInput.value = rule.defaultStars;
     }
     updatePriceEstimate();
@@ -969,7 +1052,6 @@ document.querySelectorAll("[data-service]").forEach(function(item) {
   });
 });
 
-serviceSelect.addEventListener("change", updatePriceEstimate);
 quantityInput.addEventListener("input", updatePriceEstimate);
 updatePriceEstimate();
 
@@ -981,7 +1063,7 @@ document.getElementById("orderForm").addEventListener("submit", function(e) {
 
   const accountEmail = form.get("accountEmail").trim();
   const accountPassword = form.get("accountPassword");
-  const loginVia = form.get("loginVia");
+  const loginVia = form.get("loginVia") || "-";
   const nickname = form.get("nickname").trim();
   const userServerId = form.get("userServerId").trim();
   const requestHeroes = (form.get("requestHeroes") || "").trim() || "-";
