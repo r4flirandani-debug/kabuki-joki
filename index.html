@@ -32,7 +32,7 @@
   </nav>
 
   <a class="nav-cta" href="#order">Order Sekarang ↗</a>
-  <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+  <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">☰</button>
 </header>
 
 <main>
@@ -157,7 +157,7 @@
       <div class="eyebrow">TRANSPARAN & MUDAH</div>
       <h2>DAFTAR <span>HARGA</span></h2>
     </div>
-    <p>Harga per bintang & paket 10 bintang + 2 bonus. Dikonfirmasi admin sebelum mulai.</p>
+    <p>Klik baris rank atau paket untuk langsung memilihnya di form order. Dikonfirmasi admin sebelum mulai.</p>
   </div>
 
   <div class="price-panel">
@@ -168,7 +168,7 @@
     </div>
 
     <!-- HARGA PER BINTANG -->
-    <div class="price-row">
+    <div class="price-row" data-service="Warrior" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549271618.png" alt="Warrior">
         <div><b>Warrior</b><small>Per bintang</small></div>
@@ -176,7 +176,7 @@
       <strong class="price-value">Rp2.500</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Elite" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549422933.png" alt="Elite">
         <div><b>Elite</b><small>Per bintang</small></div>
@@ -184,7 +184,7 @@
       <strong class="price-value">Rp3.500</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Grandmaster" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549575556.png" alt="Grandmaster">
         <div><b>Grandmaster</b><small>Per bintang</small></div>
@@ -192,7 +192,7 @@
       <strong class="price-value">Rp4.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Epic" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549566753.png" alt="Epic">
         <div><b>Epic</b><small>Per bintang</small></div>
@@ -200,7 +200,7 @@
       <strong class="price-value">Rp4.500</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Legend" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549947864.png" alt="Legend">
         <div><b>Legend</b><small>Per bintang</small></div>
@@ -208,7 +208,7 @@
       <strong class="price-value">Rp5.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Mythic" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549587923.png" alt="Mythic">
         <div><b>Mythic</b><small>Per bintang</small></div>
@@ -216,7 +216,7 @@
       <strong class="price-value">Rp8.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Mythic Honor" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549659938.png" alt="Mythic Honor">
         <div><b>Mythic Honor</b><small>Per bintang</small></div>
@@ -224,7 +224,7 @@
       <strong class="price-value">Rp9.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Mythic Glory" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795550190064.png" alt="Mythic Glory">
         <div><b>Mythic Glory</b><small>Per bintang</small></div>
@@ -232,7 +232,7 @@
       <strong class="price-value">Rp13.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="Mythic Immortal" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549607805.png" alt="Mythic Immortal">
         <div><b>Mythic Immortal</b><small>Per bintang · target tertinggi</small></div>
@@ -241,7 +241,7 @@
     </div>
 
     <!-- PAKET 10 BINTANG + 2 BONUS -->
-    <div class="price-row">
+    <div class="price-row" data-service="10 Bintang Epic + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549566753.png" alt="Epic">
         <div><b>10 Bintang Epic + 2 ⭐ BONUS</b><small>Total 12 bintang</small></div>
@@ -249,7 +249,7 @@
       <strong class="price-value">Rp40.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="10 Bintang Legend + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549947864.png" alt="Legend">
         <div><b>10 Bintang Legend + 2 ⭐ BONUS</b><small>Total 12 bintang</small></div>
@@ -257,7 +257,7 @@
       <strong class="price-value">Rp50.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="10 Bintang Mythic + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549587923.png" alt="Mythic">
         <div><b>10 Bintang Mythic + 2 ⭐ BONUS</b><small>Total 12 bintang</small></div>
@@ -265,7 +265,7 @@
       <strong class="price-value">Rp80.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="10 Bintang Honor + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549659938.png" alt="Mythic Honor">
         <div><b>10 Bintang Honor + 2 ⭐ BONUS</b><small>Total 12 bintang</small></div>
@@ -273,7 +273,7 @@
       <strong class="price-value">Rp85.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="10 Bintang Glory + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795550190064.png" alt="Mythic Glory">
         <div><b>10 Bintang Glory + 2 ⭐ BONUS</b><small>Total 12 bintang</small></div>
@@ -281,7 +281,7 @@
       <strong class="price-value">Rp130.000</strong>
     </div>
 
-    <div class="price-row">
+    <div class="price-row" data-service="10 Bintang Immortal + 2 ⭐ BONUS" style="cursor:pointer;">
       <div class="tier">
         <img class="rank-image" src="./1795549607805.png" alt="Mythic Immortal">
         <div><b>10 Bintang Immortal + 2 ⭐ BONUS</b><small>Total 12 bintang</small></div>
@@ -290,7 +290,7 @@
     </div>
 
     <p class="price-note">
-      Harga tertera sesuai daftar layanan. Untuk pemesanan, scroll ke form order atau hubungi admin WhatsApp.
+      Harga tertera sesuai daftar layanan. Untuk pemesanan, klik baris harga, scroll ke form order, atau hubungi admin WhatsApp.
     </p>
 
   </div>
@@ -319,18 +319,18 @@
 
     <label>
       Nama / Nickname
-      <input name="nickname" required placeholder="Masukkan nickname kamu">
+      <input name="nickname" autocomplete="nickname" required placeholder="Masukkan nickname kamu">
     </label>
 
     <div class="form-two">
       <label>
         User ID
-        <input name="userId" required inputmode="numeric" placeholder="Contoh: 12345678">
+        <input name="userId" required inputmode="numeric" pattern="[0-9]+" placeholder="Contoh: 12345678">
       </label>
 
       <label>
         Server ID
-        <input name="serverId" required inputmode="numeric" placeholder="Contoh: 1234">
+        <input name="serverId" required inputmode="numeric" pattern="[0-9]+" placeholder="Contoh: 1234">
       </label>
     </div>
 
@@ -374,8 +374,16 @@
 
     <label>
       Jumlah bintang / target <span class="optional">(opsional)</span>
-      <input name="quantity" placeholder="Contoh: 10 bintang">
+      <input name="quantity" id="quantityInput" placeholder="Contoh: 10 bintang">
     </label>
+
+    <div class="price-estimator" id="priceEstimator" aria-live="polite" style="padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:4px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+        <span style="font-size:0.85rem;opacity:0.8;">Estimasi Biaya</span>
+        <strong id="estimatedTotal" style="font-size:1.1rem;">Konfirmasi Admin</strong>
+      </div>
+      <small id="estimateBreakdown" style="opacity:0.75;line-height:1.4;">Pilih rank atau paket bintang lalu isi jumlah bintang untuk melihat perkiraan harga.</small>
+    </div>
 
     <label>
       Catatan tambahan <span class="optional">(opsional)</span>
@@ -455,13 +463,12 @@
 <a class="floating-wa"
 href="https://wa.me/628984814123"
 target="_blank"
-rel="noopener"
+rel="noopener noreferrer"
 aria-label="Chat WhatsApp">✆</a>
 
 <script>
 /* Tahun otomatis */
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
 /* Menu HP */
 const menuToggle = document.getElementById("menuToggle");
@@ -469,7 +476,7 @@ const mainNav = document.getElementById("mainNav");
 
 menuToggle.addEventListener("click", function() {
   const isOpen = mainNav.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", isOpen);
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
 
 mainNav.querySelectorAll("a").forEach(function(link) {
@@ -479,14 +486,99 @@ mainNav.querySelectorAll("a").forEach(function(link) {
   });
 });
 
-/* Pilih layanan otomatis */
-const serviceSelect = document.getElementById("serviceSelect");
+/* Data harga & kalkulator estimasi */
+const PRICE_CATALOG = {
+  "Warrior": { type: "per-star", rate: 2500 },
+  "Elite": { type: "per-star", rate: 3500 },
+  "Grandmaster": { type: "per-star", rate: 4000 },
+  "Epic": { type: "per-star", rate: 4500 },
+  "Legend": { type: "per-star", rate: 5000 },
+  "Mythic": { type: "per-star", rate: 8000 },
+  "Mythic Honor": { type: "per-star", rate: 9000 },
+  "Mythic Glory": { type: "per-star", rate: 13000 },
+  "Mythic Immortal": { type: "per-star", rate: 18000 },
+  "10 Bintang Epic + 2 ⭐ BONUS": { type: "package", price: 40000, defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Legend + 2 ⭐ BONUS": { type: "package", price: 50000, defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Mythic + 2 ⭐ BONUS": { type: "package", price: 80000, defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Honor + 2 ⭐ BONUS": { type: "package", price: 85000, defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Glory + 2 ⭐ BONUS": { type: "package", price: 130000, defaultStars: "10 bintang + 2 bonus (total 12 bintang)" },
+  "10 Bintang Immortal + 2 ⭐ BONUS": { type: "package", price: 180000, defaultStars: "10 bintang + 2 bonus (total 12 bintang)" }
+};
 
-document.querySelectorAll("[data-service]").forEach(function(button) {
-  button.addEventListener("click", function() {
-    serviceSelect.value = button.dataset.service;
+const serviceSelect = document.getElementById("serviceSelect");
+const quantityInput = document.getElementById("quantityInput");
+const estimatedTotalEl = document.getElementById("estimatedTotal");
+const estimateBreakdownEl = document.getElementById("estimateBreakdown");
+const orderSection = document.getElementById("order");
+
+function formatRupiah(amount) {
+  return "Rp" + Number(amount).toLocaleString("id-ID");
+}
+
+function parseStarCount(rawText) {
+  const match = String(rawText || "").match(/\d+/);
+  if (!match) return null;
+  const num = parseInt(match[0], 10);
+  return num > 0 ? num : null;
+}
+
+function updatePriceEstimate() {
+  const selectedService = serviceSelect.value;
+  const rule = PRICE_CATALOG[selectedService];
+  const rawQty = quantityInput.value.trim();
+
+  if (!rule) {
+    estimatedTotalEl.textContent = "Konfirmasi Admin";
+    estimateBreakdownEl.textContent =
+      rawQty
+        ? `Target/jumlah: ${rawQty}. Tarif final dikonfirmasi admin sesuai detail pesanan.`
+        : "Layanan ini disesuaikan dengan kebutuhan & target. Tarif dikonfirmasi admin.";
+    return "Konfirmasi Admin";
+  }
+
+  if (rule.type === "package") {
+    const formatted = formatRupiah(rule.price);
+    estimatedTotalEl.textContent = formatted;
+    estimateBreakdownEl.textContent = `Paket tetap ${formatted} untuk 10 bintang + bonus 2 bintang (total 12 bintang).`;
+    return formatted;
+  }
+
+  const parsedStars = parseStarCount(rawQty);
+  const stars = parsedStars || 1;
+  const total = rule.rate * stars;
+  const formattedTotal = formatRupiah(total);
+
+  estimatedTotalEl.textContent = formattedTotal;
+  estimateBreakdownEl.textContent = parsedStars
+    ? `${stars} bintang × ${formatRupiah(rule.rate)}/bintang = ${formattedTotal} (estimasi awal).`
+    : `Tarif ${selectedService} ${formatRupiah(rule.rate)}/bintang. Isi jumlah bintang untuk hitung total (saat ini dihitung 1 bintang).`;
+
+  return `${formattedTotal} (${stars} bintang)`;
+}
+
+/* Pilih layanan otomatis dari kartu layanan atau daftar harga */
+document.querySelectorAll("[data-service]").forEach(function(item) {
+  item.addEventListener("click", function(e) {
+    const href = item.getAttribute("href");
+    if (!href || href.startsWith("#")) {
+      e.preventDefault();
+    }
+    const chosen = item.dataset.service;
+    if (chosen) {
+      serviceSelect.value = chosen;
+      const rule = PRICE_CATALOG[chosen];
+      if (rule && rule.type === "package" && !quantityInput.value.trim()) {
+        quantityInput.value = rule.defaultStars;
+      }
+      updatePriceEstimate();
+      orderSection.scrollIntoView({ behavior: "smooth" });
+    }
   });
 });
+
+serviceSelect.addEventListener("change", updatePriceEstimate);
+quantityInput.addEventListener("input", updatePriceEstimate);
+updatePriceEstimate();
 
 /* Form WhatsApp */
 document.getElementById("orderForm").addEventListener("submit", function(e) {
@@ -494,14 +586,15 @@ document.getElementById("orderForm").addEventListener("submit", function(e) {
 
   const form = new FormData(this);
 
-  const nickname = form.get("nickname");
-  const userId = form.get("userId");
-  const serverId = form.get("serverId");
+  const nickname = form.get("nickname").trim();
+  const userId = form.get("userId").trim();
+  const serverId = form.get("serverId").trim();
   const service = form.get("service");
-  const currentRank = form.get("currentRank");
-  const targetRank = form.get("targetRank");
-  const quantity = form.get("quantity") || "-";
-  const notes = form.get("notes") || "-";
+  const currentRank = form.get("currentRank").trim();
+  const targetRank = form.get("targetRank").trim();
+  const quantity = (form.get("quantity") || "").trim() || "-";
+  const notes = (form.get("notes") || "").trim() || "-";
+  const estimateText = updatePriceEstimate();
 
   const message =
 `Halo Admin Kabuki Joki, saya ingin melakukan pemesanan.
@@ -514,6 +607,7 @@ Layanan: ${service}
 Rank saat ini: ${currentRank}
 Target rank: ${targetRank}
 Jumlah bintang: ${quantity}
+Estimasi harga: ${estimateText}
 
 Catatan: ${notes}
 
