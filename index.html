@@ -1,58 +1,489 @@
+
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#071426">
-<meta name="description" content="Kabuki Joki — layanan push rank Mobile Legends, joki eceran, dan paket bintang.">
+<meta name="description" content="Kabuki Joki — layanan push rank Mobile Legends, joki eceran dan paket bintang.">
 <title>Kabuki Joki — Push Rank Mobile Legends</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+.brand-logo {
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  flex-shrink:0;
+}
+.hero-emblem {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-logo {
+  width:100%;
+  max-width:330px;
+  height:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 0 25px rgba(0,115,255,.35));
+}
+.footer-logo {
+  width:42px;
+  height:42px;
+  object-fit:contain;
+}
+.rank-image {
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  flex-shrink:0;
+}
+.tier {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+@media(max-width:600px) {
+  .brand-logo {width:38px;height:38px}
+  .rank-image {width:40px;height:40px}
+  .hero-logo {max-width:250px}
+}
+</style>
 </head>
+
 <body>
-<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
-<header class="topbar"><a class="brand" href="#home"><span class="brand-mark">K</span><span>KABUKI <b>JOKI</b></span></a>
-<nav id="mainNav"><a href="#layanan">Layanan</a><a href="#harga">Daftar Harga</a><a href="#cara-order">Cara Order</a></nav>
-<a class="nav-cta" href="#order">Order Sekarang ↗</a><button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button></header>
+
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+<header class="topbar">
+<a class="brand" href="#home">
+<img class="brand-logo" src="images/1795548864898.png" alt="Kabuki Joki">
+<span>KABUKI <b>JOKI</b></span>
+</a>
+
+<nav id="mainNav">
+<a href="#layanan">Layanan</a>
+<a href="#harga">Daftar Harga</a>
+<a href="#cara-order">Cara Order</a>
+</nav>
+
+<a class="nav-cta" href="#order">Order Sekarang ↗</a>
+<button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+</header>
+
 <main>
-<section class="hero section-wrap" id="home"><div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> PARTNER PUSH RANK MLBB</div>
-<h1>NAIK RANK.<br><span>LEBIH CEPAT.</span></h1><p class="hero-text">Fokus ke permainanmu, biar urusan push rank dibantu Kabuki Joki. Pilih layanan, isi detail pesanan, lalu konsultasi langsung melalui WhatsApp.</p>
-<div class="hero-actions"><a class="btn btn-primary" href="#harga">Lihat Daftar Harga ↘</a><a class="btn btn-ghost" href="#cara-order">Cara Order</a></div>
-<div class="hero-stats"><div><strong>MLBB</strong><small>Mobile Legends</small></div><i></i><div><strong>FAST</strong><small>Respon admin</small></div><i></i><div><strong>24/7</strong><small>Order online</small></div></div></div>
-<div class="hero-art"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="hero-emblem"><div class="emblem-inner"><span>K</span><small>KABUKI</small></div></div><div class="floating-card card-top">✦ <div><b>PUSH RANK</b><small>Level up your game</small></div></div><div class="floating-card card-bottom">◆ <div><b>YOUR NEXT RANK</b><small>Start your journey</small></div></div><div class="art-caption">PLAY SMART. RANK UP.</div></div></section>
-<section class="trust-strip section-wrap"><div>✦ Pemesanan praktis via WhatsApp</div><div>✦ Pilihan layanan fleksibel</div><div>✦ Konfirmasi harga sebelum mulai</div></section>
-<section class="section section-wrap" id="layanan"><div class="section-heading"><div><div class="eyebrow">APA YANG KAMI TAWARKAN</div><h2>LAYANAN <span>KABUKI</span></h2></div><p>Pilih bantuan yang sesuai dengan target permainanmu.</p></div>
+
+<!-- HERO -->
+<section class="hero section-wrap" id="home">
+
+<div class="hero-copy">
+<div class="eyebrow">
+<span class="live-dot"></span>
+PARTNER PUSH RANK MLBB
+</div>
+
+<h1>NAIK RANK.<br><span>LEBIH CEPAT.</span></h1>
+
+<p class="hero-text">
+Fokus ke permainanmu, biar urusan push rank dibantu Kabuki Joki.
+Pilih layanan, isi detail pesanan, lalu konsultasi langsung melalui WhatsApp.
+</p>
+
+<div class="hero-actions">
+<a class="btn btn-primary" href="#harga">Lihat Daftar Harga ↘</a>
+<a class="btn btn-ghost" href="#cara-order">Cara Order</a>
+</div>
+
+<div class="hero-stats">
+<div><strong>MLBB</strong><small>Mobile Legends</small></div>
+<i></i>
+<div><strong>FAST</strong><small>Respon admin</small></div>
+<i></i>
+<div><strong>24/7</strong><small>Order online</small></div>
+</div>
+</div>
+
+<div class="hero-art">
+<div class="orbit orbit-a"></div>
+<div class="orbit orbit-b"></div>
+
+<div class="hero-emblem">
+<img class="hero-logo" src="images/1795548864898.png" alt="Logo Kabuki Joki">
+</div>
+
+<div class="floating-card card-top">
+✦
+<div><b>PUSH RANK</b><small>Level up your game</small></div>
+</div>
+
+<div class="floating-card card-bottom">
+◆
+<div><b>YOUR NEXT RANK</b><small>Start your journey</small></div>
+</div>
+
+<div class="art-caption">PLAY SMART. RANK UP.</div>
+</div>
+
+</section>
+
+<!-- TRUST -->
+<section class="trust-strip section-wrap">
+<div>✦ Pemesanan praktis via WhatsApp</div>
+<div>✦ Pilihan layanan fleksibel</div>
+<div>✦ Konfirmasi harga sebelum mulai</div>
+</section>
+
+<!-- LAYANAN -->
+<section class="section section-wrap" id="layanan">
+
+<div class="section-heading">
+<div>
+<div class="eyebrow">APA YANG KAMI TAWARKAN</div>
+<h2>LAYANAN <span>KABUKI</span></h2>
+</div>
+<p>Pilih bantuan yang sesuai dengan target permainanmu.</p>
+</div>
+
 <div class="service-grid">
-<article class="service-card"><div class="service-icon">♜</div><h3>Push Rank</h3><p>Bantuan menaikkan rank dari tier saat ini menuju target pilihanmu.</p><a href="#order" data-service="Push Rank">Pilih layanan ↗</a></article>
-<article class="service-card featured"><div class="service-tag">POPULER</div><div class="service-icon">⚡</div><h3>Joki Eceran</h3><p>Pilih jumlah bintang sesuai kebutuhan. Harga dikonfirmasi admin.</p><a href="#order" data-service="Joki Eceran">Pilih layanan ↗</a></article>
-<article class="service-card"><div class="service-icon">★</div><h3>Joki Paketan</h3><p>Paket 10 bintang dengan bonus 2 bintang (total 12 bintang).</p><a href="#order" data-service="Joki Paketan 10 Bintang + Bonus 2">Pilih layanan ↗</a></article>
-<article class="service-card"><div class="service-icon">✦</div><h3>Win Streak</h3><p>Bantuan mengejar kemenangan beruntun dengan target yang disepakati.</p><a href="#order" data-service="Win Streak">Pilih layanan ↗</a></article>
-<article class="service-card"><div class="service-icon">◈</div><h3>Placement</h3><p>Bantuan menyelesaikan pertandingan placement sesuai kebutuhan.</p><a href="#order" data-service="Placement">Pilih layanan ↗</a></article></div></section>
-<section class="section section-wrap price-section" id="harga"><div class="section-heading"><div><div class="eyebrow">TRANSPARAN & MUDAH</div><h2>DAFTAR <span>HARGA</span></h2></div><p>Harga bersifat custom. Admin mengonfirmasi total berdasarkan rank, bintang, dan kondisi akun.</p></div>
-<div class="price-panel"><div class="price-head"><span>RANK / LAYANAN</span><span>HARGA</span><span></span></div>
-<div class="price-row"><div class="tier"><span class="rank-badge warrior">W</span><div><b>Warrior – Elite</b><small>Push rank</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Warrior – Elite">Rp2500 ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge elite">E</span><div><b>Elite – Master</b><small>Push rank</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Elite – Master">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge master">M</span><div><b>Master – Grandmaster</b><small>Push rank</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Master – Grandmaster">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge grandmaster">GM</span><div><b>Grandmaster – Epic</b><small>Push rank</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Grandmaster – Epic">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge epic">E</span><div><b>Epic – Legend</b><small>Push rank</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Epic – Legend">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge legend">L</span><div><b>Legend – Mythic</b><small>Push rank</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Legend – Mythic">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge mythic">M</span><div><b>Mythic dan tier di atasnya</b><small>Target sesuai kesepakatan</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Mythic dan tier di atasnya">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge retail">★</span><div><b>Joki Eceran</b><small>Harga per bintang</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Joki Eceran">Order ↗</button></div>
-<div class="price-row"><div class="tier"><span class="rank-badge package">12</span><div><b>Joki Paketan 10 Bintang</b><small>Bonus 2 bintang · total 12</small></div></div><strong>Hubungi Admin</strong><button class="small-order" data-service="Joki Paketan 10 Bintang + Bonus 2">Order ↗</button></div>
-<p class="price-note">Harga custom dan dikonfirmasi admin sebelum pesanan diproses. Emblem merupakan ikon ilustratif, bukan aset resmi game.</p></div></section>
-<section class="section section-wrap order-layout" id="order"><div class="order-intro"><div class="eyebrow">MULAI SEKARANG</div><h2>SIAP UNTUK<br><span>NAIK RANK?</span></h2><p>Isi formulir singkat. Detail pesanan akan disiapkan menjadi pesan WhatsApp untuk admin Kabuki Joki.</p><div class="order-note">ⓘ <p>Jangan kirim password akun melalui formulir. Bicarakan metode pengerjaan dan keamanan akun dengan admin, serta pastikan mematuhi ketentuan game.</p></div></div>
-<form class="order-form" id="orderForm"><div class="form-title"><b>FORM PEMESANAN</b><span>01 / 01</span></div>
-<label>Nama / Nickname<input name="nickname" required placeholder="Masukkan nickname kamu"></label>
-<div class="form-two"><label>User ID<input name="userId" required inputmode="numeric" placeholder="Contoh: 12345678"></label><label>Server ID<input name="serverId" required inputmode="numeric" placeholder="Contoh: 1234"></label></div>
-<label>Pilih layanan<select name="service" id="serviceSelect"><option>Push Rank</option><option>Joki Eceran</option><option>Joki Paketan 10 Bintang + Bonus 2</option><option>Win Streak</option><option>Placement</option><option>Warrior – Elite</option><option>Elite – Master</option><option>Master – Grandmaster</option><option>Grandmaster – Epic</option><option>Epic – Legend</option><option>Legend – Mythic</option><option>Mythic dan tier di atasnya</option></select></label>
-<div class="form-two"><label>Rank saat ini<input name="currentRank" required placeholder="Contoh: Epic II"></label><label>Target rank<input name="targetRank" required placeholder="Contoh: Mythic"></label></div>
-<label>Jumlah bintang / target <span class="optional">(opsional)</span><input name="quantity" placeholder="Contoh: 10 bintang"></label>
-<label>Catatan tambahan <span class="optional">(opsional)</span><textarea name="notes" rows="3" placeholder="Detail lain untuk admin..."></textarea></label>
-<button class="btn btn-primary submit-btn" type="submit">Kirim Order via WhatsApp ↗</button><small class="form-foot">WhatsApp terbuka dengan detail pesanan. Harga dikonfirmasi admin.</small></form></section>
-<section class="section section-wrap steps-section" id="cara-order"><div class="section-heading"><div><div class="eyebrow">SIMPLE PROCESS</div><h2>CARA <span>ORDER</span></h2></div><p>Hanya beberapa langkah untuk memulai pesananmu.</p></div>
-<div class="steps"><div class="step"><span>01</span><h3>Pilih layanan</h3><p>Tentukan layanan dan target rank yang kamu inginkan.</p></div><div class="step"><span>02</span><h3>Isi formulir</h3><p>Lengkapi nickname, ID, rank, dan detail pesanan.</p></div><div class="step"><span>03</span><h3>Konfirmasi admin</h3><p>Pesan terbuka di WhatsApp untuk cek harga dan detail.</p></div><div class="step"><span>04</span><h3>Konfirmasi pengerjaan</h3><p>Setujui harga dan ketentuan bersama admin.</p></div></div></section>
+
+<article class="service-card">
+<div class="service-icon">♜</div>
+<h3>Push Rank</h3>
+<p>Bantuan menaikkan rank dari tier saat ini menuju target pilihanmu.</p>
+<a href="#order" data-service="Push Rank">Pilih layanan ↗</a>
+</article>
+
+<article class="service-card featured">
+<div class="service-tag">POPULER</div>
+<div class="service-icon">⚡</div>
+<h3>Joki Eceran</h3>
+<p>Pilih jumlah bintang sesuai kebutuhan. Harga dikonfirmasi admin.</p>
+<a href="#order" data-service="Joki Eceran">Pilih layanan ↗</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">★</div>
+<h3>Joki Paketan</h3>
+<p>Paket 10 bintang dengan bonus 2 bintang (total 12 bintang).</p>
+<a href="#order" data-service="Joki Paketan 10 Bintang + Bonus 2">Pilih layanan ↗</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">✦</div>
+<h3>Win Streak</h3>
+<p>Bantuan mengejar kemenangan beruntun dengan target yang disepakati.</p>
+<a href="#order" data-service="Win Streak">Pilih layanan ↗</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">◈</div>
+<h3>Placement</h3>
+<p>Bantuan menyelesaikan pertandingan placement sesuai kebutuhan.</p>
+<a href="#order" data-service="Placement">Pilih layanan ↗</a>
+</article>
+
+</div>
+</section>
+
+<!-- DAFTAR HARGA -->
+<section class="section section-wrap price-section" id="harga">
+
+<div class="section-heading">
+<div>
+<div class="eyebrow">TRANSPARAN & MUDAH</div>
+<h2>DAFTAR <span>HARGA</span></h2>
+</div>
+<p>Harga custom. Admin mengonfirmasi total berdasarkan rank, bintang, dan kondisi akun.</p>
+</div>
+
+<div class="price-panel">
+
+<div class="price-head">
+<span>RANK / LAYANAN</span>
+<span>HARGA</span>
+<span></span>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549271618.png" alt="Warrior">
+<div><b>Warrior – Elite</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Warrior – Elite">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549422933.png" alt="Elite">
+<div><b>Elite – Master</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Elite – Master">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549553960.png" alt="Master">
+<div><b>Master – Grandmaster</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Master – Grandmaster">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549575556.png" alt="Grandmaster">
+<div><b>Grandmaster – Epic</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Grandmaster – Epic">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549566753.png" alt="Epic">
+<div><b>Epic – Legend</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Epic – Legend">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549947864.png" alt="Legend">
+<div><b>Legend – Mythic</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Legend – Mythic">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549587923.png" alt="Mythic">
+<div><b>Mythic – Mythic Honor</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Mythic – Mythic Honor">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549659938.png" alt="Mythic Honor">
+<div><b>Mythic Honor – Mythic Glory</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Mythic Honor – Mythic Glory">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795550190064.png" alt="Mythic Glory">
+<div><b>Mythic Glory – Mythic Immortal</b><small>Push rank</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Mythic Glory – Mythic Immortal">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<img class="rank-image" src="images/1795549607805.png" alt="Mythic Immortal">
+<div><b>Mythic Immortal</b><small>Target tertinggi</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Mythic Immortal">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<span class="rank-badge retail">★</span>
+<div><b>Joki Eceran</b><small>Harga per bintang</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Joki Eceran">Order ↗</button>
+</div>
+
+<div class="price-row">
+<div class="tier">
+<span class="rank-badge package">12</span>
+<div><b>Joki Paketan 10 Bintang</b><small>Bonus 2 bintang · total 12</small></div>
+</div>
+<strong>Custom</strong>
+<button class="small-order" data-service="Joki Paketan 10 Bintang + Bonus 2">Order ↗</button>
+</div>
+
+<p class="price-note">
+Harga custom dan dikonfirmasi admin sebelum pesanan diproses.
+</p>
+
+</div>
+</section>
+
+<!-- FORM ORDER -->
+<section class="section section-wrap order-layout" id="order">
+
+<div class="order-intro">
+<div class="eyebrow">MULAI SEKARANG</div>
+<h2>SIAP UNTUK<br><span>NAIK RANK?</span></h2>
+<p>Isi formulir singkat. Detail pesanan akan disiapkan menjadi pesan WhatsApp untuk admin Kabuki Joki.</p>
+
+<div class="order-note">
+ⓘ
+<p>Jangan kirim password akun melalui formulir. Bicarakan metode pengerjaan dan keamanan akun dengan admin, serta pastikan mematuhi ketentuan game.</p>
+</div>
+</div>
+
+<form class="order-form" id="orderForm">
+
+<div class="form-title">
+<b>FORM PEMESANAN</b>
+<span>01 / 01</span>
+</div>
+
+<label>
+Nama / Nickname
+<input name="nickname" required placeholder="Masukkan nickname kamu">
+</label>
+
+<div class="form-two">
+<label>
+User ID
+<input name="userId" required inputmode="numeric" placeholder="Contoh: 12345678">
+</label>
+
+<label>
+Server ID
+<input name="serverId" required inputmode="numeric" placeholder="Contoh: 1234">
+</label>
+</div>
+
+<label>
+Pilih layanan
+<select name="service" id="serviceSelect">
+<option>Push Rank</option>
+<option>Joki Eceran</option>
+<option>Joki Paketan 10 Bintang + Bonus 2</option>
+<option>Win Streak</option>
+<option>Placement</option>
+<option>Warrior – Elite</option>
+<option>Elite – Master</option>
+<option>Master – Grandmaster</option>
+<option>Grandmaster – Epic</option>
+<option>Epic – Legend</option>
+<option>Legend – Mythic</option>
+<option>Mythic – Mythic Honor</option>
+<option>Mythic Honor – Mythic Glory</option>
+<option>Mythic Glory – Mythic Immortal</option>
+<option>Mythic Immortal</option>
+</select>
+</label>
+
+<div class="form-two">
+<label>
+Rank saat ini
+<input name="currentRank" required placeholder="Contoh: Epic II">
+</label>
+
+<label>
+Target rank
+<input name="targetRank" required placeholder="Contoh: Mythic Honor">
+</label>
+</div>
+
+<label>
+Jumlah bintang / target <span class="optional">(opsional)</span>
+<input name="quantity" placeholder="Contoh: 10 bintang">
+</label>
+
+<label>
+Catatan tambahan <span class="optional">(opsional)</span>
+<textarea name="notes" rows="3" placeholder="Detail lain untuk admin..."></textarea>
+</label>
+
+<button class="btn btn-primary submit-btn" type="submit">
+Kirim Order via WhatsApp ↗
+</button>
+
+<small class="form-foot">
+WhatsApp terbuka dengan detail pesanan. Harga dikonfirmasi admin.
+</small>
+
+</form>
+</section>
+
+<!-- CARA ORDER -->
+<section class="section section-wrap steps-section" id="cara-order">
+
+<div class="section-heading">
+<div>
+<div class="eyebrow">SIMPLE PROCESS</div>
+<h2>CARA <span>ORDER</span></h2>
+</div>
+<p>Hanya beberapa langkah untuk memulai pesananmu.</p>
+</div>
+
+<div class="steps">
+
+<div class="step">
+<span>01</span>
+<h3>Pilih layanan</h3>
+<p>Tentukan layanan dan target rank yang kamu inginkan.</p>
+</div>
+
+<div class="step">
+<span>02</span>
+<h3>Isi formulir</h3>
+<p>Lengkapi nickname, ID, rank, dan detail pesanan.</p>
+</div>
+
+<div class="step">
+<span>03</span>
+<h3>Konfirmasi admin</h3>
+<p>Pesan terbuka di WhatsApp untuk cek harga dan detail.</p>
+</div>
+
+<div class="step">
+<span>04</span>
+<h3>Konfirmasi pengerjaan</h3>
+<p>Setujui harga dan ketentuan bersama admin.</p>
+</div>
+
+</div>
+</section>
+
 </main>
-<footer><div class="footer-brand"><span class="brand-mark">K</span><b>KABUKI JOKI</b></div><p>Push rank dengan lebih praktis.</p><small>© <span id="year"></span> Kabuki Joki. Bukan situs resmi Moonton atau Mobile Legends: Bang Bang.</small></footer>
-<a class="floating-wa" href="https://wa.me/628984814123" target="_blank" rel="noopener" aria-label="Chat WhatsApp">✆</a>
+
+<!-- FOOTER -->
+<footer>
+
+<div class="footer-brand">
+<img class="footer-logo" src="images/1795548864898.png" alt="Kabuki Joki">
+<b>KABUKI JOKI</b>
+</div>
+
+<p>Push rank dengan lebih praktis.</p>
+
+<small>
+© <span id="year"></span> Kabuki Joki.
+Bukan situs resmi Moonton atau Mobile Legends: Bang Bang.
+</small>
+
+</footer>
+
+<a class="floating-wa"
+href="https://wa.me/628984814123"
+target="_blank"
+rel="noopener"
+aria-label="Chat WhatsApp">✆</a>
+
 <script src="script.js"></script>
-</body></html>
+
+</body>
+</html>
