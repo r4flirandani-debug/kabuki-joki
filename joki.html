@@ -504,11 +504,12 @@
     }
 
     .nom-img {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 5px;
-      object-fit: cover;
+      object-fit: contain;
       background: #14161a;
+      padding: 2px;
       flex-shrink: 0;
     }
 
@@ -523,14 +524,14 @@
       font-size: 11.5px;
       font-weight: 800;
       color: var(--blue-price);
-      padding-left: 33px;
+      padding-left: 35px;
     }
 
     .nom-strike {
       font-size: 9.5px;
       color: var(--red-strike);
       text-decoration: line-through;
-      padding-left: 33px;
+      padding-left: 35px;
       margin-top: 1px;
     }
 
@@ -1053,12 +1054,41 @@
   <script>
     const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
 
+    // Logo Rank Mobile Legends
+    const RANK_IMG_EPIC = "1795693074925.png";
+    const RANK_IMG_LEGEND = "1795693166692.png";
+    const RANK_IMG_MYTHIC = "1795693214147.png";
+    const RANK_IMG_HONOR = "1795693307661.png";
+    const RANK_IMG_GLORY = "1795693346933.png";
+    const RANK_IMG_IMMORTAL = "1795693390375.png";
+
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
       encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
         <rect width="120" height="120" rx="12" fill="#1e293b"/>
         <text x="60" y="66" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="900" fill="#60a5fa">KJ ML</text>
       </svg>`);
+
+    function resolveRankIcon(name, fallback = RANK_IMG_MYTHIC) {
+      const text = String(name || "").toLowerCase();
+      if (text.includes("immortal")) return RANK_IMG_IMMORTAL;
+      if (text.includes("glory")) return RANK_IMG_GLORY;
+      if (text.includes("honor")) return RANK_IMG_HONOR;
+      if (text.includes("mythic") || text.includes("grading")) return RANK_IMG_MYTHIC;
+      if (text.includes("legend")) return RANK_IMG_LEGEND;
+      if (text.includes("epic")) return RANK_IMG_EPIC;
+      return fallback;
+    }
+
+    function withRankIcons(groups, fallback = RANK_IMG_MYTHIC) {
+      return groups.map((group) => ({
+        ...group,
+        items: group.items.map((item) => ({
+          ...item,
+          icon: resolveRankIcon(item.name || group.title, fallback)
+        }))
+      }));
+    }
 
     // Mode: "rank" | "mmr" | "gendong" | "classic" | "magic-chess" | "montage"
     function detectInitialMode() {
@@ -1109,160 +1139,160 @@
         strike: 250000,
         disc: "Disc 52%",
         tag: "⚡",
-        icon: "1795684016988.png"
+        icon: RANK_IMG_MYTHIC
       }
     ];
 
-    const HERO_MMR_GROUPS = [
+    const HERO_MMR_GROUPS = withRankIcons([
       {
         title: "✨ Joki / Star Rank 1 Hero MMR",
         items: [
-          { name: "Master / Star", price: 6000, strike: 10000, disc: "Disc 40%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "GrandMaster / Star", price: 7000, strike: 11000, disc: "Disc 36%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic / Star", price: 9000, strike: 14000, disc: "Disc 36%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Legend / Star", price: 10000, strike: 16000, disc: "Disc 37%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Mythic / Star", price: 19000, strike: 25000, disc: "Disc 24%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Honor 25+ / Star", price: 21000, strike: 29000, disc: "Disc 28%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Glory 50+ / Star", price: 26000, strike: 36000, disc: "Disc 28%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Immortal 100+ / Star", price: 30000, strike: 40000, disc: "Disc 25%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Open Grading 0/10", price: 180000, strike: 260000, disc: "Disc 31%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Master / Star", price: 6000, strike: 10000, disc: "Disc 40%", tag: "🛒" },
+          { name: "GrandMaster / Star", price: 7000, strike: 11000, disc: "Disc 36%", tag: "🛒" },
+          { name: "Epic / Star", price: 9000, strike: 14000, disc: "Disc 36%", tag: "🛒" },
+          { name: "Legend / Star", price: 10000, strike: 16000, disc: "Disc 37%", tag: "🛒" },
+          { name: "Mythic / Star", price: 19000, strike: 25000, disc: "Disc 24%", tag: "🛒" },
+          { name: "Honor 25+ / Star", price: 21000, strike: 29000, disc: "Disc 28%", tag: "🛒" },
+          { name: "Glory 50+ / Star", price: 26000, strike: 36000, disc: "Disc 28%", tag: "🛒" },
+          { name: "Immortal 100+ / Star", price: 30000, strike: 40000, disc: "Disc 25%", tag: "🛒" },
+          { name: "Open Grading 0/10", price: 180000, strike: 260000, disc: "Disc 31%", tag: "🛒" }
         ]
       }
-    ];
+    ], RANK_IMG_MYTHIC);
 
-    const GENDONG_GROUPS = [
+    const GENDONG_GROUPS = withRankIcons([
       {
         title: "Joki Gendong / WIN",
         items: [
-          { name: "Mabar Epic / Win", price: 7000, strike: 12000, disc: "Disc 42%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Mabar Legend / Win", price: 8000, strike: 15000, disc: "Disc 47%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Mabar Mythic / Win", price: 14000, strike: 25000, disc: "Disc 44%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Mabar Honor / Win", price: 16000, strike: 28000, disc: "Disc 43%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Mabar Glory / Win", price: 21000, strike: 35000, disc: "Disc 40%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Mabar Immortal / Win", price: 35000, strike: 50000, disc: "Disc 30%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Mabar Epic / Win", price: 7000, strike: 12000, disc: "Disc 42%", tag: "🛒" },
+          { name: "Mabar Legend / Win", price: 8000, strike: 15000, disc: "Disc 47%", tag: "🛒" },
+          { name: "Mabar Mythic / Win", price: 14000, strike: 25000, disc: "Disc 44%", tag: "🛒" },
+          { name: "Mabar Honor / Win", price: 16000, strike: 28000, disc: "Disc 43%", tag: "🛒" },
+          { name: "Mabar Glory / Win", price: 21000, strike: 35000, disc: "Disc 40%", tag: "🛒" },
+          { name: "Mabar Immortal / Win", price: 35000, strike: 50000, disc: "Disc 30%", tag: "🛒" }
         ]
       }
-    ];
+    ], RANK_IMG_MYTHIC);
 
-    const CLASSIC_GROUPS = [
+    const CLASSIC_GROUPS = withRankIcons([
       {
         title: "⚔️ Joki Classic / Match",
         items: [
-          { name: "Classic / 1 Match", price: 5000, strike: 8000, disc: "Disc 38%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Classic / 3 Match", price: 14000, strike: 22000, disc: "Disc 36%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Classic / 5 Match", price: 22000, strike: 35000, disc: "Disc 37%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Classic / 10 Match", price: 42000, strike: 65000, disc: "Disc 35%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Classic Winrate / 5 Match", price: 28000, strike: 45000, disc: "Disc 38%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Classic Winrate / 10 Match", price: 54000, strike: 85000, disc: "Disc 36%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Classic / 1 Match", price: 5000, strike: 8000, disc: "Disc 38%", tag: "🛒" },
+          { name: "Classic / 3 Match", price: 14000, strike: 22000, disc: "Disc 36%", tag: "🛒" },
+          { name: "Classic / 5 Match", price: 22000, strike: 35000, disc: "Disc 37%", tag: "🛒" },
+          { name: "Classic / 10 Match", price: 42000, strike: 65000, disc: "Disc 35%", tag: "🛒" },
+          { name: "Classic Winrate / 5 Match", price: 28000, strike: 45000, disc: "Disc 38%", tag: "🛒" },
+          { name: "Classic Winrate / 10 Match", price: 54000, strike: 85000, disc: "Disc 36%", tag: "🛒" }
         ]
       }
-    ];
+    ], RANK_IMG_MYTHIC);
 
-    const MAGIC_CHESS_GROUPS = [
+    const MAGIC_CHESS_GROUPS = withRankIcons([
       {
         title: "Joki Magic Chess: Go Go",
         items: [
-          { name: "GrandMaster / 4 Star", price: 7000, strike: 11000, disc: "Disc 36%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Epic / 4 Star", price: 10000, strike: 15000, disc: "Disc 33%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Legend / 4 Star", price: 11000, strike: 17000, disc: "Disc 35%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Mythic / 4 Star", price: 15000, strike: 24000, disc: "Disc 38%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Mythic Honor / 4 Star", price: 20000, strike: 32000, disc: "Disc 38%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "GrandMaster / 4 Star", price: 7000, strike: 11000, disc: "Disc 36%", tag: "🛒" },
+          { name: "Epic / 4 Star", price: 10000, strike: 15000, disc: "Disc 33%", tag: "🛒" },
+          { name: "Legend / 4 Star", price: 11000, strike: 17000, disc: "Disc 35%", tag: "🛒" },
+          { name: "Mythic / 4 Star", price: 15000, strike: 24000, disc: "Disc 38%", tag: "🛒" },
+          { name: "Mythic Honor / 4 Star", price: 20000, strike: 32000, disc: "Disc 38%", tag: "🛒" }
         ]
       }
-    ];
+    ], RANK_IMG_MYTHIC);
 
-    const MONTAGE_GROUPS = [
+    const MONTAGE_GROUPS = withRankIcons([
       {
         title: "Pilih Joki Video Montage",
         items: [
-          { name: "Video Montage Polos (No Edit) / 1 Menit", price: 80000, strike: 120000, disc: "Disc 33%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Video Montage (+ Edit) / 1 Menit", price: 100000, strike: 150000, disc: "Disc 33%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Video Montage Polos (No Edit) / 1 Menit", price: 80000, strike: 120000, disc: "Disc 33%", tag: "🛒" },
+          { name: "Video Montage (+ Edit) / 1 Menit", price: 100000, strike: 150000, disc: "Disc 33%", tag: "🛒" }
         ]
       }
-    ];
+    ], RANK_IMG_MYTHIC);
 
-    const RANK_GROUPS = [
+    const RANK_GROUPS = withRankIcons([
       {
         title: "🔥 Special Bonus Star",
         items: [
-          { name: "Epic 10 Star (Bonus 2 Star)", price: 60000, strike: 105000, disc: "Disc 43%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Legend 10 Star (Bonus 2 Star)", price: 70000, strike: 115000, disc: "Disc 39%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Mythic 10 Star (Bonus 2 Star)", price: 110000, strike: 250000, disc: "Disc 56%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Honor 10 Star (Bonus 2 Star)", price: 130000, strike: 340000, disc: "Disc 62%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Glory 50+ (10 Star) Bonus 2 Star", price: 160000, strike: 450000, disc: "Disc 64%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Immortal 100+ (10 Star) Bonus 1 Star", price: 200000, strike: 490000, disc: "Disc 59%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Epic 10 Star (Bonus 2 Star)", price: 60000, strike: 105000, disc: "Disc 43%", tag: "🛒" },
+          { name: "Legend 10 Star (Bonus 2 Star)", price: 70000, strike: 115000, disc: "Disc 39%", tag: "🛒" },
+          { name: "Mythic 10 Star (Bonus 2 Star)", price: 110000, strike: 250000, disc: "Disc 56%", tag: "🛒" },
+          { name: "Honor 10 Star (Bonus 2 Star)", price: 130000, strike: 340000, disc: "Disc 62%", tag: "🛒" },
+          { name: "Glory 50+ (10 Star) Bonus 2 Star", price: 160000, strike: 450000, disc: "Disc 64%", tag: "🛒" },
+          { name: "Immortal 100+ (10 Star) Bonus 1 Star", price: 200000, strike: 490000, disc: "Disc 59%", tag: "🛒" }
         ]
       },
       {
         title: "✨ Joki / Star Rank",
         items: [
-          { name: "Epic / Star", price: 6000, strike: 9500, disc: "Disc 37%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Legend / Star", price: 7000, strike: 10500, disc: "Disc 33%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Mythic / Star", price: 12000, strike: 25000, disc: "Disc 52%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Honor 25+ / Star", price: 14000, strike: 27000, disc: "Disc 48%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Glory 50+ / Star", price: 18000, strike: 35000, disc: "Disc 49%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Immortal 100+ / Star", price: 22000, strike: 45000, disc: "Disc 51%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Epic / Star", price: 6000, strike: 9500, disc: "Disc 37%", tag: "🛒" },
+          { name: "Legend / Star", price: 7000, strike: 10500, disc: "Disc 33%", tag: "🛒" },
+          { name: "Mythic / Star", price: 12000, strike: 25000, disc: "Disc 52%", tag: "🛒" },
+          { name: "Honor 25+ / Star", price: 14000, strike: 27000, disc: "Disc 48%", tag: "🛒" },
+          { name: "Glory 50+ / Star", price: 18000, strike: 35000, disc: "Disc 49%", tag: "🛒" },
+          { name: "Immortal 100+ / Star", price: 22000, strike: 45000, disc: "Disc 51%", tag: "🛒" }
         ]
       },
       {
         title: "Paket GrandMaster",
         items: [
-          { name: "GM V - Epic V", price: 125000, strike: 150000, disc: "Disc 17%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "GM V - Legend V", price: 275000, strike: 330000, disc: "Disc 17%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "GM I - Mythic", price: 350000, strike: 440000, disc: "Disc 20%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "GM II - Mythic", price: 375000, strike: 465000, disc: "Disc 19%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "GM III - Mythic", price: 400000, strike: 495000, disc: "Disc 19%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "GM IV - Mythic", price: 425000, strike: 525000, disc: "Disc 19%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "GM V - Mythic", price: 450000, strike: 555000, disc: "Disc 19%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "GM V - Honor 25", price: 710000, strike: 1050000, disc: "Disc 32%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "GM V - Epic V", price: 125000, strike: 150000, disc: "Disc 17%", tag: "🛒" },
+          { name: "GM V - Legend V", price: 275000, strike: 330000, disc: "Disc 17%", tag: "🛒" },
+          { name: "GM I - Mythic", price: 350000, strike: 440000, disc: "Disc 20%", tag: "🛒" },
+          { name: "GM II - Mythic", price: 375000, strike: 465000, disc: "Disc 19%", tag: "🛒" },
+          { name: "GM III - Mythic", price: 400000, strike: 495000, disc: "Disc 19%", tag: "🛒" },
+          { name: "GM IV - Mythic", price: 425000, strike: 525000, disc: "Disc 19%", tag: "🛒" },
+          { name: "GM V - Mythic", price: 450000, strike: 555000, disc: "Disc 19%", tag: "🛒" },
+          { name: "GM V - Honor 25", price: 710000, strike: 1050000, disc: "Disc 32%", tag: "🛒" }
         ]
       },
       {
         title: "Paket Epic",
         items: [
-          { name: "Epic V - Legend V", price: 150000, strike: 180000, disc: "Disc 17%", tag: "🛒", icon: "1795684016988.png" },
-          { name: "Epic I - Mythic", price: 205000, strike: 265000, disc: "Disc 23%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic II - Mythic", price: 235000, strike: 295000, disc: "Disc 21%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic III - Mythic", price: 265000, strike: 345000, disc: "Disc 23%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic IV - Mythic", price: 295000, strike: 369000, disc: "Disc 20%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic V - Mythic", price: 325000, strike: 405000, disc: "Disc 20%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic V - Honor 25", price: 610000, strike: 950000, disc: "Disc 36%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic V - Glory 50", price: 785000, strike: 1290000, disc: "Disc 39%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Epic V - Immortal 100", price: 1735000, strike: 2950000, disc: "Disc 41%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Epic V - Legend V", price: 150000, strike: 180000, disc: "Disc 17%", tag: "🛒" },
+          { name: "Epic I - Mythic", price: 205000, strike: 265000, disc: "Disc 23%", tag: "🛒" },
+          { name: "Epic II - Mythic", price: 235000, strike: 295000, disc: "Disc 21%", tag: "🛒" },
+          { name: "Epic III - Mythic", price: 265000, strike: 345000, disc: "Disc 23%", tag: "🛒" },
+          { name: "Epic IV - Mythic", price: 295000, strike: 369000, disc: "Disc 20%", tag: "🛒" },
+          { name: "Epic V - Mythic", price: 325000, strike: 405000, disc: "Disc 20%", tag: "🛒" },
+          { name: "Epic V - Honor 25", price: 610000, strike: 950000, disc: "Disc 36%", tag: "🛒" },
+          { name: "Epic V - Glory 50", price: 785000, strike: 1290000, disc: "Disc 39%", tag: "🛒" },
+          { name: "Epic V - Immortal 100", price: 1735000, strike: 2950000, disc: "Disc 41%", tag: "🛒" }
         ]
       },
       {
         title: "Paket Legend",
         items: [
-          { name: "Legend V - Mythic", price: 175000, strike: 225000, disc: "Disc 22%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Legend V - Honor 25", price: 435000, strike: 750000, disc: "Disc 42%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Legend V - Glory 50", price: 810000, strike: 1410000, disc: "Disc 43%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Legend V - Immortal 100", price: 1760000, strike: 2990000, disc: "Disc 41%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Legend V - Mythic", price: 175000, strike: 225000, disc: "Disc 22%", tag: "🛒" },
+          { name: "Legend V - Honor 25", price: 435000, strike: 750000, disc: "Disc 42%", tag: "🛒" },
+          { name: "Legend V - Glory 50", price: 810000, strike: 1410000, disc: "Disc 43%", tag: "🛒" },
+          { name: "Legend V - Immortal 100", price: 1760000, strike: 2990000, disc: "Disc 41%", tag: "🛒" }
         ]
       },
       {
         title: "Paket Mythic",
         items: [
-          { name: "Grading 0/10 - Honor 25", price: 260000, strike: 475000, disc: "Disc 45%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Grading 0/10 - Glory 50", price: 635000, strike: 1175000, disc: "Disc 46%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Grading 0/10 - Immortal 100", price: 1585000, strike: 2675000, disc: "Disc 41%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Grading 0/10 - Honor 25", price: 260000, strike: 475000, disc: "Disc 45%", tag: "🛒" },
+          { name: "Grading 0/10 - Glory 50", price: 635000, strike: 1175000, disc: "Disc 46%", tag: "🛒" },
+          { name: "Grading 0/10 - Immortal 100", price: 1585000, strike: 2675000, disc: "Disc 41%", tag: "🛒" }
         ]
       },
       {
         title: "Paket Mythic Honor",
         items: [
-          { name: "Honor 25 - Glory 50", price: 375000, strike: 675000, disc: "Disc 44%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Honor 25 - Immortal 100", price: 1325000, strike: 2175000, disc: "Disc 39%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Honor 25 - Glory 50", price: 375000, strike: 675000, disc: "Disc 44%", tag: "🛒" },
+          { name: "Honor 25 - Immortal 100", price: 1325000, strike: 2175000, disc: "Disc 39%", tag: "🛒" }
         ]
       },
       {
         title: "Paket Mythic Glory",
         items: [
-          { name: "Glory 50 - Immortal 100", price: 950000, strike: 1500000, disc: "Disc 37%", tag: "🛒", icon: "1795684363565.png" },
-          { name: "Glory 50 - Immortal 200", price: 3150000, strike: 4750000, disc: "Disc 34%", tag: "🛒", icon: "1795684363565.png" }
+          { name: "Glory 50 - Immortal 100", price: 950000, strike: 1500000, disc: "Disc 37%", tag: "🛒" },
+          { name: "Glory 50 - Immortal 200", price: 3150000, strike: 4750000, disc: "Disc 34%", tag: "🛒" }
         ]
       }
-    ];
+    ], RANK_IMG_MYTHIC);
 
     let selectedItem = null;
     let selectedPayment = "QRIS (All Payment)";
