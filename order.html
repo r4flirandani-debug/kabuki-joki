@@ -167,7 +167,7 @@
       color: #fff;
     }
 
-    /* Game Hero Banner (Free Fire) */
+    /* Game Hero Banner (Free Fire & PUBG Mobile) */
     .game-hero {
       background: var(--bg-panel);
       border: 1px solid var(--border-line);
@@ -825,10 +825,11 @@
   </header>
 
   <main class="container">
-    <!-- Switcher Game (Mobile Legends / Free Fire) -->
+    <!-- Switcher Game (Mobile Legends / Free Fire / PUBG Mobile) -->
     <div class="game-switch">
       <button type="button" id="btn-game-mlbb" class="game-btn">Mobile Legends</button>
       <button type="button" id="btn-game-ff" class="game-btn">Free Fire</button>
+      <button type="button" id="btn-game-pubg" class="game-btn">PUBG Mobile</button>
     </div>
 
     <!-- Banner Khusus Mode Free Fire -->
@@ -854,6 +855,29 @@
       </div>
     </section>
 
+    <!-- Banner Khusus Mode PUBG Mobile -->
+    <section id="pubg-hero" class="game-hero hidden">
+      <div class="game-hero-banner">
+        <span class="game-hero-badge">KABUKI JOKI • PUBG MOBILE</span>
+        <h1>PUBG MOBILE</h1>
+        <p>Top Up UC Global &amp; Region Indonesia PUBG Mobile cepat dan aman</p>
+      </div>
+      <div class="game-hero-meta">
+        <div class="game-hero-thumb">
+          <img id="pubg-hero-img" src="file_000000008d2882079eb392497d561655.webp" alt="PUBG Mobile" />
+        </div>
+        <div>
+          <div class="game-hero-title">PUBG MOBILE</div>
+          <div class="game-hero-sub">Level Infinite</div>
+        </div>
+      </div>
+      <div class="game-hero-perks">
+        <span>⚡ Proses Cepat</span>
+        <span>💬 Layanan Chat 24/7</span>
+        <span>🛡️ Pembayaran Aman</span>
+      </div>
+    </section>
+
     <!-- Transaksi / Keterangan Tabs -->
     <div class="mode-tabs">
       <button type="button" id="tab-transaksi" class="mode-tab active">Transaksi</button>
@@ -865,6 +889,7 @@
       <h3>Ketentuan Top Up Game - KABUKI JOKI</h3>
       <ul>
         <li>Untuk <strong>Free Fire</strong>, cukup masukkan <strong>ID</strong> akun Free Fire kamu dengan benar.</li>
+        <li>Untuk <strong>PUBG Mobile</strong>, cukup masukkan <strong>UID</strong> akun PUBG Mobile kamu dengan benar.</li>
         <li>Untuk <strong>Mobile Legends</strong>, masukkan <strong>ID</strong> dan <strong>Server</strong> akun Mobile Legends dengan benar.</li>
         <li>Pesanan diproses sesuai antrean setelah pembayaran dikonfirmasi.</li>
       </ul>
@@ -1029,6 +1054,10 @@
     const FF_IMG_MONTHLY = "file_0000000063f082118919f31d903f3815.webp";
     const FF_IMG_BP_CARD = "file_00000000479c821199a5e83e4456e29d.webp";
 
+    // Logo Khusus PUBG Mobile
+    const PUBG_IMG_GLOBAL = "file_000000008d2882079eb392497d561655.webp";
+    const PUBG_IMG_INDO = "file_00000000d1dc8211aa022d70fea60957.webp";
+
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
       encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
@@ -1040,6 +1069,13 @@
     if (ffHeroImg) {
       ffHeroImg.addEventListener("error", () => {
         ffHeroImg.src = FALLBACK_ART;
+      }, { once: true });
+    }
+
+    const pubgHeroImg = document.getElementById("pubg-hero-img");
+    if (pubgHeroImg) {
+      pubgHeroImg.addEventListener("error", () => {
+        pubgHeroImg.src = FALLBACK_ART;
       }, { once: true });
     }
 
@@ -1056,6 +1092,9 @@
         .join(" ")
         .toLowerCase();
 
+      if (raw.includes("pubg") || hrefLower.includes("pubg")) {
+        return "pubg";
+      }
       if (raw.includes("ff") || raw.includes("free") || hrefLower.includes("/fr") || hrefLower.includes("free-fire") || hrefLower.includes("free_fire")) {
         return "ff";
       }
@@ -1382,6 +1421,63 @@
       }
     ];
 
+    const PUBG_GROUPS = [
+      {
+        title: "Region (Global) 🌐",
+        items: [
+          { name: "60 UC Global", price: 16720, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_GLOBAL },
+          { name: "325 UC Global", price: 84359, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_GLOBAL },
+          { name: "660 UC Global", price: 168907, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_GLOBAL },
+          { name: "1800 UC Global", price: 422551, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_GLOBAL },
+          { name: "3850 UC Global", price: 850040, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_GLOBAL },
+          { name: "8100 UC Global", price: 1690768, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_GLOBAL }
+        ]
+      },
+      {
+        title: "Region (Indonesia) 🇮🇩",
+        items: [
+          { name: "60 UC Indo", price: 16720, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "120 UC Indo", price: 33440, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "180 UC Indo", price: 50160, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "240 UC Indo", price: 66880, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "325 (300+25) UC Indo", price: 84359, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "385 (360+25) UC Indo", price: 101079, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "445 (420+25) UC Indo", price: 117799, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "505 (480+25) UC Indo", price: 134518, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "565 (540+25) UC Indo", price: 151238, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "660 (600+60) UC Indo", price: 168907, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "720 (660+60) UC Indo", price: 185627, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "780 (720+60) UC Indo", price: 202347, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "840 (780+60) UC Indo", price: 219067, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "900 (840+60) UC Indo", price: 235787, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "985 (900+85) UC Indo", price: 253265, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1105 (1020+85) UC Indo", price: 286705, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1165 (1080+85) UC Indo", price: 303425, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1320 (1200+120) UC Indo", price: 337814, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1500 (1380+120) UC Indo", price: 387974, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1800 (1500+300) UC Indo", price: 422551, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1920 (1620+300) UC Indo", price: 455991, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "1980 (1680+300) UC Indo", price: 472711, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "2125 (1800+325) UC Indo", price: 506909, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "2460 (2100+360) UC Indo", price: 591457, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "2785 (2400+385) UC Indo", price: 675815, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "3120 (2700+420) UC Indo", price: 760164, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "3850 (3000+850) UC Indo", price: 850040, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "4030 (3180+850) UC Indo", price: 900200, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "4175 (3300+875) UC Indo", price: 934398, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "4510 (3600+910) UC Indo", price: 1018947, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "4835 (3900+935) UC Indo", price: 1103305, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "5170 (4200+970) UC Indo", price: 1187653, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "5650 (4500+1150) UC Indo", price: 1272590, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "5975 (4800+1175) UC Indo", price: 1356948, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "6310 (5100+1210) UC Indo", price: 1441497, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "6635 (5400+1235) UC Indo", price: 1525855, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "6970 (5700+1270) UC Indo", price: 1610403, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO },
+          { name: "8100 (6000+2100) UC Indo", price: 1690768, strike: 0, disc: "", tag: "🛒", icon: PUBG_IMG_INDO }
+        ]
+      }
+    ];
+
     let selectedItem = null;
     let selectedPayment = "QRIS (All Payment)";
     let promoDiscount = 0;
@@ -1389,7 +1485,9 @@
 
     const btnGameMlbb = document.getElementById("btn-game-mlbb");
     const btnGameFf = document.getElementById("btn-game-ff");
+    const btnGamePubg = document.getElementById("btn-game-pubg");
     const ffHero = document.getElementById("ff-hero");
+    const pubgHero = document.getElementById("pubg-hero");
     const accountFields = document.getElementById("account-fields");
     const nominalGroupsEl = document.getElementById("nominal-groups");
     const filterInput = document.getElementById("filter-paket");
@@ -1398,7 +1496,9 @@
     const btnPesan = document.getElementById("btn-pesan");
 
     function getActiveGroups() {
-      return currentGame === "ff" ? FF_GROUPS : MLBB_GROUPS;
+      if (currentGame === "ff") return FF_GROUPS;
+      if (currentGame === "pubg") return PUBG_GROUPS;
+      return MLBB_GROUPS;
     }
 
     function renderAccountForm() {
@@ -1408,6 +1508,14 @@
           <div class="field">
             <label for="f-user-id">ID <span class="q-icon">?</span></label>
             <input id="f-user-id" type="text" placeholder="Masukkan ID" required />
+          </div>
+        `;
+      } else if (currentGame === "pubg") {
+        accountFields.className = "grid-1";
+        accountFields.innerHTML = `
+          <div class="field">
+            <label for="f-user-id">UID <span class="q-icon">?</span></label>
+            <input id="f-user-id" type="text" placeholder="Masukkan UID" required />
           </div>
         `;
       } else {
@@ -1428,10 +1536,18 @@
     function applyGameMode() {
       btnGameMlbb.classList.toggle("active", currentGame === "mlbb");
       btnGameFf.classList.toggle("active", currentGame === "ff");
+      btnGamePubg.classList.toggle("active", currentGame === "pubg");
       ffHero.classList.toggle("hidden", currentGame !== "ff");
-      document.title = currentGame === "ff"
-        ? "Top Up Free Fire - KABUKI JOKI"
-        : "Top Up Mobile Legends - KABUKI JOKI";
+      pubgHero.classList.toggle("hidden", currentGame !== "pubg");
+
+      if (currentGame === "ff") {
+        document.title = "Top Up Free Fire - KABUKI JOKI";
+      } else if (currentGame === "pubg") {
+        document.title = "Top Up PUBG Mobile - KABUKI JOKI";
+      } else {
+        document.title = "Top Up Mobile Legends - KABUKI JOKI";
+      }
+
       renderAccountForm();
     }
 
@@ -1446,6 +1562,7 @@
 
     btnGameMlbb.addEventListener("click", () => switchGame("mlbb"));
     btnGameFf.addEventListener("click", () => switchGame("ff"));
+    btnGamePubg.addEventListener("click", () => switchGame("pubg"));
 
     function rupiah(n) {
       return "Rp " + Number(n || 0).toLocaleString("id-ID");
@@ -1637,6 +1754,11 @@
           alert("Mohon lengkapi ID Free Fire dan No. Whatsapp.");
           return;
         }
+      } else if (currentGame === "pubg") {
+        if (!userId || !waBuyer) {
+          alert("Mohon lengkapi UID PUBG Mobile dan No. Whatsapp.");
+          return;
+        }
       } else if (!userId || !serverId || !waBuyer) {
         alert("Mohon lengkapi ID, Server, dan No. Whatsapp.");
         return;
@@ -1644,7 +1766,13 @@
 
       const qty = getQty();
       const total = getFinalTotal();
-      const gameLabel = currentGame === "ff" ? "FREE FIRE" : "MLBB";
+      const gameLabel = currentGame === "ff"
+        ? "FREE FIRE"
+        : currentGame === "pubg"
+          ? "PUBG MOBILE"
+          : "MLBB";
+
+      const idLabel = currentGame === "pubg" ? "UID" : "ID";
 
       const lines = [
         `*ORDER TOP UP ${gameLabel} - KABUKI JOKI*`,
@@ -1655,10 +1783,10 @@
         `Pembayaran: ${selectedPayment}`,
         `Kode Promo: ${promoCode}`,
         "-----------------------------",
-        `ID: ${userId}`
+        `${idLabel}: ${userId}`
       ];
 
-      if (currentGame !== "ff") {
+      if (currentGame === "mlbb") {
         lines.push(`Server: ${serverId}`);
       }
 
