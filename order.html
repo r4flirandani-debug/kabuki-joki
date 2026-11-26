@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order Layanan - KABUKI JOKI</title>
+  <title>Top Up Mobile Legends - KABUKI JOKI</title>
   <style>
     :root {
-      --bg-main: #121316;
-      --bg-panel: #181a1f;
-      --bg-card: #19202b;
-      --blue-main: #1d74f5;
-      --blue-bright: #3b82f6;
-      --cyan-accent: #38bdf8;
+      --bg-page: #18191c;
+      --bg-panel: #24262b;
+      --bg-card: #2c2f36;
+      --bg-input: #3b3f47;
+      --blue-bar: #1565d8;
+      --blue-bright: #2575fc;
+      --blue-price: #4ea8ff;
+      --red-strike: #ef4444;
       --green-wa: #16a34a;
-      --green-wa-bright: #22c55e;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border-soft: rgba(255, 255, 255, 0.1);
+      --green-wa-hover: #22c55e;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-line: rgba(255, 255, 255, 0.11);
     }
 
     * {
@@ -27,300 +29,648 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg-main);
+      background: var(--bg-page);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 48px;
+      padding-bottom: 112px;
     }
 
-    /* Topbar */
+    /* Top Search & Brand Bar */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      background: rgba(18, 19, 22, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-soft);
+      z-index: 40;
+      background: #141518;
+      border-bottom: 1px solid var(--border-line);
+      padding: 8px 12px;
     }
 
-    .brand {
+    .topbar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .search-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      text-decoration: none;
-      color: var(--text-main);
-      font-weight: 900;
-      font-size: 13px;
     }
 
-    .brand-badge {
-      width: 28px;
-      height: 28px;
+    .brand-icon {
+      width: 30px;
+      height: 30px;
       border-radius: 7px;
-      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      background: linear-gradient(135deg, #1d74f5, #06b6d4);
       display: grid;
       place-items: center;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 900;
       color: #fff;
-    }
-
-    .back-btn {
       text-decoration: none;
-      color: #e2e8f0;
-      background: var(--bg-panel);
-      border: 1px solid var(--border-soft);
-      padding: 6px 12px;
-      border-radius: 7px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .back-btn:hover {
-      border-color: var(--cyan-accent);
-    }
-
-    /* Layout */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 16px 14px 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    @media (min-width: 820px) {
-      .container {
-        grid-template-columns: 0.9fr 1.1fr;
-        align-items: start;
-      }
-    }
-
-    .panel {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    /* Service Info Card */
-    .service-hero {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .service-img {
-      width: 76px;
-      height: 84px;
-      border-radius: 9px;
-      object-fit: cover;
-      background: #0d131c;
-      border: 1px solid rgba(56, 189, 248, 0.35);
       flex-shrink: 0;
     }
 
-    .cat-pill {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #7dd3fc;
-      background: rgba(29, 116, 245, 0.2);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      padding: 2px 8px;
-      border-radius: 999px;
-      margin-bottom: 5px;
-    }
-
-    .service-title {
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1.2;
-    }
-
-    .service-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .service-note {
-      font-size: 12px;
-      color: #cbd5e1;
-      line-height: 1.5;
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 9px;
-      padding: 10px 12px;
-    }
-
-    .step-title {
-      font-size: 13.5px;
-      font-weight: 800;
-      margin-bottom: 10px;
+    .search-box {
+      flex: 1;
+      height: 32px;
+      background: #222429;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 6px;
       display: flex;
       align-items: center;
-      gap: 7px;
+      padding: 0 10px;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .search-box span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .search-box input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 12px;
+      outline: none;
+    }
+
+    .region-badge {
+      height: 32px;
+      padding: 0 9px;
+      border-radius: 6px;
+      background: #111215;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .quick-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 11.5px;
+    }
+
+    .quick-links a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .quick-links a:hover {
+      color: var(--blue-price);
+    }
+
+    /* Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 10px 0;
+    }
+
+    /* Top Mode Tabs (Transaksi / Keterangan) */
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #202227;
+      border-radius: 7px;
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-line);
+    }
+
+    .mode-tab {
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+      background: transparent;
+      color: #d1d5db;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mode-tab.active {
+      background: var(--blue-bar);
+      color: #fff;
+    }
+
+    .info-box {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 12px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #d1d5db;
+    }
+
+    .info-box h3 {
+      color: #fff;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .info-box ul {
+      padding-left: 18px;
+    }
+
+    /* Step Section Card */
+    .step-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 10px;
+      background: linear-gradient(90deg, #1565d8 0%, #1d56b8 65%, #24262b 100%);
     }
 
     .step-num {
-      width: 22px;
-      height: 22px;
-      border-radius: 6px;
-      background: var(--blue-main);
-      color: #fff;
-      font-size: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #1565d8;
+      font-size: 11.5px;
       font-weight: 900;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .step-body {
+      padding: 11px;
+    }
+
+    /* Form Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 620px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .q-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #4b5563;
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 800;
       display: inline-grid;
       place-items: center;
     }
 
-    /* Package Grid */
-    .pkg-grid {
+    .field input,
+    .field select {
+      height: 34px;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--bg-input);
+      color: #f9fafb;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .field input::placeholder {
+      color: #9ca3af;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--blue-price);
+    }
+
+    /* Category & Nominal Cards */
+    .cat-block {
+      margin-bottom: 14px;
+    }
+
+    .cat-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .cat-heading {
+      font-size: 12px;
+      font-weight: 800;
+      color: #f3f4f6;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nominal-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
-      margin-bottom: 16px;
     }
 
-    @media (min-width: 520px) {
-      .pkg-grid {
+    @media (min-width: 760px) {
+      .nominal-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    .pkg-btn {
+    .nom-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 7px;
+      padding: 8px;
       text-align: left;
-      padding: 10px;
-      border-radius: 9px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-card);
-      color: var(--text-main);
       cursor: pointer;
-      transition: border-color 0.14s ease, background 0.14s ease;
-    }
-
-    .pkg-btn:hover {
-      border-color: var(--cyan-accent);
-    }
-
-    .pkg-btn.active {
-      border-color: var(--cyan-accent);
-      background: rgba(29, 116, 245, 0.22);
-    }
-
-    .pkg-name {
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 3px;
-    }
-
-    .pkg-price {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #7dd3fc;
-    }
-
-    /* Form Fields */
-    .form-group {
-      margin-bottom: 11px;
-    }
-
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 9px;
-    }
-
-    label {
-      display: block;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #cbd5e1;
-      margin-bottom: 5px;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 9px 11px;
-      border-radius: 8px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-card);
       color: var(--text-main);
-      font-size: 12.5px;
-      font-family: inherit;
+      transition: border-color 0.14s ease, background 0.14s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 76px;
+    }
+
+    .nom-card:hover {
+      border-color: #60a5fa;
+    }
+
+    .nom-card.active {
+      border: 1.5px solid #3b82f6;
+      background: #25334a;
+    }
+
+    .nom-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 4px;
+    }
+
+    .nom-img {
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
+      object-fit: cover;
+      background: #14161a;
+      flex-shrink: 0;
+    }
+
+    .nom-name {
+      font-size: 10.5px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #f9fafb;
+    }
+
+    .nom-price {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--blue-price);
+      padding-left: 31px;
+    }
+
+    .nom-strike {
+      font-size: 9.5px;
+      color: var(--red-strike);
+      text-decoration: line-through;
+      padding-left: 31px;
+      margin-top: 1px;
+    }
+
+    .nom-badges {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .badge-disc {
+      background: #1d4ed8;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+
+    .badge-tag {
+      background: #f3f4f6;
+      color: #111827;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+
+    /* Step 3 Quantity */
+    .qty-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-input {
+      flex: 1;
+      height: 32px;
+      background: var(--bg-input);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 5px;
+      padding: 0 10px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
       outline: none;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--cyan-accent);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 68px;
-    }
-
-    /* Summary Box */
-    .summary-box {
-      background: var(--bg-card);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      border-radius: 10px;
-      padding: 11px 12px;
-      margin: 14px 0;
-      font-size: 12px;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 5px;
-      color: var(--text-muted);
-    }
-
-    .summary-row:last-child {
-      margin-bottom: 0;
-      padding-top: 6px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      font-weight: 800;
-      font-size: 13px;
-    }
-
-    .summary-val {
-      color: #f8fafc;
-      font-weight: 700;
-      text-align: right;
-    }
-
-    .btn-wa {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 9px;
+    .qty-btn {
+      width: 28px;
+      height: 32px;
+      border-radius: 5px;
       border: none;
-      background: var(--green-wa);
-      color: #ffffff;
-      font-size: 13px;
+      background: var(--blue-bar);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Step 4 Payment */
+    .qris-box {
+      position: relative;
+      background: #33373f;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 7px;
+      padding: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .qris-box.active {
+      border: 1.5px solid #3b82f6;
+      background: #263449;
+    }
+
+    .best-ribbon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #1d4ed8;
+      color: #fff;
+      font-size: 8.5px;
+      font-weight: 900;
+      padding: 2px 14px;
+      transform: rotate(35deg) translate(16px, -6px);
+    }
+
+    .qris-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .qris-sub {
+      font-size: 10.5px;
+      color: #d1d5db;
+    }
+
+    .qris-fee {
+      text-align: right;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #f87171;
+      margin-top: 4px;
+    }
+
+    .pay-group {
+      margin-bottom: 8px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .pay-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .pay-bar {
+      width: 100%;
+      background: var(--blue-bar);
+      border: none;
+      color: #fff;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .pay-panel {
+      display: none;
+      background: #2c2f36;
+      padding: 8px;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pay-group.open .pay-panel {
+      display: flex;
+    }
+
+    .pay-item {
+      padding: 6px 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #3b3f47;
+      color: #f3f4f6;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .pay-item.active {
+      background: var(--blue-bar);
+      border-color: #60a5fa;
+      color: #fff;
+    }
+
+    /* Step 5 Promo */
+    .promo-top {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .promo-top input {
+      flex: 1;
+      height: 32px;
+      background: var(--bg-input);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 5px;
+      padding: 0 10px;
+      color: #fff;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .btn-use {
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 5px;
+      border: none;
+      background: var(--blue-bar);
+      color: #fff;
+      font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
     }
 
-    .btn-wa:hover {
-      background: var(--green-wa-bright);
+    .btn-promo-list {
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: none;
+      background: var(--blue-bar);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .promo-status {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    /* Step 6 Contact */
+    .wa-prefix-wrap {
+      display: flex;
+      gap: 6px;
+    }
+
+    .wa-code {
+      width: 66px;
+      height: 34px;
+      background: #33373f;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 5px;
+      display: grid;
+      place-items: center;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .contact-note {
+      margin-top: 8px;
+      font-size: 10.5px;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    /* Sticky Bottom Bar */
+    .bottom-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      background: #1c1e22;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px 12px 10px;
+    }
+
+    .bottom-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .bottom-summary {
+      text-align: center;
+      font-size: 11px;
+      color: #d1d5db;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-pesan {
+      width: 100%;
+      height: 34px;
+      border: none;
+      border-radius: 6px;
+      background: #1565d8;
+      color: #fff;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-pesan.ready {
+      background: var(--green-wa);
+    }
+
+    .btn-pesan.ready:hover {
+      background: var(--green-wa-hover);
       color: #052010;
     }
 
@@ -330,391 +680,565 @@
   </style>
 </head>
 <body>
+  <!-- Header Bar -->
   <header class="topbar">
-    <a href="index.html" class="brand">
-      <div class="brand-badge">KJ</div>
-      <span>KABUKI JOKI</span>
-    </a>
-    <a href="index.html" class="back-btn">← Kembali ke Katalog</a>
+    <div class="topbar-inner">
+      <div class="search-row">
+        <a href="index.html" class="brand-icon" title="Kembali ke Beranda">KJ</a>
+        <div class="search-box">
+          <span>🔍</span>
+          <input id="filter-paket" type="text" placeholder="Cari Game atau Voucher..." autocomplete="off" />
+        </div>
+        <div class="region-badge">🇮🇩 ID / IDR</div>
+      </div>
+      <div class="quick-links">
+        <a href="order.html?id=topup-mlbb">⊙ Topup</a>
+        <a href="index.html">↺ Cek Transaksi</a>
+        <a href="#langkah-2">🧮 Kalkulator</a>
+      </div>
+    </div>
   </header>
 
   <main class="container">
-    <!-- Info Layanan -->
-    <section class="panel">
-      <div class="service-hero">
-        <img id="svc-img" src="" alt="" class="service-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
-        <div>
-          <span id="svc-cat" class="cat-pill">KATALOG</span>
-          <h1 id="svc-title" class="service-title">Memuat Layanan...</h1>
-          <div id="svc-sub" class="service-sub"></div>
-        </div>
-      </div>
-      <div id="svc-note" class="service-note"></div>
+    <!-- Transaksi / Keterangan Tabs -->
+    <div class="mode-tabs">
+      <button type="button" id="tab-transaksi" class="mode-tab active">Transaksi</button>
+      <button type="button" id="tab-keterangan" class="mode-tab">Keterangan</button>
+    </div>
+
+    <!-- Keterangan Panel -->
+    <section id="panel-keterangan" class="info-box hidden">
+      <h3>Ketentuan Top Up Mobile Legends - KABUKI JOKI</h3>
+      <ul>
+        <li>Pastikan <strong>ID</strong> dan <strong>Server</strong> akun Mobile Legends sudah benar sebelum klik <strong>Pesan Sekarang!</strong>.</li>
+        <li>Diamonds, Weekly Diamond Pass, Twilight Pass, maupun Bundle diproses sesuai antrean setelah pembayaran dikonfirmasi.</li>
+        <li>Simpan nomor WhatsApp aktif agar admin mudah menghubungi bila ada kendala.</li>
+      </ul>
     </section>
 
-    <!-- Form Pemesanan -->
-    <section class="panel">
-      <div class="step-title">
-        <span class="step-num">1</span>
-        <span>Pilih Paket / Nominal</span>
-      </div>
-      <div id="pkg-grid" class="pkg-grid"></div>
-
-      <div class="step-title">
-        <span class="step-num">2</span>
-        <span>Lengkapi Data Pesanan</span>
-      </div>
-
-      <form id="order-form">
-        <!-- Field khusus Top Up -->
-        <div id="topup-fields">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="game-id">User ID / Player ID</label>
-              <input id="game-id" type="text" placeholder="Contoh: 123456789" required />
+    <form id="form-topup">
+      <!-- 1. Masukkan Data Akun -->
+      <section class="step-card">
+        <div class="step-header">
+          <span class="step-num">1</span>
+          <h2 class="step-title">Masukkan Data Akun</h2>
+        </div>
+        <div class="step-body">
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-user-id">ID <span class="q-icon">?</span></label>
+              <input id="f-user-id" type="text" placeholder="Masukkan ID" required />
             </div>
-            <div id="zone-wrap" class="form-group">
-              <label for="zone-id">Server / Zone ID</label>
-              <input id="zone-id" type="text" placeholder="Contoh: 2468" />
+            <div class="field">
+              <label for="f-server-id">Server</label>
+              <input id="f-server-id" type="text" placeholder="Masukkan Server" required />
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Field khusus Joki ML -->
-        <div id="joki-fields" class="hidden">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="ml-id-server">ID &amp; Server MLBB</label>
-              <input id="ml-id-server" type="text" placeholder="Contoh: 12345678 (2468)" />
+      <!-- 2. Pilih Nominal -->
+      <section id="langkah-2" class="step-card">
+        <div class="step-header">
+          <span class="step-num">2</span>
+          <h2 class="step-title">Pilih Nominal</h2>
+        </div>
+        <div class="step-body">
+          <div id="nominal-groups"></div>
+        </div>
+      </section>
+
+      <!-- 3. Masukkan Jumlah Pembelian -->
+      <section class="step-card">
+        <div class="step-header">
+          <span class="step-num">3</span>
+          <h2 class="step-title">Masukkan Jumlah Pembelian</h2>
+        </div>
+        <div class="step-body">
+          <div class="qty-row">
+            <input id="f-qty" type="number" min="1" value="1" class="qty-input" />
+            <button type="button" id="btn-plus" class="qty-btn">+</button>
+            <button type="button" id="btn-minus" class="qty-btn">−</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Pilih Pembayaran -->
+      <section class="step-card">
+        <div class="step-header">
+          <span class="step-num">4</span>
+          <h2 class="step-title">Pilih Pembayaran</h2>
+        </div>
+        <div class="step-body">
+          <div id="qris-card" class="qris-box active" data-pay="QRIS (All Payment)">
+            <span class="best-ribbon">BEST PRICE</span>
+            <div class="qris-title">QRIS (All Payment)</div>
+            <div class="qris-sub">QRIS • DANA • GoPay • OVO • ShopeePay • Mobile Banking</div>
+            <div class="qris-fee">Max. Rp 100</div>
+          </div>
+
+          <div class="pay-group">
+            <button type="button" class="pay-bar" data-acc>
+              <span>E-Wallet</span>
+              <span>▾</span>
+            </button>
+            <div class="pay-panel">
+              <button type="button" class="pay-item" data-pay="DANA">DANA</button>
+              <button type="button" class="pay-item" data-pay="OVO">OVO</button>
+              <button type="button" class="pay-item" data-pay="GoPay">GoPay</button>
+              <button type="button" class="pay-item" data-pay="ShopeePay">ShopeePay</button>
             </div>
-            <div class="form-group">
-              <label for="login-via">Login Akun Via</label>
-              <select id="login-via">
-                <option value="Moonton">Moonton</option>
-                <option value="VK">VK</option>
-                <option value="TikTok">TikTok</option>
-                <option value="Mabar / Party">Mabar / Party (Tanpa Login)</option>
-              </select>
+          </div>
+
+          <div class="pay-group">
+            <button type="button" class="pay-bar" data-acc>
+              <span>Virtual Account</span>
+              <span>▾</span>
+            </button>
+            <div class="pay-panel">
+              <button type="button" class="pay-item" data-pay="BCA Virtual Account">BCA</button>
+              <button type="button" class="pay-item" data-pay="Mandiri Virtual Account">Mandiri</button>
+              <button type="button" class="pay-item" data-pay="BRI Virtual Account">BRI</button>
+              <button type="button" class="pay-item" data-pay="BNI Virtual Account">BNI</button>
             </div>
           </div>
-          <div class="form-group">
-            <label for="email-pass">Email / ID Login &amp; Password (atau Nickname Mabar)</label>
-            <input id="email-pass" type="text" placeholder="Isi sesuai metode login yang dipilih" />
+
+          <div class="pay-group">
+            <button type="button" class="pay-bar" data-acc>
+              <span>Convenience Store</span>
+              <span>▾</span>
+            </button>
+            <div class="pay-panel">
+              <button type="button" class="pay-item" data-pay="Alfamart">Alfamart</button>
+              <button type="button" class="pay-item" data-pay="Indomaret">Indomaret</button>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="form-row-2">
-          <div class="form-group">
-            <label for="wa-buyer">No. WhatsApp Kamu</label>
-            <input id="wa-buyer" type="tel" placeholder="Contoh: 081234567890" required />
+      <!-- 5. Kode Promo -->
+      <section class="step-card">
+        <div class="step-header">
+          <span class="step-num">5</span>
+          <h2 class="step-title">Kode Promo</h2>
+        </div>
+        <div class="step-body">
+          <div class="promo-top">
+            <input id="f-promo" type="text" placeholder="Ketik Kode Promo Kamu" />
+            <button type="button" id="btn-promo" class="btn-use">Gunakan</button>
           </div>
-          <div class="form-group">
-            <label for="payment-method">Metode Pembayaran</label>
-            <select id="payment-method">
-              <option value="QRIS">QRIS (Semua E-Wallet &amp; Bank)</option>
-              <option value="DANA">DANA</option>
-              <option value="OVO">OVO</option>
-              <option value="GoPay">GoPay</option>
-              <option value="Transfer Bank">Transfer Bank</option>
-            </select>
+          <button type="button" id="btn-promo-hint" class="btn-promo-list">🎟 Pakai Promo Yang Tersedia</button>
+          <div id="promo-info" class="promo-status">Belum ada kode promo yang digunakan.</div>
+        </div>
+      </section>
+
+      <!-- 6. Detail Kontak -->
+      <section class="step-card">
+        <div class="step-header">
+          <span class="step-num">6</span>
+          <h2 class="step-title">Detail Kontak</h2>
+        </div>
+        <div class="step-body">
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-email-buyer">Email</label>
+              <input id="f-email-buyer" type="email" placeholder="example@gmail.com" />
+            </div>
+            <div class="field">
+              <label for="f-wa-buyer">No. Whatsapp</label>
+              <div class="wa-prefix-wrap">
+                <div class="wa-code">🇮🇩 +62</div>
+                <input id="f-wa-buyer" type="tel" placeholder="81234567890" required />
+              </div>
+            </div>
+          </div>
+          <div class="contact-note">
+            *Nomor ini akan dihubungi jika terjadi kendala pada pesanan.<br />
+            ⓘ Detail pesanan akan diteruskan ke WhatsApp admin KABUKI JOKI.
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="notes">Catatan Tambahan (Opsional)</label>
-          <textarea id="notes" placeholder="Contoh: Request hero, jam main, atau catatan khusus..."></textarea>
-        </div>
-
-        <div class="summary-box">
-          <div class="summary-row">
-            <span>Layanan</span>
-            <span id="sum-service" class="summary-val">-</span>
-          </div>
-          <div class="summary-row">
-            <span>Paket Dipilih</span>
-            <span id="sum-pkg" class="summary-val">-</span>
-          </div>
-          <div class="summary-row">
-            <span>Pembayaran</span>
-            <span id="sum-pay" class="summary-val">QRIS</span>
-          </div>
-          <div class="summary-row">
-            <span>Total Harga</span>
-            <span id="sum-price" class="summary-val">Rp 0</span>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-wa">Pesan Sekarang via WhatsApp</button>
-      </form>
-    </section>
+      </section>
+    </form>
   </main>
+
+  <!-- Sticky Bottom Bar -->
+  <div class="bottom-bar">
+    <div class="bottom-inner">
+      <div id="bottom-summary" class="bottom-summary">Belum ada item produk yang dipilih.</div>
+      <button type="button" id="btn-pesan" class="btn-pesan">Pesan Sekarang!</button>
+    </div>
+  </div>
 
   <script>
     const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
 
+    const IMG_DIAMOND = "1795689988582.png";
+    const IMG_WDP = "IMG_9437.webp";
+    const IMG_TWILIGHT = "8a146325-ef40-4ac0-8e09-47911ec4d46b.png.webp";
+
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
-      encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="320" height="340" viewBox="0 0 320 340">
-        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e3a8a"/><stop offset="100%" stop-color="#090d16"/></linearGradient></defs>
-        <rect width="320" height="340" fill="url(#g)"/>
-        <text x="160" y="175" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="900" fill="#e2e8f0">KABUKI JOKI</text>
+      encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+        <rect width="120" height="120" rx="14" fill="#1d4ed8"/>
+        <polygon points="60,20 96,52 60,100 24,52" fill="#93c5fd"/>
       </svg>`);
 
-    const SERVICES = {
-      "joki-rank": {
-        title: "Joki Rank",
-        sub: "Jasa Joki (Up Rank)",
-        cat: "joki-ml",
-        catLabel: "Joki ML",
-        image: "1795684016988.png",
-        note: "Pastikan verifikasi akun dua langkah (2FA) dimatikan sementara saat proses joki berlangsung, atau pilih Mabar jika tidak ingin akun di-login."
+    const MLBB_GROUPS = [
+      {
+        title: "✨ Special Items",
+        items: [
+          { name: "Weekly Diamond Pass ID", price: 31467, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "2x Weekly Diamond Pass ID", price: 62933, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "3x Weekly Diamond Pass ID", price: 94400, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "4x Weekly Diamond Pass ID", price: 125866, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "5x Weekly Diamond Pass ID", price: 157333, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "Twilight Pass ID", price: 164398, strike: 0, disc: "", tag: "🛒", icon: IMG_TWILIGHT }
+        ]
       },
-      "joki-hero-mmr": {
-        title: "Jasa Joki Ranked",
-        sub: "1 Hero (Up MMR)",
-        cat: "joki-ml",
-        catLabel: "Joki ML",
-        image: "1795684363565.png",
-        note: "Fokus push MMR untuk 1 hero pilihan. Cantumkan nama hero target di kolom catatan."
+      {
+        title: "⚡ Promo Diamonds Terbatas",
+        items: [
+          { name: "5 (5+0) Diamonds (PROMO)", price: 1630, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "12 (11+1) Diamonds (PROMO)", price: 3779, strike: 4000, disc: "Disc 6%", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "19 (17+2) Diamonds (PROMO)", price: 6017, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "28 (25+3) Diamonds (PROMO)", price: 8690, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "44 (40+4) Diamonds (PROMO)", price: 13033, strike: 14500, disc: "Disc 10%", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "59 (53+6) Diamonds (PROMO)", price: 17378, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "85 (77+8) Diamonds (PROMO)", price: 24932, strike: 26500, disc: "Disc 6%", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "Weekly Diamond Pass (PROMO)", price: 31415, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "170 (154+16) Diamonds (PROMO)", price: 50051, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "240 (217+23) Diamonds (PROMO)", price: 70638, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "296 (256+40) Diamonds (PROMO)", price: 87060, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "408 (367+41) Diamonds (PROMO)", price: 119554, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "568 (503+65) Diamonds (PROMO)", price: 163182, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "875 (774+101) Diamonds (PROMO)", price: 250061, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "2010 (1708+302) Diamonds (PROMO)", price: 545200, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "4830 (4003+827) Diamonds (PROMO)", price: 1308900, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND }
+        ]
       },
-      "jasa-gendong": {
-        title: "Jasa Mabar / Gendong",
-        sub: "Party Bareng Pro",
-        cat: "joki-ml",
-        catLabel: "Joki ML",
-        image: "1795684340955.png",
-        note: "Main bareng tim/joki tanpa perlu menyerahkan password akun. Siapkan ID & nickname saat antrean dimulai."
-      },
-      "joki-classic": {
-        title: "Joki Classic",
-        sub: "Up Winrate Hero",
-        cat: "joki-ml",
-        catLabel: "Joki ML",
-        image: "file_00000000fde082118279351be4988263.webp",
-        note: "Bantu naikkan winrate hero/akun di mode Classic sesuai paket match yang dipilih."
-      },
-      "joki-magic-chess": {
-        title: "Joki Magic Chess",
-        sub: "Push Rank Magic Chess",
-        cat: "joki-ml",
-        catLabel: "Joki ML",
-        image: "1795684487111.png",
-        note: "Jasa push rank mode Magic Chess secara aman dan bertahap."
-      },
-      "joki-montage": {
-        title: "Joki Video Montage",
-        sub: "Jasa Video Highlight",
-        cat: "joki-ml",
-        catLabel: "Joki ML",
-        image: "1795684433125.png",
-        note: "Pembuatan video highlight/montage gameplay MLBB. Kirimkan ID/replay atau catatan konsep di catatan pesanan."
-      },
-      "topup-mlbb": {
-        title: "Mobile Legends",
-        sub: "Moonton • Diamonds",
-        cat: "topup-game",
-        catLabel: "Top Up Game",
-        needZone: true,
-        image: "logomlbbck-ezgif.jpeg",
-        note: "Masukkan User ID dan Zone ID dengan benar. Diamonds / WDP masuk otomatis sesuai antrean."
-      },
-      "topup-ff": {
-        title: "Free Fire",
-        sub: "Garena • Diamond",
-        cat: "topup-game",
-        catLabel: "Top Up Game",
-        needZone: false,
-        image: "a70bfa08-7d18-4c76-927f-409c9c9da0cd.webp",
-        note: "Masukkan Player ID Free Fire dengan benar sebelum melanjutkan pembayaran."
-      },
-      "topup-ff-max": {
-        title: "Free Fire Max",
-        sub: "Garena • Diamond",
-        cat: "topup-game",
-        catLabel: "Top Up Game",
-        needZone: false,
-        image: "1b0847af-a218-4ded-a904-3a6d069dd02e.webp",
-        note: "Top up diamond untuk akun Free Fire / Free Fire Max menggunakan Player ID."
-      },
-      "topup-pubgm": {
-        title: "PUBG Mobile",
-        sub: "Tencent • UC",
-        cat: "topup-game",
-        catLabel: "Top Up Game",
-        needZone: false,
-        image: "3367aa44-bc91-4717-a618-cee872f62b6a.webp",
-        note: "Masukkan Character ID PUBG Mobile secara tepat agar UC masuk tanpa kendala."
-      },
-      "topup-hok": {
-        title: "Honor of Kings",
-        sub: "Level Infinite • Tokens",
-        cat: "topup-game",
-        catLabel: "Top Up Game",
-        needZone: false,
-        image: "661737a7-9770-4086-b8ee-8ecb3311113d.webp",
-        note: "Masukkan Player ID Honor of Kings untuk pengisian Tokens."
-      },
-      "topup-genshin": {
-        title: "Genshin Impact",
-        sub: "HoYoverse • Crystals",
-        cat: "topup-game",
-        catLabel: "Top Up Game",
-        needZone: true,
-        image: "9b0b6393-7fa9-4f8a-ae30-130b2a421d48.webp",
-        note: "Masukkan UID dan pilih Server (Asia / America / Europe / TW,HK,MO) dengan tepat."
+      {
+        title: "Region (Indonesia) 🇮🇩",
+        items: [
+          { name: "5 (5+0) Diamonds", price: 1643, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "10 (10+0) Diamonds", price: 3286, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "12 (11+1) Diamonds", price: 3839, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "15 (15+0) Diamonds", price: 4929, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "19 (17+2) Diamonds", price: 6034, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "20 (20+0) Diamonds", price: 6572, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "22 (21+1) Diamonds", price: 7129, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "28 (25+3) Diamonds", price: 8782, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "30 (30+0) Diamonds", price: 9858, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "34 (32+2) Diamonds", price: 10964, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "36 (33+3) Diamonds", price: 11517, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "44 (40+4) Diamonds", price: 13181, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "42 (41+1) Diamonds", price: 13696, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "45 (41+4) Diamonds", price: 14264, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "46 (43+3) Diamonds", price: 14803, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "Weekly Elite Pack", price: 16440, strike: 0, disc: "", tag: "🛒", icon: IMG_WDP },
+          { name: "50 (50+0) Diamonds", price: 16467, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "56 (51+5) Diamonds", price: 17020, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "59 (53+6) Diamonds", price: 17509, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "64 (58+6) Diamonds", price: 19152, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "60 (55+5) Diamonds", price: 19195, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "65 (60+5) Diamonds", price: 20837, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "71 (64+7) Diamonds", price: 21340, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "67 (61+6) Diamonds", price: 21389, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "74 (68+6) Diamonds", price: 22430, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "70 (65+5) Diamonds", price: 22480, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "80 (73+7) Diamonds", price: 24698, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "85 (77+8) Diamonds", price: 25169, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "84 (76+8) Diamonds", price: 25802, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "88 (80+8) Diamonds", price: 26362, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "89 (81+8) Diamonds", price: 27445, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "92 (83+9) Diamonds", price: 27934, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "98 (90+8) Diamonds", price: 29648, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "100 (92+8) Diamonds", price: 30097, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "110 (101+9) Diamonds", price: 33407, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "112 (103+9) Diamonds", price: 33936, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "113 (102+11) Diamonds", price: 33950, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "116 (105+11) Diamonds", price: 35041, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "129 (117+12) Diamonds", price: 38349, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "128 (116+12) Diamonds", price: 38880, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "148 (134+14) Diamonds", price: 44383, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "170 (154+16) Diamonds", price: 50460, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "176 (160+16) Diamonds", price: 51724, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "222 (201+21) Diamonds", price: 66919, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "240 (217+23) Diamonds", price: 71302, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "241 (218+23) Diamonds", price: 71800, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "Monthly Epic Pack", price: 81763, strike: 0, disc: "", tag: "🛒", icon: IMG_TWILIGHT },
+          { name: "277 (251+26) Diamonds", price: 82732, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "284 (257+27) Diamonds", price: 84483, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "296 (256+40) Diamonds", price: 87800, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "370 (335+35) Diamonds", price: 110734, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "384 (348+36) Diamonds", price: 114101, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "568 (503+65) Diamonds", price: 164543, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "750 (676+74) Diamonds", price: 218042, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "790 (704+86) Diamonds", price: 231462, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "875 (774+101) Diamonds", price: 252290, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "874 (769+105) Diamonds", price: 255620, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "966 (852+114) Diamonds", price: 282992, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "1067 (949+118) Diamonds", price: 309882, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "1048 (940+108) Diamonds", price: 311569, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "1136 (1006+130) Diamonds", price: 329065, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "1358 (1194+164) Diamonds", price: 399383, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "1506 (1334+172) Diamonds", price: 436055, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "1704 (1509+195) Diamonds", price: 493628, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "2010 (1708+302) Diamonds", price: 548469, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "2380 (2032+348) Diamonds", price: 658706, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "2578 (2211+367) Diamonds", price: 713012, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "2855 (2469+386) Diamonds", price: 799118, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "3146 (2714+432) Diamonds", price: 877554, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "3423 (2959+464) Diamonds", price: 967040, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "3738 (3226+512) Diamonds", price: 1053153, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "4020 (3416+604) Diamonds", price: 1096938, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "4830 (4003+827) Diamonds", price: 1316326, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "4856 (4161+695) Diamonds", price: 1343564, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "4958 (4120+838) Diamonds", price: 1355204, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "5052 (4204+848) Diamonds", price: 1383245, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "5398 (4506+892) Diamonds", price: 1480869, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "6030 (5124+906) Diamonds", price: 1645407, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "5966 (5009+957) Diamonds", price: 1645411, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "6840 (5711+1129) Diamonds", price: 1864795, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "7210 (6170+1040) Diamonds", price: 1907673, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "7685 (6472+1213) Diamonds", price: 2115443, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "8040 (6832+1208) Diamonds", price: 2193876, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "8850 (7419+1431) Diamonds", price: 2413264, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "9660 (8006+1654) Diamonds", price: 2632652, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "10050 (8540+1510) Diamonds", price: 2742345, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "14490 (12009+2481) Diamonds", price: 3948977, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "16080 (13664+2416) Diamonds", price: 4387751, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND },
+          { name: "20100 (17080+3020) Diamonds", price: 5484689, strike: 0, disc: "", tag: "🛒", icon: IMG_DIAMOND }
+        ]
       }
-    };
+    ];
 
-    const PACKAGES_BY_CAT = {
-      "joki-ml": [
-        { name: "Paket 5 Bintang", price: 25000 },
-        { name: "Paket 10 Bintang", price: 48000 },
-        { name: "Paket 20 Bintang", price: 92000 },
-        { name: "Paket 30 Bintang", price: 135000 },
-        { name: "Paket 50 Bintang", price: 215000 },
-        { name: "Custom / Konsultasi", price: 0 }
-      ],
-      "topup-game": [
-        { name: "Weekly Pass / Hemat", price: 28000 },
-        { name: "Paket Kecil (86 DM)", price: 22000 },
-        { name: "Paket Menengah (172 DM)", price: 44000 },
-        { name: "Paket Besar (257 DM)", price: 66000 },
-        { name: "Paket Sultan (706 DM)", price: 178000 },
-        { name: "Custom Nominal", price: 0 }
-      ]
-    };
+    let selectedItem = null;
+    let selectedPayment = "QRIS (All Payment)";
+    let promoDiscount = 0;
+    let searchFilter = "";
 
-    const params = new URLSearchParams(window.location.search);
-    const serviceId = params.get("id") || "joki-rank";
-    const service = SERVICES[serviceId] || SERVICES["joki-rank"];
-    const packages = PACKAGES_BY_CAT[service.cat] || PACKAGES_BY_CAT["joki-ml"];
+    const nominalGroupsEl = document.getElementById("nominal-groups");
+    const filterInput = document.getElementById("filter-paket");
+    const qtyInput = document.getElementById("f-qty");
+    const bottomSummary = document.getElementById("bottom-summary");
+    const btnPesan = document.getElementById("btn-pesan");
 
-    let selectedPkg = packages[0];
-
-    const svcImg = document.getElementById("svc-img");
-    const svcCat = document.getElementById("svc-cat");
-    const svcTitle = document.getElementById("svc-title");
-    const svcSub = document.getElementById("svc-sub");
-    const svcNote = document.getElementById("svc-note");
-    const pkgGrid = document.getElementById("pkg-grid");
-
-    const topupFields = document.getElementById("topup-fields");
-    const jokiFields = document.getElementById("joki-fields");
-    const zoneWrap = document.getElementById("zone-wrap");
-    const gameIdInput = document.getElementById("game-id");
-    const zoneIdInput = document.getElementById("zone-id");
-    const mlIdServerInput = document.getElementById("ml-id-server");
-    const loginViaSelect = document.getElementById("login-via");
-    const emailPassInput = document.getElementById("email-pass");
-    const waBuyerInput = document.getElementById("wa-buyer");
-    const paymentSelect = document.getElementById("payment-method");
-    const notesInput = document.getElementById("notes");
-
-    const sumService = document.getElementById("sum-service");
-    const sumPkg = document.getElementById("sum-pkg");
-    const sumPay = document.getElementById("sum-pay");
-    const sumPrice = document.getElementById("sum-price");
-    const orderForm = document.getElementById("order-form");
-
-    function formatRupiah(num) {
-      if (!num || num <= 0) return "Menyesuaikan";
-      return "Rp " + num.toLocaleString("id-ID");
+    function rupiah(n) {
+      return "Rp " + Number(n || 0).toLocaleString("id-ID");
     }
 
-    function initServicePage() {
-      document.title = `${service.title} - KABUKI JOKI`;
-      svcImg.src = service.image;
-      svcImg.alt = service.title;
-      svcCat.textContent = service.catLabel;
-      svcTitle.textContent = service.title;
-      svcSub.textContent = service.sub;
-      svcNote.textContent = service.note;
+    function cardTemplate(item, gIdx, iIdx) {
+      const isSelected = selectedItem && selectedItem.gIdx === gIdx && selectedItem.iIdx === iIdx;
+      const strikeHtml = item.strike > 0 ? `<div class="nom-strike">${rupiah(item.strike)}</div>` : "";
+      const discHtml = item.disc ? `<span class="badge-disc">${item.disc}</span>` : "";
 
-      const isJoki = service.cat === "joki-ml";
-      topupFields.classList.toggle("hidden", isJoki);
-      jokiFields.classList.toggle("hidden", !isJoki);
-      gameIdInput.required = !isJoki;
-      mlIdServerInput.required = isJoki;
+      return `
+        <button type="button" class="nom-card ${isSelected ? "active" : ""}" data-g="${gIdx}" data-i="${iIdx}">
+          <div class="nom-top">
+            <img src="${item.icon}" alt="${item.name}" class="nom-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+            <span class="nom-name">${item.name}</span>
+          </div>
+          <div>
+            <div class="nom-price">${rupiah(item.price)}</div>
+            ${strikeHtml}
+            <div class="nom-badges">
+              ${discHtml}
+              <span class="badge-tag">${item.tag}</span>
+            </div>
+          </div>
+        </button>
+      `;
+    }
 
-      if (!isJoki) {
-        zoneWrap.classList.toggle("hidden", !service.needZone);
-      }
+    function renderNominals() {
+      const q = searchFilter.trim().toLowerCase();
 
-      pkgGrid.innerHTML = packages
-        .map(
-          (pkg, idx) => `
-          <button type="button" class="pkg-btn ${idx === 0 ? "active" : ""}" data-idx="${idx}">
-            <div class="pkg-name">${pkg.name}</div>
-            <div class="pkg-price">${formatRupiah(pkg.price)}</div>
-          </button>
-        `
-        )
-        .join("");
+      const html = MLBB_GROUPS.map((group, gIdx) => {
+        const matched = group.items
+          .map((item, iIdx) => ({ item, iIdx }))
+          .filter(({ item }) => !q || item.name.toLowerCase().includes(q) || group.title.toLowerCase().includes(q));
 
-      pkgGrid.querySelectorAll(".pkg-btn").forEach((btn) => {
+        if (!matched.length) return "";
+        return `
+          <div class="cat-block">
+            <div class="cat-heading">${group.title}</div>
+            <div class="nominal-grid">
+              ${matched.map(({ item, iIdx }) => cardTemplate(item, gIdx, iIdx)).join("")}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      nominalGroupsEl.innerHTML = html || `<div class="nom-name" style="color:#9ca3af;">Nominal tidak ditemukan.</div>`;
+
+      nominalGroupsEl.querySelectorAll(".nom-card").forEach((btn) => {
         btn.addEventListener("click", () => {
-          pkgGrid.querySelectorAll(".pkg-btn").forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          selectedPkg = packages[Number(btn.dataset.idx)];
+          const g = Number(btn.dataset.g);
+          const i = Number(btn.dataset.i);
+          selectedItem = { ...MLBB_GROUPS[g].items[i], gIdx: g, iIdx: i };
+          renderNominals();
           updateSummary();
         });
       });
+    }
 
-      paymentSelect.addEventListener("change", updateSummary);
-      updateSummary();
+    function getQty() {
+      const v = parseInt(qtyInput.value, 10);
+      return Number.isNaN(v) || v < 1 ? 1 : v;
+    }
+
+    function getFinalTotal() {
+      if (!selectedItem) return 0;
+      return Math.round(selectedItem.price * getQty() * (1 - promoDiscount));
     }
 
     function updateSummary() {
-      sumService.textContent = service.title;
-      sumPkg.textContent = selectedPkg.name;
-      sumPay.textContent = paymentSelect.value;
-      sumPrice.textContent = formatRupiah(selectedPkg.price);
+      if (!selectedItem) {
+        bottomSummary.textContent = "Belum ada item produk yang dipilih.";
+        btnPesan.classList.remove("ready");
+        return;
+      }
+      const qty = getQty();
+      const total = getFinalTotal();
+      bottomSummary.textContent = `${selectedItem.name} ×${qty} • ${rupiah(total)} • ${selectedPayment}`;
+      btnPesan.classList.add("ready");
     }
 
-    orderForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+    // Tabs
+    const tabTransaksi = document.getElementById("tab-transaksi");
+    const tabKeterangan = document.getElementById("tab-keterangan");
+    const formTopup = document.getElementById("form-topup");
+    const panelKeterangan = document.getElementById("panel-keterangan");
 
-      const waBuyer = waBuyerInput.value.trim();
-      const payMethod = paymentSelect.value;
-      const notes = notesInput.value.trim() || "-";
-
-      let accountLines = "";
-      if (service.cat === "joki-ml") {
-        const idSrv = mlIdServerInput.value.trim();
-        const loginVia = loginViaSelect.value;
-        const loginData = emailPassInput.value.trim() || "-";
-        accountLines = [
-          `ID & Server: ${idSrv}`,
-          `Login Via: ${loginVia}`,
-          `Detail Akun: ${loginData}`
-        ].join("\n");
-      } else {
-        const gid = gameIdInput.value.trim();
-        const zid = zoneIdInput.value.trim();
-        accountLines = service.needZone
-          ? `User ID: ${gid}\nServer / Zone: ${zid || "-"}`
-          : `Player ID: ${gid}`;
-      }
-
-      const message = [
-        `*ORDER BARU - KABUKI JOKI*`,
-        `----------------------------`,
-        `Kategori: ${service.catLabel}`,
-        `Layanan: ${service.title}`,
-        `Paket: ${selectedPkg.name}`,
-        `Harga: ${formatRupiah(selectedPkg.price)}`,
-        `----------------------------`,
-        accountLines,
-        `No. WA Pembeli: ${waBuyer}`,
-        `Pembayaran: ${payMethod}`,
-        `Catatan: ${notes}`
-      ].join("\n");
-
-      const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank", "noopener,noreferrer");
+    tabTransaksi.addEventListener("click", () => {
+      tabTransaksi.classList.add("active");
+      tabKeterangan.classList.remove("active");
+      formTopup.classList.remove("hidden");
+      panelKeterangan.classList.add("hidden");
     });
 
-    initServicePage();
+    tabKeterangan.addEventListener("click", () => {
+      tabKeterangan.classList.add("active");
+      tabTransaksi.classList.remove("active");
+      panelKeterangan.classList.remove("hidden");
+      formTopup.classList.add("hidden");
+    });
+
+    // Search
+    filterInput.addEventListener("input", (e) => {
+      searchFilter = e.target.value;
+      renderNominals();
+    });
+
+    // Qty
+    document.getElementById("btn-plus").addEventListener("click", () => {
+      qtyInput.value = getQty() + 1;
+      updateSummary();
+    });
+
+    document.getElementById("btn-minus").addEventListener("click", () => {
+      qtyInput.value = Math.max(1, getQty() - 1);
+      updateSummary();
+    });
+
+    qtyInput.addEventListener("input", updateSummary);
+
+    // Payment
+    const qrisCard = document.getElementById("qris-card");
+    const payItems = Array.from(document.querySelectorAll(".pay-item"));
+
+    qrisCard.addEventListener("click", () => {
+      payItems.forEach((p) => p.classList.remove("active"));
+      qrisCard.classList.add("active");
+      selectedPayment = qrisCard.dataset.pay;
+      updateSummary();
+    });
+
+    document.querySelectorAll("[data-acc]").forEach((bar) => {
+      bar.addEventListener("click", () => {
+        bar.parentElement.classList.toggle("open");
+      });
+    });
+
+    payItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        qrisCard.classList.remove("active");
+        payItems.forEach((p) => p.classList.remove("active"));
+        item.classList.add("active");
+        selectedPayment = item.dataset.pay;
+        updateSummary();
+      });
+    });
+
+    // Promo
+    const promoInput = document.getElementById("f-promo");
+    const promoInfo = document.getElementById("promo-info");
+
+    document.getElementById("btn-promo-hint").addEventListener("click", () => {
+      promoInput.value = "KABUKI10";
+      promoInfo.textContent = "Kode KABUKI10 diisi. Klik 'Gunakan' untuk menerapkan diskon 10%.";
+    });
+
+    document.getElementById("btn-promo").addEventListener("click", () => {
+      const code = promoInput.value.trim().toUpperCase();
+      if (!code) {
+        promoDiscount = 0;
+        promoInfo.textContent = "Masukkan kode promo terlebih dahulu.";
+      } else if (code === "KABUKI10") {
+        promoDiscount = 0.1;
+        promoInfo.textContent = "Kode promo KABUKI10 diterapkan (diskon 10%).";
+      } else {
+        promoDiscount = 0;
+        promoInfo.textContent = `Kode promo "${code}" tidak tersedia.`;
+      }
+      updateSummary();
+    });
+
+    // Submit WA
+    btnPesan.addEventListener("click", () => {
+      if (!selectedItem) {
+        alert("Silakan pilih nominal terlebih dahulu.");
+        return;
+      }
+
+      const userId = document.getElementById("f-user-id").value.trim();
+      const serverId = document.getElementById("f-server-id").value.trim();
+      const waBuyer = document.getElementById("f-wa-buyer").value.trim();
+      const emailBuyer = document.getElementById("f-email-buyer").value.trim() || "-";
+      const promoCode = promoInput.value.trim() || "-";
+
+      if (!userId || !serverId || !waBuyer) {
+        alert("Mohon lengkapi ID, Server, dan No. Whatsapp.");
+        return;
+      }
+
+      const qty = getQty();
+      const total = getFinalTotal();
+
+      const lines = [
+        "*ORDER TOP UP MLBB - KABUKI JOKI*",
+        "-----------------------------",
+        `Item: *${selectedItem.name}*`,
+        `Jumlah: ${qty}`,
+        `Total: *${rupiah(total)}*`,
+        `Pembayaran: ${selectedPayment}`,
+        `Kode Promo: ${promoCode}`,
+        "-----------------------------",
+        `ID: ${userId}`,
+        `Server: ${serverId}`,
+        `No. WA: +62${waBuyer.replace(/^0+/, "")}`,
+        `Email: ${emailBuyer}`
+      ];
+
+      window.open(
+        `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    });
+
+    renderNominals();
+    updateSummary();
   </script>
 </body>
 </html>
