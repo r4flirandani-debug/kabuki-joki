@@ -142,6 +142,180 @@
       padding: 10px 10px 0;
     }
 
+    /* Mode Detail Akun MLBB */
+    .acc-detail-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .acc-detail-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .acc-stage-wrap {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #14161a;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      aspect-ratio: 4 / 5;
+    }
+
+    .acc-stage-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .acc-gal-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(15, 23, 42, 0.75);
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .acc-gal-prev { left: 8px; }
+    .acc-gal-next { right: 8px; }
+
+    .acc-gal-count {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .acc-thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .acc-thumb-btn {
+      border: 2px solid transparent;
+      border-radius: 7px;
+      overflow: hidden;
+      padding: 0;
+      background: #14161a;
+      cursor: pointer;
+      aspect-ratio: 16 / 9;
+      opacity: 0.7;
+      transition: opacity 0.15s ease, border-color 0.15s ease;
+    }
+
+    .acc-thumb-btn.active {
+      border-color: var(--blue-price);
+      opacity: 1;
+    }
+
+    .acc-thumb-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .acc-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .acc-pill {
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(78, 168, 255, 0.16);
+      color: #93c5fd;
+      border: 1px solid rgba(78, 168, 255, 0.35);
+    }
+
+    .acc-pill.ready {
+      background: rgba(22, 163, 74, 0.22);
+      color: #86efac;
+      border-color: rgba(74, 222, 128, 0.45);
+    }
+
+    .acc-pill.sold {
+      background: rgba(239, 68, 68, 0.22);
+      color: #fca5a5;
+      border-color: rgba(248, 113, 113, 0.45);
+    }
+
+    .acc-heading-title {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .acc-heading-price {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--blue-price);
+      margin-bottom: 12px;
+    }
+
+    .acc-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .acc-spec-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 7px;
+      padding: 8px;
+    }
+
+    .acc-spec-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .acc-spec-val {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      margin-top: 2px;
+    }
+
+    .acc-desc-text {
+      white-space: pre-line;
+      font-size: 12px;
+      line-height: 1.65;
+      color: #e5e7eb;
+    }
+
     /* Game Switcher */
     .game-switch {
       display: flex;
@@ -837,7 +1011,73 @@
   </header>
 
   <main class="container">
+    <!-- Mode Detail Akun MLBB (Aktif saat ?id=... dibuka dari Katalog Jual Akun MLBB) -->
+    <section id="account-detail-section" class="hidden">
+      <div class="acc-detail-layout">
+        <div class="step-card" style="margin-bottom:0;">
+          <div class="step-header">
+            <span class="step-num">📷</span>
+            <h1 class="step-title">Galeri Akun Mobile Legends</h1>
+          </div>
+          <div class="step-body">
+            <div class="acc-stage-wrap">
+              <img id="acc-main-img" src="file_00000000c4d482078d3bde42f15af968.png" alt="Preview Akun MLBB" />
+              <button type="button" id="acc-gal-prev" class="acc-gal-btn acc-gal-prev" aria-label="Gambar sebelumnya">&lsaquo;</button>
+              <button type="button" id="acc-gal-next" class="acc-gal-btn acc-gal-next" aria-label="Gambar berikutnya">&rsaquo;</button>
+              <div id="acc-gal-count" class="acc-gal-count">1 / 2</div>
+            </div>
+            <div id="acc-thumb-grid" class="acc-thumb-grid"></div>
+          </div>
+        </div>
+
+        <div class="step-card" style="margin-bottom:0;">
+          <div class="step-header">
+            <span class="step-num">🎮</span>
+            <h2 class="step-title">Ringkasan Akun</h2>
+          </div>
+          <div class="step-body">
+            <div class="acc-badge-row">
+              <span id="acc-budget-pill" class="acc-pill">BUDGET PELAJAR</span>
+              <span id="acc-status-pill" class="acc-pill ready">Ready</span>
+            </div>
+            <div id="acc-detail-title" class="acc-heading-title">AKUN MLBB</div>
+            <div id="acc-detail-price" class="acc-heading-price">Rp 549.000</div>
+
+            <div class="acc-spec-grid">
+              <div class="acc-spec-box">
+                <div class="acc-spec-label">Total Hero</div>
+                <div id="acc-spec-hero" class="acc-spec-val">133 Hero</div>
+              </div>
+              <div class="acc-spec-box">
+                <div class="acc-spec-label">Total Skin</div>
+                <div id="acc-spec-skin" class="acc-spec-val">282 Skin</div>
+              </div>
+              <div class="acc-spec-box">
+                <div class="acc-spec-label">Login</div>
+                <div id="acc-spec-login" class="acc-spec-val">Moonton</div>
+              </div>
+            </div>
+
+            <div class="contact-note" style="margin-top:0;">
+              Klik tombol <strong>Pesan Sekarang!</strong> di bawah untuk langsung chat admin WhatsApp resmi KABUKI STORE.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-num">📄</span>
+          <h2 class="step-title">Deskripsi Akun</h2>
+        </div>
+        <div class="step-body">
+          <div id="acc-detail-desc" class="acc-desc-text"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Switcher Game (Mobile Legends / Free Fire / PUBG Mobile / Honor of Kings) -->
+    <div id="topup-controls-wrap">
     <div class="game-switch">
       <button type="button" id="btn-game-mlbb" class="game-btn">Mobile Legends</button>
       <button type="button" id="btn-game-ff" class="game-btn">Free Fire</button>
@@ -1066,6 +1306,7 @@
         </div>
       </section>
     </form>
+    </div>
   </main>
 
   <!-- Sticky Bottom Bar -->
@@ -1104,6 +1345,82 @@
         <rect width="120" height="120" rx="14" fill="#1d4ed8"/>
         <polygon points="60,20 96,52 60,100 24,52" fill="#93c5fd"/>
       </svg>`);
+
+    // Data Detail Akun MLBB (2 Gambar + Deskripsi)
+    const ACC_IMG_1 = "file_00000000c4d482078d3bde42f15af968.png";
+    const ACC_IMG_2 = "file_00000000111c8211a6ccaa34610deb3b.png";
+
+    const DEFAULT_ACC_DESCRIPTION = `KABUKI STORE SELALU ON POINT! 🎮
+
+📌 Detail Akun Mobile Legends
+
+🔐 Login: Moonton
+💰 Harga: Rp 549.000
+✅ No Minus
+✅ Aman & siap langsung digunakan
+✅ Garansi Seumur Hidup
+
+🔥 Spesifikasi Akun ML
+
+⭐ Skin Highlight: -
+🎮 Total Skin: 282 Skin
+🦸 Total Hero: 133 Hero
+
+🛡️ Ketentuan Garansi Akun
+
+Garansi berlaku selama data akun tidak diubah oleh customer.
+
+Garansi akan hangus apabila customer melakukan:
+• Mengganti password akun.
+• Mengganti email.
+• Menghubungkan akun ke media sosial lain.
+• Mengubah data keamanan akun.
+• Melakukan perubahan data akun lainnya yang dapat memengaruhi akses atau keamanan akun.
+
+Apabila perubahan tersebut dilakukan, seluruh risiko dan tanggung jawab menjadi milik customer.
+
+📲 Cara Membeli Akun Mobile Legends
+
+Untuk membeli akun Mobile Legends di KABUKI STORE, hubungi Customer Service KABUKI STORE melalui WhatsApp untuk melakukan pemesanan dan pengecekan stok.
+
+⚡ Stok akun terbatas, jadi segera lakukan reservasi sebelum akun dibeli customer lain.`;
+
+    const MLBB_ACCOUNTS = {
+      "akun-pelajar-01": {
+        title: "LING CHOU KAGURA • 133 HERO • 282 SKIN",
+        budget: "BUDGET PELAJAR (300-1,999K)",
+        status: "Ready",
+        isReady: true,
+        priceText: "Rp 549.000",
+        hero: "133 Hero",
+        skin: "282 Skin",
+        login: "Moonton",
+        images: [ACC_IMG_1, ACC_IMG_2],
+        description: DEFAULT_ACC_DESCRIPTION
+      }
+    };
+
+    function getAccountFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const id = (params.get("id") || "").trim();
+      if (!id || !id.startsWith("akun-")) return null;
+      return (
+        MLBB_ACCOUNTS[id] || {
+          title: `AKUN MLBB (${id.toUpperCase()}) • 133 HERO • 282 SKIN`,
+          budget: "JUAL AKUN MLBB",
+          status: "Ready",
+          isReady: true,
+          priceText: "Rp 549.000",
+          hero: "133 Hero",
+          skin: "282 Skin",
+          login: "Moonton",
+          images: [ACC_IMG_1, ACC_IMG_2],
+          description: DEFAULT_ACC_DESCRIPTION
+        }
+      );
+    }
+
+    const activeAccountDetail = getAccountFromUrl();
 
     const ffHeroImg = document.getElementById("ff-hero-img");
     if (ffHeroImg) {
@@ -1741,6 +2058,12 @@
     }
 
     function updateSummary() {
+      if (activeAccountDetail) {
+        bottomSummary.textContent = `${activeAccountDetail.title} • ${activeAccountDetail.priceText}`;
+        btnPesan.classList.add("ready");
+        return;
+      }
+
       if (!selectedItem) {
         bottomSummary.textContent = "Belum ada item produk yang dipilih.";
         btnPesan.classList.remove("ready");
@@ -1849,6 +2172,23 @@
 
     // Submit WA
     btnPesan.addEventListener("click", () => {
+      if (activeAccountDetail) {
+        const lines = [
+          `*ORDER AKUN MLBB - KABUKI STORE*`,
+          "-----------------------------",
+          `Akun: *${activeAccountDetail.title}*`,
+          `Kategori: ${activeAccountDetail.budget}`,
+          `Harga: *${activeAccountDetail.priceText}*`,
+          `Status: ${activeAccountDetail.status}`
+        ];
+        window.open(
+          `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`,
+          "_blank",
+          "noopener,noreferrer"
+        );
+        return;
+      }
+
       if (!selectedItem) {
         alert("Silakan pilih nominal terlebih dahulu.");
         return;
@@ -1919,10 +2259,72 @@
       );
     });
 
-    applyGameMode();
-    renderNominals();
-    updatePaymentPrices();
-    updateSummary();
+    if (activeAccountDetail) {
+      document.getElementById("account-detail-section").classList.remove("hidden");
+      document.getElementById("topup-controls-wrap").classList.add("hidden");
+      document.title = `${activeAccountDetail.title} - KABUKI STORE`;
+
+      document.getElementById("acc-budget-pill").textContent = activeAccountDetail.budget;
+      const statusPill = document.getElementById("acc-status-pill");
+      statusPill.textContent = activeAccountDetail.status;
+      statusPill.className = `acc-pill ${activeAccountDetail.isReady ? "ready" : "sold"}`;
+
+      document.getElementById("acc-detail-title").textContent = activeAccountDetail.title;
+      document.getElementById("acc-detail-price").textContent = activeAccountDetail.priceText;
+      document.getElementById("acc-spec-hero").textContent = activeAccountDetail.hero;
+      document.getElementById("acc-spec-skin").textContent = activeAccountDetail.skin;
+      document.getElementById("acc-spec-login").textContent = activeAccountDetail.login;
+      document.getElementById("acc-detail-desc").textContent = activeAccountDetail.description;
+
+      const accImgs = activeAccountDetail.images && activeAccountDetail.images.length
+        ? activeAccountDetail.images
+        : [ACC_IMG_1, ACC_IMG_2];
+      let accImgIdx = 0;
+      const accMainImg = document.getElementById("acc-main-img");
+      const accCount = document.getElementById("acc-gal-count");
+      const accThumbGrid = document.getElementById("acc-thumb-grid");
+
+      function renderAccGallery() {
+        accMainImg.src = accImgs[accImgIdx];
+        accMainImg.alt = `${activeAccountDetail.title} - Gambar ${accImgIdx + 1}`;
+        accCount.textContent = `${accImgIdx + 1} / ${accImgs.length}`;
+
+        accThumbGrid.innerHTML = accImgs
+          .map(
+            (src, i) => `
+            <button type="button" class="acc-thumb-btn ${i === accImgIdx ? "active" : ""}" data-idx="${i}" aria-label="Gambar ${i + 1}">
+              <img src="${src}" alt="Preview ${i + 1}" />
+            </button>
+          `
+          )
+          .join("");
+
+        accThumbGrid.querySelectorAll(".acc-thumb-btn").forEach((b) => {
+          b.addEventListener("click", () => {
+            accImgIdx = Number(b.dataset.idx);
+            renderAccGallery();
+          });
+        });
+      }
+
+      document.getElementById("acc-gal-prev").addEventListener("click", () => {
+        accImgIdx = (accImgIdx - 1 + accImgs.length) % accImgs.length;
+        renderAccGallery();
+      });
+
+      document.getElementById("acc-gal-next").addEventListener("click", () => {
+        accImgIdx = (accImgIdx + 1) % accImgs.length;
+        renderAccGallery();
+      });
+
+      renderAccGallery();
+      updateSummary();
+    } else {
+      applyGameMode();
+      renderNominals();
+      updatePaymentPrices();
+      updateSummary();
+    }
   </script>
 </body>
 </html>
