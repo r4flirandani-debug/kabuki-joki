@@ -555,7 +555,7 @@
         id="search-input"
         type="search"
         class="search-input"
-        placeholder="Cari Joki ML atau Top Up Game..."
+        placeholder="Cari Joki ML, Top Up Game, atau Akun MLBB..."
         autocomplete="off"
       />
     </div>
@@ -575,7 +575,7 @@
       <div>
         <div class="promo-tag">● KABUKI JOKI OFFICIAL</div>
         <div class="promo-title">JOKI RANK &amp; TOP UP <span>FAST</span></div>
-        <div class="promo-sub">Proses cepat, aman, dan transparan untuk Joki Mobile Legends &amp; Top Up Game favoritmu.</div>
+        <div class="promo-sub">Proses cepat, aman, dan transparan untuk Joki Mobile Legends, Top Up Game &amp; Jual Akun MLBB.</div>
       </div>
       <a href="#katalog-utama" class="promo-cta">Pilih Layanan</a>
     </section>
@@ -603,18 +603,19 @@
     <section id="populer">
       <div class="popular-head">
         <div class="popular-title">🔥 POPULER SEKARANG!</div>
-        <div class="popular-desc">Layanan Joki ML dan Top Up Game yang paling banyak dipesan.</div>
+        <div class="popular-desc">Layanan Joki ML, Top Up Game, dan Jual Akun MLBB yang paling banyak dipesan.</div>
       </div>
       <div id="popular-grid" class="popular-grid"></div>
     </section>
 
-    <!-- 2 Katalog Utama -->
+    <!-- 3 Katalog Utama -->
     <section id="katalog-utama">
       <div class="cat-bar">
         <button type="button" id="btn-prev" class="arrow-btn" aria-label="Sebelumnya">&lt;</button>
         <div class="tabs">
           <button type="button" class="tab-btn active" data-cat="joki-ml">⚔️ Joki ML</button>
           <button type="button" class="tab-btn" data-cat="topup-game">🎮 Top Up Game</button>
+          <button type="button" class="tab-btn" data-cat="jual-akun-mlbb">👤 Jual Akun MLBB</button>
         </div>
         <button type="button" id="btn-next" class="arrow-btn" aria-label="Berikutnya">&gt;</button>
       </div>
@@ -626,7 +627,7 @@
   <footer class="footer">
     <strong>KABUKI JOKI</strong>
     <p class="footer-desc">
-      <strong>KABUKI JOKI</strong> adalah tempat jasa joki Mobile Legends dan top up game yang cepat, aman, dan terpercaya. Dikerjakan dengan proses transparan, privasi akun terjaga, harga bersahabat, serta dukungan metode pembayaran lengkap. <strong>OPEN 24 JAM — LANGSUNG PROSES, TANPA ANTRI.</strong>
+      <strong>KABUKI JOKI</strong> adalah tempat jasa joki Mobile Legends, top up game, dan jual akun MLBB yang cepat, aman, dan terpercaya. Dikerjakan dengan proses transparan, privasi akun terjaga, harga bersahabat, serta dukungan metode pembayaran lengkap. <strong>OPEN 24 JAM — LANGSUNG PROSES, TANPA ANTRI.</strong>
     </p>
     <div>Layanan Joki ML &amp; Top Up Game • © 2026 Kabuki Joki</div>
   </footer>
@@ -751,6 +752,44 @@
         title: "Genshin Impact",
         sub: "HoYoverse • Crystals",
         image: "9b0b6393-7fa9-4f8a-ae30-130b2a421d48.webp"
+      },
+
+      // KATALOG 3: JUAL AKUN MLBB
+      {
+        id: "akun-mlbb-starter",
+        cat: "jual-akun-mlbb",
+        popular: false,
+        label: "AKUN MLBB",
+        title: "Akun MLBB Starter",
+        sub: "Moonton • Siap Pakai",
+        image: "logomlbbck-ezgif.jpeg"
+      },
+      {
+        id: "akun-mlbb-skin",
+        cat: "jual-akun-mlbb",
+        popular: false,
+        label: "SKIN PACK",
+        title: "Akun MLBB Koleksi Skin",
+        sub: "Moonton • Multi Skin",
+        image: "1795684016988.png"
+      },
+      {
+        id: "akun-mlbb-rank",
+        cat: "jual-akun-mlbb",
+        popular: false,
+        label: "HIGH RANK",
+        title: "Akun MLBB Rank Mythic",
+        sub: "Moonton • Emblem Tinggi",
+        image: "1795684363565.png"
+      },
+      {
+        id: "akun-mlbb-custom",
+        cat: "jual-akun-mlbb",
+        popular: false,
+        label: "REQUEST AKUN",
+        title: "Request Akun MLBB",
+        sub: "Cari Spesifikasi Khusus",
+        image: "1795684340955.png"
       }
     ];
 
@@ -761,7 +800,7 @@
       return `order.html?id=${encodeURIComponent(item.id)}`;
     }
 
-    const catOrder = ["joki-ml", "topup-game"];
+    const catOrder = ["joki-ml", "topup-game", "jual-akun-mlbb"];
     let currentCat = "joki-ml";
     let keyword = "";
 
