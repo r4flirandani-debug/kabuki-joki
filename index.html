@@ -23,9 +23,13 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.14), transparent 45%),
+      background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.15), transparent 45%),
                   radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 40%),
                   var(--bg-main);
       color: var(--text-main);
@@ -90,6 +94,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      text-decoration: none;
     }
 
     .icon-btn:hover {
@@ -482,7 +487,7 @@
     <div class="topbar-right">
       <button type="button" id="btn-search-toggle" class="icon-btn" aria-label="Cari Katalog">🔍</button>
       <div class="region-pill">🇮🇩 ID / IDR</div>
-      <a href="#pilih-katalog" class="icon-btn" style="text-decoration:none;">Katalog</a>
+      <a href="#pilih-katalog" class="icon-btn">Katalog</a>
     </div>
   </header>
 
@@ -561,131 +566,25 @@
   </div>
 
   <script>
-    // Edit daftar katalog di bawah ini sesuai kebutuhan kamu
-    // Ganti "url" ke link WhatsApp / halaman order masing-masing
-    const CATALOG_DATA = [
-      {
-        id: "sword-of-justice",
-        name: "Sword of Justice",
-        category: "games",
-        badge: "01",
-        image: "assets/catalog/sword-of-justice.webp",
-        url: "#order-sword-of-justice"
-      },
-      {
-        id: "mobile-legends",
-        name: "Mobile Legends",
-        category: "games",
-        badge: "02",
-        image: "assets/catalog/mobile-legends.webp",
-        url: "#order-mobile-legends"
-      },
-      {
-        id: "magic-chess-go-go",
-        name: "Magic Chess Go Go",
-        category: "games",
-        badge: "03",
-        image: "assets/catalog/magic-chess-go-go.webp",
-        url: "#order-magic-chess-go-go"
-      },
-      {
-        id: "honor-of-kings",
-        name: "Honor of Kings",
-        category: "games",
-        badge: "04",
-        image: "assets/catalog/honor-of-kings.webp",
-        url: "#order-honor-of-kings"
-      },
-      {
-        id: "arena-of-valor",
-        name: "Arena of Valor",
-        category: "games",
-        badge: "05",
-        image: "assets/catalog/arena-of-valor.webp",
-        url: "#order-arena-of-valor"
-      },
-      {
-        id: "free-fire",
-        name: "Free Fire",
-        category: "games",
-        badge: "06",
-        image: "assets/catalog/free-fire.webp",
-        url: "#order-free-fire"
-      },
-      {
-        id: "free-fire-max",
-        name: "Free Fire Max",
-        category: "games",
-        badge: "07",
-        image: "assets/catalog/free-fire-max.webp",
-        url: "#order-free-fire-max"
-      },
-      {
-        id: "genshin-impact",
-        name: "Genshin Impact",
-        category: "games",
-        badge: "08",
-        image: "assets/catalog/genshin-impact.webp",
-        url: "#order-genshin-impact"
-      },
-      {
-        id: "honkai-impact-3",
-        name: "Honkai Impact 3",
-        category: "games",
-        badge: "09",
-        image: "assets/catalog/honkai-impact-3.webp",
-        url: "#order-honkai-impact-3"
-      },
-      {
-        id: "honkai-star-rail",
-        name: "Honkai: Star Rail",
-        category: "games",
-        badge: "10",
-        image: "assets/catalog/honkai-star-rail.webp",
-        url: "#order-honkai-star-rail"
-      },
-      {
-        id: "wuthering-waves",
-        name: "Wuthering Waves",
-        category: "games",
-        badge: "11",
-        image: "assets/catalog/wuthering-waves.webp",
-        url: "#order-wuthering-waves"
-      },
-      {
-        id: "haikyu-fly-high",
-        name: "Haikyu!! Fly High",
-        category: "games",
-        badge: "12",
-        image: "assets/catalog/haikyu-fly-high.webp",
-        url: "#order-haikyu-fly-high"
-      },
-      {
-        id: "voucher-tagihan",
-        name: "Voucher & Tagihan",
-        category: "voucher",
-        badge: "13",
-        image: "assets/catalog/voucher-tagihan.webp",
-        url: "#order-voucher-tagihan"
-      },
-      {
-        id: "e-money",
-        name: "E-Money",
-        category: "emoney",
-        badge: "14",
-        image: "assets/catalog/e-money.webp",
-        url: "#order-e-money"
-      },
-      {
-        id: "pulsa-masa-aktif",
-        name: "Pulsa & Masa Aktif",
-        category: "pulsa",
-        badge: "15",
-        image: "assets/catalog/pulsa-masa-aktif.webp",
-        url: "#order-pulsa-masa-aktif"
-      }
+    const FALLBACK_CATALOG = [
+      { id: "sword-of-justice", name: "Sword of Justice", category: "games", badge: "01", image: "assets/catalog/sword-of-justice.webp" },
+      { id: "mobile-legends", name: "Mobile Legends", category: "games", badge: "02", image: "assets/catalog/mobile-legends.webp" },
+      { id: "magic-chess-go-go", name: "Magic Chess Go Go", category: "games", badge: "03", image: "assets/catalog/magic-chess-go-go.webp" },
+      { id: "honor-of-kings", name: "Honor of Kings", category: "games", badge: "04", image: "assets/catalog/honor-of-kings.webp" },
+      { id: "arena-of-valor", name: "Arena of Valor", category: "games", badge: "05", image: "assets/catalog/arena-of-valor.webp" },
+      { id: "free-fire", name: "Free Fire", category: "games", badge: "06", image: "assets/catalog/free-fire.webp" },
+      { id: "free-fire-max", name: "Free Fire Max", category: "games", badge: "07", image: "assets/catalog/free-fire-max.webp" },
+      { id: "genshin-impact", name: "Genshin Impact", category: "games", badge: "08", image: "assets/catalog/genshin-impact.webp" },
+      { id: "honkai-impact-3", name: "Honkai Impact 3", category: "games", badge: "09", image: "assets/catalog/honkai-impact-3.webp" },
+      { id: "honkai-star-rail", name: "Honkai: Star Rail", category: "games", badge: "10", image: "assets/catalog/honkai-star-rail.webp" },
+      { id: "wuthering-waves", name: "Wuthering Waves", category: "games", badge: "11", image: "assets/catalog/wuthering-waves.webp" },
+      { id: "haikyu-fly-high", name: "Haikyu!! Fly High", category: "games", badge: "12", image: "assets/catalog/haikyu-fly-high.webp" },
+      { id: "voucher-tagihan", name: "Voucher & Tagihan", category: "voucher", badge: "13", image: "assets/catalog/voucher-tagihan.webp" },
+      { id: "e-money", name: "E-Money", category: "emoney", badge: "14", image: "assets/catalog/e-money.webp" },
+      { id: "pulsa-masa-aktif", name: "Pulsa & Masa Aktif", category: "pulsa", badge: "15", image: "assets/catalog/pulsa-masa-aktif.webp" }
     ];
 
+    let CATALOG_DATA = [];
     let activeCategory = "all";
     let queryText = "";
     let deferredInstallPrompt = null;
@@ -704,6 +603,19 @@
     const installBtn = document.getElementById("btn-install");
     const closeBarBtn = document.getElementById("btn-close-bar");
 
+    async function initCatalogPage() {
+      try {
+        const res = await fetch("data/catalog.json");
+        if (!res.ok) throw new Error("JSON not found");
+        const data = await res.json();
+        CATALOG_DATA = Array.isArray(data) && data.length ? data : FALLBACK_CATALOG;
+      } catch (err) {
+        // Fallback otomatis jika data/catalog.json belum dibuat atau dibuka lokal
+        CATALOG_DATA = FALLBACK_CATALOG;
+      }
+      renderGrid();
+    }
+
     function renderGrid() {
       const filtered = CATALOG_DATA.filter((item) => {
         const okCat = activeCategory === "all" || item.category === activeCategory;
@@ -721,14 +633,14 @@
       gridEl.innerHTML = filtered
         .map(
           (item) => `
-          <a href="${item.url}" class="catalog-card">
+          <a href="order.html?id=${encodeURIComponent(item.id)}" class="catalog-card">
             <img
               src="${item.image}"
               alt="${item.name}"
               loading="lazy"
               onerror="this.style.opacity='0'"
             />
-            <span class="card-badge">#${item.badge}</span>
+            <span class="card-badge">#${item.badge || ""}</span>
             <div class="card-bottom">
               <div class="card-title">${item.name}</div>
             </div>
@@ -787,7 +699,7 @@
       installBar.classList.add("hidden");
     });
 
-    renderGrid();
+    initCatalogPage();
   </script>
 </body>
 </html>
