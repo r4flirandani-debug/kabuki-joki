@@ -1,323 +1,793 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071426">
-<meta name="description" content="Kabuki Joki — layanan push rank Mobile Legends, joki eceran dan paket bintang.">
-<title>Kabuki Joki — Push Rank Mobile Legends</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KABUKI JOKI - Katalog Layanan</title>
+  <style>
+    :root {
+      --bg-main: #060e16;
+      --bg-card: #0c1824;
+      --bg-pill: #112130;
+      --accent-green: #16a34a;
+      --accent-green-bright: #22c55e;
+      --accent-blue: #38bdf8;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --border-soft: rgba(255, 255, 255, 0.09);
+    }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<link rel="stylesheet" href="./style.css">
-<style>
-  .joki-warm-card {
-    padding: 16px;
-    border-radius: 18px;
-    background: linear-gradient(155deg, #f8b4a0 0%, #f59e0b 52%, #f97316 100%);
-    color: #111827;
-    box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    min-width: 0;
-  }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.14), transparent 45%),
+                  radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 40%),
+                  var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: 92px;
+    }
 
-  .joki-step-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 999px;
-    background: #ef4444;
-    color: #fff;
-    font-weight: 800;
-    font-size: 0.85rem;
-    margin-right: 8px;
-    flex-shrink: 0;
-  }
+    /* Header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(6, 14, 22, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+    }
 
-  .joki-step-title {
-    display: flex;
-    align-items: center;
-    font-weight: 800;
-    font-size: 1rem;
-    margin-bottom: 12px;
-    color: #111827;
-  }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
 
-  .joki-grid-2 {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      object-fit: cover;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      background: var(--bg-pill);
+    }
 
-  .joki-field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #1f2937;
-    min-width: 0;
-  }
+    .brand-name {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
 
-  .joki-field input,
-  .joki-field select,
-  .joki-field textarea {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    padding: 10px 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(17, 24, 39, 0.14);
-    background: #ffffff;
-    color: #111827;
-    font-family: inherit;
-    font-size: 0.84rem;
-    font-weight: 600;
-    box-shadow: 0 2px 6px rgba(17, 24, 39, 0.06);
-  }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  .joki-field input::placeholder,
-  .joki-field textarea::placeholder {
-    color: #4b5563;
-    font-weight: 500;
-  }
+    .icon-btn,
+    .region-pill {
+      height: 34px;
+      padding: 0 11px;
+      border-radius: 9px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-pill);
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
 
-  .joki-picker-box {
-    margin-top: 14px;
-    padding: 16px;
-    border-radius: 18px;
-    background: linear-gradient(155deg, #fbbf24 0%, #f97316 100%);
-    color: #111827;
-    box-shadow: 0 14px 30px rgba(249, 115, 22, 0.22);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    min-width: 0;
-  }
+    .icon-btn:hover {
+      border-color: var(--accent-green-bright);
+    }
 
-  .joki-tab-row {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-    overflow-x: auto;
-    padding-bottom: 6px;
-    scrollbar-width: thin;
-  }
+    /* Hero */
+    .hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 16px 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: center;
+    }
 
-  .joki-tab-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    flex: 0 0 auto;
-    padding: 9px 13px;
-    border-radius: 999px;
-    border: 2px solid rgba(255, 255, 255, 0.75);
-    background: rgba(255, 255, 255, 0.18);
-    color: #111827;
-    font-family: inherit;
-    font-weight: 800;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
+    @media (min-width: 768px) {
+      .hero {
+        grid-template-columns: 1.35fr 0.65fr;
+        padding: 36px 20px 18px;
+      }
+    }
 
-  .joki-tab-btn.active {
-    background: #facc15;
-    border-color: #ffffff;
-    color: #111827;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
-  }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent-green-bright);
+      margin-bottom: 8px;
+    }
 
-  .joki-package-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.1;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
 
-  .joki-item-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 8px;
-    width: 100%;
-    min-width: 0;
-    padding: 11px 12px;
-    border-radius: 12px;
-    border: 2px solid rgba(17, 24, 39, 0.12);
-    background: #ffffff;
-    color: #111827;
-    text-align: left;
-    cursor: pointer;
-    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-  }
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 42px;
+      }
+    }
 
-  .joki-item-btn:hover {
-    transform: translateY(-1px);
-  }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      max-width: 540px;
+      margin-bottom: 18px;
+    }
 
-  .joki-item-btn.active {
-    background: #facc15;
-    border-color: #ef4444;
-    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.22);
-  }
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-  .joki-card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
-  }
+    .highlight-chip {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      font-size: 12px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
 
-  .joki-card-top img {
-    width: 34px;
-    height: 34px;
-    object-fit: contain;
-    flex-shrink: 0;
-  }
+    .hero-badge-card {
+      background: linear-gradient(160deg, #0f2336 0%, #091b16 100%);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+    }
 
-  .joki-win-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px 6px;
-    border-radius: 6px;
-    background: #fef08a;
-    border: 1px solid #eab308;
-    color: #854d0e;
-    font-weight: 900;
-    font-size: 0.72rem;
-    flex-shrink: 0;
-  }
+    .hero-badge-card img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin: 0 auto 10px;
+      display: block;
+    }
 
-  .joki-item-name {
-    display: block;
-    font-weight: 800;
-    font-size: 0.82rem;
-    line-height: 1.2;
-    color: #111827;
-  }
+    .hero-badge-caption {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
 
-  .joki-item-from {
-    display: block;
-    font-size: 0.72rem;
-    color: #4b5563;
-    font-weight: 600;
-    margin-top: 2px;
-  }
+    /* Catalog Section */
+    .catalog-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px 16px 32px;
+    }
 
-  .joki-item-price {
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: #dc2626;
-    line-height: 1.1;
-  }
+    .catalog-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
 
-  #serviceSelect {
-    display: none;
-  }
+    .section-title {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
 
-  .joki-bottom-wrap {
-    grid-column: 1 / -1;
-    margin-top: 14px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
-  }
+    .catalog-count {
+      font-size: 12px;
+      color: var(--accent-green-bright);
+      font-weight: 700;
+    }
 
-  .joki-promo-banner {
-    background: #5b21b6;
-    color: #ffffff;
-    text-align: center;
-    font-weight: 800;
-    font-size: 0.78rem;
-    padding: 6px 12px;
-  }
+    /* Search & Filter Bar */
+    .search-box {
+      margin-bottom: 12px;
+    }
 
-  .joki-confirm-bar {
-    padding: 12px 14px;
-    background: #ffffff;
-    color: #0f172a;
-  }
+    .search-box.hidden {
+      display: none;
+    }
 
-  .joki-confirm-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
+    .search-input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 11px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+    }
 
-  .joki-confirm-btn {
-    width: 100%;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 999px;
-    background: #ef4444;
-    color: #ffffff;
-    font-family: inherit;
-    font-weight: 800;
-    font-size: 0.92rem;
-    cursor: pointer;
-  }
+    .search-input:focus {
+      border-color: var(--accent-green-bright);
+    }
 
-  .joki-confirm-btn:hover {
-    background: #dc2626;
-  }
+    .category-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
 
-/* TOP UP DIAMOND */
-.topup-section{padding-top:54px;padding-bottom:64px}
-.topup-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:22px}
-.topup-head h2{margin:6px 0;font-size:clamp(2rem,5vw,3rem)}
-.topup-tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.topup-search{flex:1;min-width:180px;padding:12px 14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:#111827;color:#fff;font:inherit}
-.topup-filter{padding:11px 14px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:#172338;color:#fff;font:inherit;font-weight:700}
-.topup-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.topup-card{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:16px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:linear-gradient(145deg,#202b3d,#111a29);color:#fff;min-width:0}
-.topup-card.selected{outline:2px solid #2694ff;background:linear-gradient(145deg,#173d68,#14243a)}
-.topup-card-name{font-weight:800;font-size:.94rem;line-height:1.35;min-height:2.5em}
-.topup-card-price{color:#48a5ff;font-size:1.12rem;font-weight:800}
-.topup-card button{width:100%;border:0;border-radius:10px;padding:10px;background:#1687f8;color:#fff;font:inherit;font-weight:800;cursor:pointer}
-.topup-order{margin-top:24px;padding:20px;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:#111b2a}
-.topup-order h3{margin:0 0 14px}
-.topup-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.topup-fields label{display:flex;flex-direction:column;gap:6px;font-size:.82rem;font-weight:700;color:#dbeafe}
-.topup-fields input{width:100%;box-sizing:border-box;padding:12px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:#0b1220;color:#fff;font:inherit}
-.topup-selected{margin:14px 0;padding:12px;border-radius:12px;background:rgba(37,139,255,.12);color:#dbeafe}
-.topup-submit{width:100%;padding:14px;border:0;border-radius:12px;background:#1687f8;color:white;font:inherit;font-weight:800;font-size:1rem;cursor:pointer}
-.topup-note{font-size:.78rem;color:#9fb2c9;margin-top:12px}
-@media(max-width:600px){.topup-head{display:block}.topup-grid{gap:9px}.topup-card{padding:12px}.topup-card-name{font-size:.82rem}.topup-card-price{font-size:1rem}.topup-fields{grid-template-columns:1fr}}
+    .arrow-btn {
+      flex: 0 0 34px;
+      height: 36px;
+      border-radius: 10px;
+      border: none;
+      background: var(--accent-green);
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
 
-</style>
-<style>.catalog-home-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.catalog-home-grid .service-card{min-height:270px;display:flex;flex-direction:column;align-items:flex-start}.catalog-home-grid .service-card a{margin-top:auto}@media(max-width:650px){.catalog-home-grid{grid-template-columns:1fr}}</style>
+    .category-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      flex: 1;
+    }
+
+    .category-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-btn {
+      flex: 0 0 auto;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-pill);
+      color: #e2e8f0;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .cat-btn.active {
+      background: var(--accent-green);
+      border-color: var(--accent-green-bright);
+      color: #ffffff;
+    }
+
+    /* Grid Katalog Banyak */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .catalog-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .catalog-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 14px;
+      }
+    }
+
+    .catalog-card {
+      position: relative;
+      display: block;
+      aspect-ratio: 3 / 4.2;
+      border-radius: 15px;
+      overflow: hidden;
+      text-decoration: none;
+      background: linear-gradient(180deg, #102536 0%, #095c2d 100%);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      transition: transform 0.16s ease, border-color 0.16s ease;
+    }
+
+    .catalog-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent-green-bright);
+    }
+
+    .catalog-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 6px;
+      border-radius: 6px;
+      background: rgba(6, 14, 22, 0.78);
+      color: #86efac;
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .card-bottom {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 24px 7px 9px;
+      background: linear-gradient(
+        to top,
+        rgba(8, 138, 63, 0.97) 0%,
+        rgba(8, 138, 63, 0.78) 58%,
+        transparent 100%
+      );
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1.15;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+    }
+
+    .empty-msg {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 28px 16px 24px;
+      border-top: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .footer strong {
+      display: block;
+      color: var(--text-main);
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    /* Bottom Banner */
+    .install-bar {
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #101e2c;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+    }
+
+    .install-bar.hidden {
+      display: none;
+    }
+
+    .install-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .install-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .install-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .install-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .install-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-pasang {
+      background: var(--accent-green-bright);
+      color: #052010;
+      border: none;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-tutup {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 15px;
+      cursor: pointer;
+      padding: 4px;
+    }
+  </style>
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="index.html"><img class="brand-logo" src="./1795548864898.png" alt="Kabuki Joki"><span>KABUKI <b>JOKI</b></span></a>
-  <nav><a href="#pilih-katalog">Pilih Katalog</a></nav>
-</header>
-<main>
-<section class="hero section-wrap" id="home">
- <div class="hero-copy">
-  <div class="eyebrow"><span class="live-dot"></span> KABUKI JOKI • MOBILE LEGENDS</div>
-  <h1>PILIH <span>LAYANANMU.</span></h1>
-  <p class="hero-text">Selamat datang di Kabuki. Silakan pilih katalog Joki atau Top Up Diamond untuk melanjutkan pemesanan.</p>
-  <div class="hero-stats"><div><strong>JOKI</strong><small>Push Rank MLBB</small></div><i></i><div><strong>TOP UP</strong><small>Diamond MLBB</small></div></div>
- </div>
- <div class="hero-art"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="hero-emblem"><img class="hero-logo" src="./1795548864898.png" alt="Kabuki"></div><div class="art-caption">PLAY SMART. RANK UP.</div></div>
-</section>
-<section class="section section-wrap" id="pilih-katalog">
- <div class="section-heading"><div><div class="eyebrow">MAU PESAN APA?</div><h2>PILIH <span>KATALOG</span></h2></div><p>Kamu bisa berpindah katalog kapan saja melalui tombol di bagian atas halaman.</p></div>
- <div class="service-grid catalog-home-grid">
-  <article class="service-card featured"><div class="service-tag">KATALOG 01</div><div class="service-icon">🎮</div><h3>Katalog Joki</h3><p>Lihat layanan push rank, joki bintang, paket rank, joki gendong, dan classic.</p><a href="joki.html">Masuk ke Katalog Joki ↗</a></article>
-  <article class="service-card"><div class="service-tag">KATALOG 02</div><div class="service-icon">💎</div><h3>Katalog Top Up</h3><p>Pilih paket diamond, Weekly Diamond Pass, Twilight Pass, dan isi data akun.</p><a href="topup.html">Masuk ke Katalog Top Up ↗</a></article>
- </div>
-</section>
-</main>
-<footer><div class="footer-brand"><img class="footer-logo" src="./1795548864898.png" alt="Kabuki Joki"><b>KABUKI JOKI</b></div><p>Push rank dan top up dengan lebih praktis.</p><small>© <span id="year"></span> Kabuki Joki. Bukan situs resmi Moonton atau Mobile Legends: Bang Bang.</small></footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <header class="topbar">
+    <a href="#" class="brand">
+      <img src="assets/logo.png" alt="Kabuki Joki" class="brand-logo" onerror="this.style.display='none'" />
+      <span class="brand-name">KABUKI JOKI</span>
+    </a>
+
+    <div class="topbar-right">
+      <button type="button" id="btn-search-toggle" class="icon-btn" aria-label="Cari Katalog">🔍</button>
+      <div class="region-pill">🇮🇩 ID / IDR</div>
+      <a href="#pilih-katalog" class="icon-btn" style="text-decoration:none;">Katalog</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">● KABUKI JOKI • KATALOG LENGKAP</div>
+      <h1 class="hero-title">PILIH LAYANANMU.</h1>
+      <p class="hero-desc">
+        Selamat datang di Kabuki Joki. Pilih katalog layanan, top up game, voucher, e-money, maupun pulsa untuk melanjutkan pemesanan.
+      </p>
+      <div class="hero-highlights">
+        <div class="highlight-chip">⚡ Proses Cepat</div>
+        <div class="highlight-chip">📦 Banyak Pilihan Katalog</div>
+        <div class="highlight-chip">🛡️ Layanan Terpercaya</div>
+      </div>
+    </div>
+
+    <div class="hero-badge-card">
+      <img src="assets/kabuki-emblem.png" alt="Kabuki Emblem" onerror="this.style.display='none'" />
+      <div class="hero-badge-caption">PLAY SMART • RANK UP</div>
+    </div>
+  </section>
+
+  <main id="pilih-katalog" class="catalog-wrap">
+    <div class="catalog-head">
+      <div>
+        <div class="eyebrow">MAU PESAN APA?</div>
+        <h2 class="section-title">PILIH KATALOG</h2>
+      </div>
+      <div id="catalog-count" class="catalog-count">Memuat katalog...</div>
+    </div>
+
+    <div id="search-box" class="search-box">
+      <input
+        type="search"
+        id="search-input"
+        class="search-input"
+        placeholder="Cari nama game, voucher, e-money, atau pulsa..."
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="category-bar">
+      <button type="button" id="scroll-left" class="arrow-btn" aria-label="Geser kiri">&lt;</button>
+      <div id="category-scroll" class="category-scroll">
+        <button type="button" class="cat-btn active" data-category="all">✨ Semua Katalog</button>
+        <button type="button" class="cat-btn" data-category="games">🎮 Top Up Games</button>
+        <button type="button" class="cat-btn" data-category="voucher">🏷️ Voucher &amp; Tagihan</button>
+        <button type="button" class="cat-btn" data-category="emoney">💳 E-Money</button>
+        <button type="button" class="cat-btn" data-category="pulsa">📱 Pulsa &amp; Masa Aktif</button>
+      </div>
+      <button type="button" id="scroll-right" class="arrow-btn" aria-label="Geser kanan">&gt;</button>
+    </div>
+
+    <div id="catalog-grid" class="catalog-grid"></div>
+  </main>
+
+  <footer class="footer">
+    <strong>KABUKI JOKI</strong>
+    <div>Push rank dan top up dengan lebih praktis.</div>
+    <div style="margin-top: 6px;">© 2026 Kabuki Joki. Semua katalog siap dipilih.</div>
+  </footer>
+
+  <div id="install-bar" class="install-bar">
+    <div class="install-left">
+      <img src="assets/logo.png" alt="Kabuki Joki" class="install-icon" onerror="this.style.display='none'" />
+      <div>
+        <div class="install-title">Pasang Aplikasi KABUKI JOKI</div>
+        <div class="install-sub">Tambah ke home screen buat pengalaman lebih baik!</div>
+      </div>
+    </div>
+    <div class="install-actions">
+      <button type="button" id="btn-install" class="btn-pasang">Pasang</button>
+      <button type="button" id="btn-close-bar" class="btn-tutup" aria-label="Tutup">✕</button>
+    </div>
+  </div>
+
+  <script>
+    // Edit daftar katalog di bawah ini sesuai kebutuhan kamu
+    // Ganti "url" ke link WhatsApp / halaman order masing-masing
+    const CATALOG_DATA = [
+      {
+        id: "sword-of-justice",
+        name: "Sword of Justice",
+        category: "games",
+        badge: "01",
+        image: "assets/catalog/sword-of-justice.webp",
+        url: "#order-sword-of-justice"
+      },
+      {
+        id: "mobile-legends",
+        name: "Mobile Legends",
+        category: "games",
+        badge: "02",
+        image: "assets/catalog/mobile-legends.webp",
+        url: "#order-mobile-legends"
+      },
+      {
+        id: "magic-chess-go-go",
+        name: "Magic Chess Go Go",
+        category: "games",
+        badge: "03",
+        image: "assets/catalog/magic-chess-go-go.webp",
+        url: "#order-magic-chess-go-go"
+      },
+      {
+        id: "honor-of-kings",
+        name: "Honor of Kings",
+        category: "games",
+        badge: "04",
+        image: "assets/catalog/honor-of-kings.webp",
+        url: "#order-honor-of-kings"
+      },
+      {
+        id: "arena-of-valor",
+        name: "Arena of Valor",
+        category: "games",
+        badge: "05",
+        image: "assets/catalog/arena-of-valor.webp",
+        url: "#order-arena-of-valor"
+      },
+      {
+        id: "free-fire",
+        name: "Free Fire",
+        category: "games",
+        badge: "06",
+        image: "assets/catalog/free-fire.webp",
+        url: "#order-free-fire"
+      },
+      {
+        id: "free-fire-max",
+        name: "Free Fire Max",
+        category: "games",
+        badge: "07",
+        image: "assets/catalog/free-fire-max.webp",
+        url: "#order-free-fire-max"
+      },
+      {
+        id: "genshin-impact",
+        name: "Genshin Impact",
+        category: "games",
+        badge: "08",
+        image: "assets/catalog/genshin-impact.webp",
+        url: "#order-genshin-impact"
+      },
+      {
+        id: "honkai-impact-3",
+        name: "Honkai Impact 3",
+        category: "games",
+        badge: "09",
+        image: "assets/catalog/honkai-impact-3.webp",
+        url: "#order-honkai-impact-3"
+      },
+      {
+        id: "honkai-star-rail",
+        name: "Honkai: Star Rail",
+        category: "games",
+        badge: "10",
+        image: "assets/catalog/honkai-star-rail.webp",
+        url: "#order-honkai-star-rail"
+      },
+      {
+        id: "wuthering-waves",
+        name: "Wuthering Waves",
+        category: "games",
+        badge: "11",
+        image: "assets/catalog/wuthering-waves.webp",
+        url: "#order-wuthering-waves"
+      },
+      {
+        id: "haikyu-fly-high",
+        name: "Haikyu!! Fly High",
+        category: "games",
+        badge: "12",
+        image: "assets/catalog/haikyu-fly-high.webp",
+        url: "#order-haikyu-fly-high"
+      },
+      {
+        id: "voucher-tagihan",
+        name: "Voucher & Tagihan",
+        category: "voucher",
+        badge: "13",
+        image: "assets/catalog/voucher-tagihan.webp",
+        url: "#order-voucher-tagihan"
+      },
+      {
+        id: "e-money",
+        name: "E-Money",
+        category: "emoney",
+        badge: "14",
+        image: "assets/catalog/e-money.webp",
+        url: "#order-e-money"
+      },
+      {
+        id: "pulsa-masa-aktif",
+        name: "Pulsa & Masa Aktif",
+        category: "pulsa",
+        badge: "15",
+        image: "assets/catalog/pulsa-masa-aktif.webp",
+        url: "#order-pulsa-masa-aktif"
+      }
+    ];
+
+    let activeCategory = "all";
+    let queryText = "";
+    let deferredInstallPrompt = null;
+
+    const gridEl = document.getElementById("catalog-grid");
+    const countEl = document.getElementById("catalog-count");
+    const searchBox = document.getElementById("search-box");
+    const searchInput = document.getElementById("search-input");
+    const toggleSearchBtn = document.getElementById("btn-search-toggle");
+    const categoryScroll = document.getElementById("category-scroll");
+    const catButtons = document.querySelectorAll(".cat-btn");
+    const scrollLeftBtn = document.getElementById("scroll-left");
+    const scrollRightBtn = document.getElementById("scroll-right");
+
+    const installBar = document.getElementById("install-bar");
+    const installBtn = document.getElementById("btn-install");
+    const closeBarBtn = document.getElementById("btn-close-bar");
+
+    function renderGrid() {
+      const filtered = CATALOG_DATA.filter((item) => {
+        const okCat = activeCategory === "all" || item.category === activeCategory;
+        const okName = item.name.toLowerCase().includes(queryText.toLowerCase().trim());
+        return okCat && okName;
+      });
+
+      countEl.textContent = `${filtered.length} Katalog Ditampilkan`;
+
+      if (!filtered.length) {
+        gridEl.innerHTML = `<div class="empty-msg">Katalog tidak ditemukan. Coba kata kunci atau kategori lain.</div>`;
+        return;
+      }
+
+      gridEl.innerHTML = filtered
+        .map(
+          (item) => `
+          <a href="${item.url}" class="catalog-card">
+            <img
+              src="${item.image}"
+              alt="${item.name}"
+              loading="lazy"
+              onerror="this.style.opacity='0'"
+            />
+            <span class="card-badge">#${item.badge}</span>
+            <div class="card-bottom">
+              <div class="card-title">${item.name}</div>
+            </div>
+          </a>
+        `
+        )
+        .join("");
+    }
+
+    catButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        catButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCategory = btn.dataset.category;
+        renderGrid();
+      });
+    });
+
+    scrollLeftBtn.addEventListener("click", () => {
+      categoryScroll.scrollBy({ left: -160, behavior: "smooth" });
+    });
+
+    scrollRightBtn.addEventListener("click", () => {
+      categoryScroll.scrollBy({ left: 160, behavior: "smooth" });
+    });
+
+    toggleSearchBtn.addEventListener("click", () => {
+      searchBox.classList.toggle("hidden");
+      if (!searchBox.classList.contains("hidden")) {
+        searchInput.focus();
+      }
+    });
+
+    searchInput.addEventListener("input", (e) => {
+      queryText = e.target.value;
+      renderGrid();
+    });
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+    });
+
+    installBtn.addEventListener("click", async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        installBar.classList.add("hidden");
+      } else {
+        alert("Buka menu browser (⋮) lalu pilih 'Tambahkan ke layar utama' / 'Add to Home Screen'.");
+      }
+    });
+
+    closeBarBtn.addEventListener("click", () => {
+      installBar.classList.add("hidden");
+    });
+
+    renderGrid();
+  </script>
 </body>
 </html>
