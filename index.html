@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KABUKI JOKI - Joki ML &amp; Top Up Game</title>
+  <title>Joki ML - KABUKI JOKI</title>
   <style>
     :root {
       --bg-main: #121316;
       --bg-panel: #181a1f;
-      --bg-card: #19202b;
+      --bg-card: #1d2129;
+      --bg-input: #232832;
       --blue-main: #1d74f5;
       --blue-bright: #3b82f6;
       --cyan-accent: #38bdf8;
+      --gold: #facc15;
+      --green-wa: #16a34a;
+      --green-wa-bright: #22c55e;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --border-soft: rgba(255, 255, 255, 0.1);
@@ -23,28 +27,25 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg-main);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 56px;
+      padding-bottom: 112px;
     }
 
-    /* Header */
+    /* Topbar */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 40;
       display: flex;
       align-items: center;
-      gap: 9px;
-      padding: 10px 12px;
-      background: rgba(18, 19, 22, 0.95);
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(18, 19, 22, 0.96);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-soft);
     }
@@ -52,12 +53,11 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 8px;
       text-decoration: none;
       color: var(--text-main);
       font-weight: 900;
-      font-size: 12.5px;
-      flex-shrink: 0;
+      font-size: 13px;
     }
 
     .brand-badge {
@@ -72,446 +72,629 @@
       color: #fff;
     }
 
-    .search-box {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .search-input {
-      width: 100%;
-      height: 33px;
-      padding: 0 11px;
-      border-radius: 6px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-panel);
-      color: var(--text-main);
-      font-size: 12.5px;
-      outline: none;
-    }
-
-    .search-input:focus {
-      border-color: var(--cyan-accent);
-    }
-
-    .region-pill {
-      height: 33px;
-      padding: 0 9px;
-      border-radius: 6px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-panel);
-      font-size: 11px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    /* Quick Sub-Nav */
-    .subnav {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 8px 12px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 12px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .subnav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .subnav a {
-      color: #cbd5e1;
+    .back-btn {
       text-decoration: none;
-      font-weight: 600;
+      color: #e2e8f0;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
       white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 2px;
     }
 
-    .subnav a.active-link {
-      color: var(--cyan-accent);
-      border-bottom: 2px solid var(--cyan-accent);
+    .back-btn:hover {
+      border-color: var(--cyan-accent);
     }
 
     /* Container */
     .container {
-      max-width: 1080px;
+      max-width: 920px;
       margin: 0 auto;
-      padding: 12px 12px 0;
+      padding: 14px 12px 0;
     }
 
-    /* Promo Banner */
-    .promo-banner {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      background: linear-gradient(120deg, #1d4ed8 0%, #6d28d9 52%, #0f172a 100%);
-      padding: 18px 16px;
-      margin-bottom: 18px;
+    /* Hero Banner */
+    .hero-card {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
       gap: 12px;
-      min-height: 126px;
-    }
-
-    .promo-tag {
-      display: inline-block;
-      background: rgba(15, 23, 42, 0.75);
-      border: 1px solid rgba(125, 211, 252, 0.45);
-      color: #7dd3fc;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 999px;
-      margin-bottom: 6px;
-      letter-spacing: 0.4px;
-    }
-
-    .promo-title {
-      font-size: 18px;
-      font-weight: 900;
-      line-height: 1.15;
-      color: #ffffff;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
-    }
-
-    .promo-title span {
-      color: #facc15;
-    }
-
-    .promo-sub {
-      font-size: 11.5px;
-      color: #e2e8f0;
-      max-width: 420px;
-    }
-
-    .promo-cta {
-      flex-shrink: 0;
-      background: #facc15;
-      color: #0f172a;
-      text-decoration: none;
-      font-size: 11.5px;
-      font-weight: 900;
-      padding: 8px 12px;
-      border-radius: 8px;
-      white-space: nowrap;
-    }
-
-    /* Popular Section */
-    .popular-head {
-      margin-bottom: 10px;
-    }
-
-    .popular-title {
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-    }
-
-    .popular-desc {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .popular-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    @media (max-width: 640px) {
-      .popular-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .pop-card {
-      display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 8px;
+      background: linear-gradient(120deg, rgba(29, 116, 245, 0.25), rgba(24, 26, 31, 0.98));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+
+    .hero-img {
+      width: 68px;
+      height: 74px;
       border-radius: 9px;
-      text-decoration: none;
-      background: linear-gradient(90deg, rgba(29, 78, 216, 0.42) 0%, rgba(25, 32, 43, 0.95) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      min-width: 0;
-    }
-
-    .pop-card:hover {
-      border-color: var(--cyan-accent);
-    }
-
-    .pop-card img {
-      width: 38px;
-      height: 38px;
-      border-radius: 7px;
       object-fit: cover;
-      flex-shrink: 0;
       background: #0d131c;
-    }
-
-    .pop-info {
-      min-width: 0;
-    }
-
-    .pop-name {
-      font-size: 11.5px;
-      font-weight: 800;
-      color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .pop-sub {
-      font-size: 10px;
-      color: #cbd5e1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Category Tabs */
-    .cat-bar {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 12px;
-    }
-
-    .arrow-btn {
-      width: 28px;
-      height: 30px;
-      border-radius: 6px;
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      background: #1b2838;
-      color: #e2e8f0;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
+      border: 1px solid rgba(56, 189, 248, 0.4);
       flex-shrink: 0;
     }
 
-    .tabs {
-      display: flex;
-      gap: 7px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      flex: 1;
-    }
-
-    .tabs::-webkit-scrollbar {
-      display: none;
-    }
-
-    .tab-btn {
-      height: 30px;
-      padding: 0 13px;
-      border-radius: 6px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-panel);
-      color: #cbd5e1;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .tab-btn.active {
-      background: var(--blue-main);
-      border-color: var(--cyan-accent);
-      color: #ffffff;
-    }
-
-    /* Main Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 8px;
-      }
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      background: linear-gradient(180deg, #1d283a 0%, #151b24 100%);
-      border-radius: 11px;
-      padding: 5px;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      transition: transform 0.14s ease, border-color 0.14s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: var(--cyan-accent);
-    }
-
-    .thumb-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 4.2;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #0d131c;
-    }
-
-    .thumb-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .thumb-label {
-      position: absolute;
-      left: 50%;
-      bottom: 6px;
-      transform: translateX(-50%);
-      background: rgba(12, 34, 68, 0.92);
-      border: 1px solid rgba(56, 189, 248, 0.65);
-      color: #e0f2fe;
-      font-size: 8.5px;
-      font-weight: 800;
-      letter-spacing: 0.4px;
-      padding: 2px 7px;
-      border-radius: 4px;
-      white-space: nowrap;
-      text-transform: uppercase;
-    }
-
-    .card-meta {
-      padding: 7px 3px 3px;
-      text-align: center;
-    }
-
-    .card-title {
-      font-size: 11px;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.25;
+    .hero-title {
+      font-size: 16px;
+      font-weight: 900;
       margin-bottom: 2px;
     }
 
-    .card-sub {
-      font-size: 9.5px;
-      color: var(--text-muted);
-      line-height: 1.2;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 30px 14px;
-      background: var(--bg-panel);
-      border-radius: 10px;
-      border: 1px solid var(--border-soft);
-      color: var(--text-muted);
-      font-size: 12.5px;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 28px;
-      padding: 18px 12px;
-      border-top: 1px solid var(--border-soft);
-      color: var(--text-muted);
+    .hero-sub {
       font-size: 11.5px;
+      color: #cbd5e1;
+      line-height: 1.4;
     }
 
-    .footer strong {
-      display: block;
+    /* Section Panel */
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 12px;
+      background: linear-gradient(90deg, rgba(29, 116, 245, 0.22), rgba(24, 26, 31, 0.9));
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .step-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--blue-main);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .panel-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .panel-body {
+      padding: 12px;
+    }
+
+    /* Form Grid */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .form-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 11.5px;
+      font-weight: 700;
       color: #e2e8f0;
-      margin-bottom: 3px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 12px;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #64748b;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--cyan-accent);
+    }
+
+    .helper-note {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 7px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #bae6fd;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    /* Group Nominal */
+    .pkg-group {
+      margin-bottom: 14px;
+    }
+
+    .pkg-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .pkg-group-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #f1f5f9;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .pkg-card {
+      position: relative;
+      text-align: left;
+      padding: 9px 10px;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--bg-card);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: border-color 0.14s ease, transform 0.12s ease, background 0.14s ease;
+    }
+
+    .pkg-card:hover {
+      border-color: var(--cyan-accent);
+    }
+
+    .pkg-card.active {
+      border-color: var(--cyan-accent);
+      background: linear-gradient(135deg, rgba(29, 116, 245, 0.28), rgba(29, 33, 41, 0.98));
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.45);
+    }
+
+    .pkg-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .pkg-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .pkg-name {
+      font-size: 11.5px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+    }
+
+    .pkg-price {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--gold);
+    }
+
+    .pkg-strike {
+      font-size: 10px;
+      color: #f87171;
+      text-decoration: line-through;
+      margin-top: 1px;
+    }
+
+    .pkg-foot {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 6px;
+    }
+
+    .disc-pill {
+      font-size: 9.5px;
+      font-weight: 800;
+      background: var(--blue-main);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Quantity */
+    .qty-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-input {
+      flex: 1;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .qty-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 7px;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      background: var(--blue-main);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* Payment Accordion */
+    .pay-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pay-box {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9px;
+      background: var(--bg-card);
+      overflow: hidden;
+    }
+
+    .pay-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: rgba(29, 116, 245, 0.18);
+      border: none;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .pay-options {
+      display: none;
+      padding: 8px 10px 10px;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .pay-box.open .pay-options {
+      display: flex;
+    }
+
+    .pay-chip {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--bg-input);
+      color: #e2e8f0;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .pay-chip.active {
+      border-color: var(--cyan-accent);
+      background: var(--blue-main);
+      color: #fff;
+    }
+
+    /* Promo */
+    .promo-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .btn-blue {
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 7px;
+      border: none;
+      background: var(--blue-main);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .promo-msg {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    /* Sticky Bottom Bar */
+    .sticky-checkout {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      background: rgba(18, 19, 22, 0.97);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 9px 12px;
+    }
+
+    .sticky-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .sticky-status {
+      font-size: 11px;
+      color: #cbd5e1;
+      text-align: center;
+      margin-bottom: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn-order-now {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      background: var(--blue-main);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .btn-order-now.ready {
+      background: var(--green-wa);
+    }
+
+    .btn-order-now.ready:hover {
+      background: var(--green-wa-bright);
+      color: #052010;
     }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <a href="#" class="brand">
+    <a href="index.html" class="brand">
       <div class="brand-badge">KJ</div>
       <span>KABUKI JOKI</span>
     </a>
-    <div class="search-box">
-      <input
-        id="search-input"
-        type="search"
-        class="search-input"
-        placeholder="Cari Joki ML atau Top Up Game..."
-        autocomplete="off"
-      />
-    </div>
-    <div class="region-pill">🇮🇩 ID / IDR</div>
+    <a href="index.html" class="back-btn">← Katalog</a>
   </header>
 
-  <nav class="subnav">
-    <a href="#katalog-utama" class="active-link">⚡ Katalog</a>
-    <a href="#populer">🔥 Populer</a>
-    <a href="order.html?id=joki-rank">⚔️ Order Joki</a>
-    <a href="order.html?id=topup-mlbb">💎 Top Up</a>
-  </nav>
-
   <main class="container">
-    <!-- Banner Promo -->
-    <section class="promo-banner">
+    <!-- Header Layanan Joki ML -->
+    <section class="hero-card">
+      <img
+        id="joki-hero-img"
+        src="1795684016988.png"
+        alt="Joki Mobile Legends"
+        class="hero-img"
+        onerror="this.onerror=null;this.src=FALLBACK_ART;"
+      />
       <div>
-        <div class="promo-tag">● KABUKI JOKI OFFICIAL</div>
-        <div class="promo-title">JOKI RANK &amp; TOP UP <span>FAST</span></div>
-        <div class="promo-sub">Proses cepat, aman, dan transparan untuk Joki Mobile Legends &amp; Top Up Game favoritmu.</div>
+        <h1 id="joki-page-title" class="hero-title">Joki Mobile Legends</h1>
+        <p id="joki-page-sub" class="hero-sub">
+          Isi data akun, pilih paket rank / bintang / grading, lalu lanjutkan pemesanan via WhatsApp.
+        </p>
       </div>
-      <a href="#katalog-utama" class="promo-cta">Pilih Layanan</a>
     </section>
 
-    <!-- Populer Sekarang -->
-    <section id="populer">
-      <div class="popular-head">
-        <div class="popular-title">🔥 POPULER SEKARANG!</div>
-        <div class="popular-desc">Layanan Joki ML dan Top Up Game yang paling banyak dipesan.</div>
-      </div>
-      <div id="popular-grid" class="popular-grid"></div>
-    </section>
-
-    <!-- 2 Katalog Utama -->
-    <section id="katalog-utama">
-      <div class="cat-bar">
-        <button type="button" id="btn-prev" class="arrow-btn" aria-label="Sebelumnya">&lt;</button>
-        <div class="tabs">
-          <button type="button" class="tab-btn active" data-cat="joki-ml">⚔️ Joki ML</button>
-          <button type="button" class="tab-btn" data-cat="topup-game">🎮 Top Up Game</button>
+    <form id="joki-form">
+      <!-- 1. Masukkan Data Akun -->
+      <section class="panel">
+        <div class="panel-head">
+          <span class="step-badge">1</span>
+          <h2 class="panel-title">Masukkan Data Akun</h2>
         </div>
-        <button type="button" id="btn-next" class="arrow-btn" aria-label="Berikutnya">&gt;</button>
-      </div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="acc-id-nick">ID &amp; Nick Name</label>
+              <input id="acc-id-nick" type="text" placeholder="Masukkan ID &amp; Nick Name (cth: 12345678 (2468) - Kabuki)" required />
+            </div>
+            <div class="form-group">
+              <label for="acc-rank-now">Rank &amp; Star Saat Ini</label>
+              <input id="acc-rank-now" type="text" placeholder="Masukkan Rank &amp; Star Saat Ini (cth: Legend II ★3)" required />
+            </div>
+            <div class="form-group">
+              <label for="acc-login-via">Login Via</label>
+              <select id="acc-login-via">
+                <option value="Moonton">Moonton</option>
+                <option value="VK">VK</option>
+                <option value="TikTok">TikTok</option>
+                <option value="Mabar / Gendong">Mabar / Gendong (Tanpa Login)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="acc-email-user">Email ML / Username</label>
+              <input id="acc-email-user" type="text" placeholder="Masukkan Email ML / Username" />
+            </div>
+            <div class="form-group">
+              <label for="acc-password">Password</label>
+              <input id="acc-password" type="text" placeholder="Masukkan Password" />
+            </div>
+            <div class="form-group">
+              <label for="acc-msg-joki">Pesan Untuk Penjoki</label>
+              <input id="acc-msg-joki" type="text" placeholder="Masukkan Pesan Untuk Penjoki" />
+            </div>
+            <div class="form-group form-full">
+              <label for="acc-req-hero">Free Request Minimal 3 Hero</label>
+              <input id="acc-req-hero" type="text" placeholder="Masukkan Free Request Minimal 3 Hero" />
+            </div>
+          </div>
+          <div class="helper-note">
+            Pastikan verifikasi akun dua langkah (2FA / kode verifikasi) dimatikan sementara saat proses joki berlangsung, atau pilih <strong>Mabar / Gendong</strong> jika tidak ingin akun di-login.
+          </div>
+        </div>
+      </section>
 
-      <div id="catalog-grid" class="grid"></div>
-    </section>
+      <!-- 2. Pilih Nominal -->
+      <section class="panel">
+        <div class="panel-head">
+          <span class="step-badge">2</span>
+          <h2 class="panel-title">Pilih Nominal</h2>
+        </div>
+        <div id="nominal-groups" class="panel-body"></div>
+      </section>
+
+      <!-- 3. Masukkan Jumlah Pembelian -->
+      <section class="panel">
+        <div class="panel-head">
+          <span class="step-badge">3</span>
+          <h2 class="panel-title">Masukkan Jumlah Pembelian</h2>
+        </div>
+        <div class="panel-body">
+          <div class="qty-box">
+            <input id="qty-input" type="number" min="1" value="1" class="qty-input" />
+            <button type="button" id="qty-plus" class="qty-btn" aria-label="Tambah jumlah">+</button>
+            <button type="button" id="qty-minus" class="qty-btn" aria-label="Kurangi jumlah">−</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Pilih Pembayaran -->
+      <section class="panel">
+        <div class="panel-head">
+          <span class="step-badge">4</span>
+          <h2 class="panel-title">Pilih Pembayaran</h2>
+        </div>
+        <div class="panel-body">
+          <div class="pay-list">
+            <div class="pay-box open">
+              <button type="button" class="pay-header" data-toggle-pay>
+                <span>QRIS (All Payment)</span>
+                <span>▾</span>
+              </button>
+              <div class="pay-options">
+                <button type="button" class="pay-chip active" data-pay="QRIS (All Payment)">QRIS All Payment</button>
+              </div>
+            </div>
+
+            <div class="pay-box">
+              <button type="button" class="pay-header" data-toggle-pay>
+                <span>E-Wallet</span>
+                <span>▾</span>
+              </button>
+              <div class="pay-options">
+                <button type="button" class="pay-chip" data-pay="DANA">DANA</button>
+                <button type="button" class="pay-chip" data-pay="OVO">OVO</button>
+                <button type="button" class="pay-chip" data-pay="GoPay">GoPay</button>
+                <button type="button" class="pay-chip" data-pay="ShopeePay">ShopeePay</button>
+              </div>
+            </div>
+
+            <div class="pay-box">
+              <button type="button" class="pay-header" data-toggle-pay>
+                <span>Virtual Account</span>
+                <span>▾</span>
+              </button>
+              <div class="pay-options">
+                <button type="button" class="pay-chip" data-pay="VA BCA">BCA</button>
+                <button type="button" class="pay-chip" data-pay="VA Mandiri">Mandiri</button>
+                <button type="button" class="pay-chip" data-pay="VA BRI">BRI</button>
+                <button type="button" class="pay-chip" data-pay="VA BNI">BNI</button>
+              </div>
+            </div>
+
+            <div class="pay-box">
+              <button type="button" class="pay-header" data-toggle-pay>
+                <span>Convenience Store</span>
+                <span>▾</span>
+              </button>
+              <div class="pay-options">
+                <button type="button" class="pay-chip" data-pay="Alfamart">Alfamart</button>
+                <button type="button" class="pay-chip" data-pay="Indomaret">Indomaret</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Kode Promo -->
+      <section class="panel">
+        <div class="panel-head">
+          <span class="step-badge">5</span>
+          <h2 class="panel-title">Kode Promo</h2>
+        </div>
+        <div class="panel-body">
+          <div class="promo-row">
+            <input id="promo-input" type="text" placeholder="Ketik kode promo kamu" />
+            <button type="button" id="btn-apply-promo" class="btn-blue">Gunakan</button>
+          </div>
+          <div id="promo-msg" class="promo-msg">Belum ada kode promo yang diterapkan. (Contoh kode: KABUKI10)</div>
+        </div>
+      </section>
+
+      <!-- 6. Detail Kontak -->
+      <section class="panel">
+        <div class="panel-head">
+          <span class="step-badge">6</span>
+          <h2 class="panel-title">Detail Kontak</h2>
+        </div>
+        <div class="panel-body">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" type="email" placeholder="example@gmail.com" />
+            </div>
+            <div class="form-group">
+              <label for="contact-wa">No. Whatsapp</label>
+              <input id="contact-wa" type="tel" placeholder="081234567890" required />
+            </div>
+          </div>
+        </div>
+      </section>
+    </form>
   </main>
 
-  <footer class="footer">
-    <strong>KABUKI JOKI</strong>
-    <div>Layanan Joki ML &amp; Top Up Game • © 2026 Kabuki Joki</div>
-  </footer>
+  <!-- Sticky Bottom Checkout -->
+  <div class="sticky-checkout">
+    <div class="sticky-inner">
+      <div id="sticky-status" class="sticky-status">Belum ada item produk yang dipilih.</div>
+      <button type="button" id="btn-submit-wa" class="btn-order-now">Pesan Sekarang!</button>
+    </div>
+  </div>
 
   <script>
+    const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
+
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
       encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="320" height="340" viewBox="0 0 320 340">
@@ -520,220 +703,271 @@
         <text x="160" y="175" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="900" fill="#e2e8f0">KABUKI JOKI</text>
       </svg>`);
 
-    const ITEMS = [
-      // KATALOG 1: JOKI ML
+    const JOKI_GROUPS = [
       {
-        id: "joki-rank",
-        cat: "joki-ml",
-        popular: true,
-        label: "JOKI RANK",
-        title: "Joki Rank",
-        sub: "Jasa Joki (Up Rank)",
-        image: "1795684016988.png"
+        title: "⚡ FLASH SALE",
+        items: [
+          { name: "Open Grading 0/10", price: 120000, strike: 250000, disc: "Disc 52%", icon: "1795684016988.png" }
+        ]
       },
       {
-        id: "joki-hero-mmr",
-        cat: "joki-ml",
-        popular: true,
-        label: "HERO MMR",
-        title: "Jasa Joki Ranked",
-        sub: "1 Hero (Up MMR)",
-        image: "1795684363565.png"
+        title: "🔥 Special Bonus Star",
+        items: [
+          { name: "Epic 10 Star (Bonus 2 Star)", price: 60000, strike: 105000, disc: "Disc 43%", icon: "1795684016988.png" },
+          { name: "Legend 10 Star (Bonus 2 Star)", price: 70000, strike: 115000, disc: "Disc 39%", icon: "1795684016988.png" },
+          { name: "Mythic 10 Star (Bonus 2 Star)", price: 110000, strike: 250000, disc: "Disc 56%", icon: "1795684363565.png" },
+          { name: "Honor 10 Star (Bonus 2 Star)", price: 130000, strike: 340000, disc: "Disc 62%", icon: "1795684363565.png" },
+          { name: "Glory 50+ (10 Star) Bonus 2 Star", price: 160000, strike: 450000, disc: "Disc 64%", icon: "1795684363565.png" },
+          { name: "Immortal 100+ (10 Star) Bonus 1 Star", price: 200000, strike: 490000, disc: "Disc 59%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "jasa-gendong",
-        cat: "joki-ml",
-        popular: false,
-        label: "GENDONG",
-        title: "Jasa Mabar / Gendong",
-        sub: "Party Bareng Pro",
-        image: "1795684340955.png"
+        title: "✨ Joki / Star Rank",
+        items: [
+          { name: "Epic / Star", price: 6000, strike: 9500, disc: "Disc 37%", icon: "1795684016988.png" },
+          { name: "Legend / Star", price: 7000, strike: 10500, disc: "Disc 33%", icon: "1795684016988.png" },
+          { name: "Mythic / Star", price: 12000, strike: 25000, disc: "Disc 52%", icon: "1795684363565.png" },
+          { name: "Honor 25+ / Star", price: 14000, strike: 27000, disc: "Disc 48%", icon: "1795684363565.png" },
+          { name: "Glory 50+ / Star", price: 18000, strike: 35000, disc: "Disc 49%", icon: "1795684363565.png" },
+          { name: "Immortal 100+ / Star", price: 22000, strike: 45000, disc: "Disc 51%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "joki-classic",
-        cat: "joki-ml",
-        popular: false,
-        label: "CLASSIC WR",
-        title: "Joki Classic",
-        sub: "Up Winrate Hero",
-        image: "file_00000000fde082118279351be4988263.webp"
+        title: "Paket GrandMaster",
+        items: [
+          { name: "GM V - Epic V", price: 125000, strike: 150000, disc: "Disc 17%", icon: "1795684016988.png" },
+          { name: "GM V - Legend V", price: 275000, strike: 330000, disc: "Disc 17%", icon: "1795684016988.png" },
+          { name: "GM I - Mythic", price: 350000, strike: 440000, disc: "Disc 20%", icon: "1795684363565.png" },
+          { name: "GM II - Mythic", price: 375000, strike: 465000, disc: "Disc 19%", icon: "1795684363565.png" },
+          { name: "GM III - Mythic", price: 400000, strike: 495000, disc: "Disc 19%", icon: "1795684363565.png" },
+          { name: "GM IV - Mythic", price: 425000, strike: 525000, disc: "Disc 19%", icon: "1795684363565.png" },
+          { name: "GM V - Mythic", price: 450000, strike: 555000, disc: "Disc 19%", icon: "1795684363565.png" },
+          { name: "GM V - Honor 25", price: 710000, strike: 1050000, disc: "Disc 32%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "joki-magic-chess",
-        cat: "joki-ml",
-        popular: false,
-        label: "MAGIC CHESS",
-        title: "Joki Magic Chess",
-        sub: "Push Rank Magic Chess",
-        image: "1795684487111.png"
+        title: "Paket Epic",
+        items: [
+          { name: "Epic V - Legend V", price: 150000, strike: 180000, disc: "Disc 17%", icon: "1795684016988.png" },
+          { name: "Epic I - Mythic", price: 205000, strike: 265000, disc: "Disc 23%", icon: "1795684363565.png" },
+          { name: "Epic II - Mythic", price: 235000, strike: 295000, disc: "Disc 21%", icon: "1795684363565.png" },
+          { name: "Epic III - Mythic", price: 265000, strike: 345000, disc: "Disc 23%", icon: "1795684363565.png" },
+          { name: "Epic IV - Mythic", price: 295000, strike: 369000, disc: "Disc 20%", icon: "1795684363565.png" },
+          { name: "Epic V - Mythic", price: 325000, strike: 405000, disc: "Disc 20%", icon: "1795684363565.png" },
+          { name: "Epic V - Honor 25", price: 610000, strike: 950000, disc: "Disc 36%", icon: "1795684363565.png" },
+          { name: "Epic V - Glory 50", price: 785000, strike: 1290000, disc: "Disc 39%", icon: "1795684363565.png" },
+          { name: "Epic V - Immortal 100", price: 1735000, strike: 2950000, disc: "Disc 41%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "joki-montage",
-        cat: "joki-ml",
-        popular: false,
-        label: "MONTAGE",
-        title: "Joki Video Montage",
-        sub: "Jasa Video Highlight",
-        image: "1795684433125.png"
-      },
-
-      // KATALOG 2: TOP UP GAME
-      {
-        id: "topup-mlbb",
-        cat: "topup-game",
-        popular: true,
-        label: "DIAMONDS",
-        title: "Mobile Legends",
-        sub: "Moonton • Diamonds",
-        image: "logomlbbck-ezgif.jpeg"
+        title: "Paket Legend",
+        items: [
+          { name: "Legend V - Mythic", price: 175000, strike: 225000, disc: "Disc 22%", icon: "1795684363565.png" },
+          { name: "Legend V - Honor 25", price: 435000, strike: 750000, disc: "Disc 42%", icon: "1795684363565.png" },
+          { name: "Legend V - Glory 50", price: 810000, strike: 1410000, disc: "Disc 43%", icon: "1795684363565.png" },
+          { name: "Legend V - Immortal 100", price: 1760000, strike: 2990000, disc: "Disc 41%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "topup-ff",
-        cat: "topup-game",
-        popular: true,
-        label: "TOP UP",
-        title: "Free Fire",
-        sub: "Garena • Diamond",
-        image: "a70bfa08-7d18-4c76-927f-409c9c9da0cd.webp"
+        title: "Paket Mythic",
+        items: [
+          { name: "Grading 0/10 - Honor 25", price: 260000, strike: 475000, disc: "Disc 45%", icon: "1795684363565.png" },
+          { name: "Grading 0/10 - Glory 50", price: 635000, strike: 1175000, disc: "Disc 46%", icon: "1795684363565.png" },
+          { name: "Grading 0/10 - Immortal 100", price: 1585000, strike: 2675000, disc: "Disc 41%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "topup-ff-max",
-        cat: "topup-game",
-        popular: false,
-        label: "TOP UP",
-        title: "Free Fire Max",
-        sub: "Garena • Diamond",
-        image: "1b0847af-a218-4ded-a904-3a6d069dd02e.webp"
+        title: "Paket Mythic Honor",
+        items: [
+          { name: "Honor 25 - Glory 50", price: 375000, strike: 675000, disc: "Disc 44%", icon: "1795684363565.png" },
+          { name: "Honor 25 - Immortal 100", price: 1325000, strike: 2175000, disc: "Disc 39%", icon: "1795684363565.png" }
+        ]
       },
       {
-        id: "topup-pubgm",
-        cat: "topup-game",
-        popular: true,
-        label: "TOP UP",
-        title: "PUBG Mobile",
-        sub: "Tencent • UC",
-        image: "3367aa44-bc91-4717-a618-cee872f62b6a.webp"
-      },
-      {
-        id: "topup-hok",
-        cat: "topup-game",
-        popular: false,
-        label: "TOKENS",
-        title: "Honor of Kings",
-        sub: "Level Infinite • Tokens",
-        image: "661737a7-9770-4086-b8ee-8ecb3311113d.webp"
-      },
-      {
-        id: "topup-genshin",
-        cat: "topup-game",
-        popular: true,
-        label: "GENESIS",
-        title: "Genshin Impact",
-        sub: "HoYoverse • Crystals",
-        image: "9b0b6393-7fa9-4f8a-ae30-130b2a421d48.webp"
+        title: "Paket Mythic Glory",
+        items: [
+          { name: "Glory 50 - Immortal 100", price: 950000, strike: 1500000, disc: "Disc 37%", icon: "1795684363565.png" },
+          { name: "Glory 50 - Immortal 200", price: 3150000, strike: 4750000, disc: "Disc 34%", icon: "1795684363565.png" }
+        ]
       }
     ];
 
-    const catOrder = ["joki-ml", "topup-game"];
-    let currentCat = "joki-ml";
-    let keyword = "";
+    let selectedItem = null;
+    let selectedPayment = "QRIS (All Payment)";
+    let promoDiscountRate = 0;
 
-    const popularGrid = document.getElementById("popular-grid");
-    const catalogGrid = document.getElementById("catalog-grid");
-    const tabs = Array.from(document.querySelectorAll(".tab-btn"));
-    const searchInput = document.getElementById("search-input");
-    const btnPrev = document.getElementById("btn-prev");
-    const btnNext = document.getElementById("btn-next");
+    const nominalGroupsEl = document.getElementById("nominal-groups");
+    const qtyInput = document.getElementById("qty-input");
+    const qtyPlus = document.getElementById("qty-plus");
+    const qtyMinus = document.getElementById("qty-minus");
+    const stickyStatus = document.getElementById("sticky-status");
+    const btnSubmitWa = document.getElementById("btn-submit-wa");
+    const promoInput = document.getElementById("promo-input");
+    const btnApplyPromo = document.getElementById("btn-apply-promo");
+    const promoMsg = document.getElementById("promo-msg");
 
-    function renderPopular() {
-      const popularItems = ITEMS.filter((item) => item.popular);
-      popularGrid.innerHTML = popularItems
-        .map(
-          (item) => `
-          <a href="order.html?id=${encodeURIComponent(item.id)}" class="pop-card">
-            <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
-            <div class="pop-info">
-              <div class="pop-name">${item.title}</div>
-              <div class="pop-sub">${item.sub}</div>
-            </div>
-          </a>
-        `
-        )
-        .join("");
+    function formatRp(n) {
+      return "Rp " + Number(n || 0).toLocaleString("id-ID");
     }
 
-    function renderCatalog() {
-      const q = keyword.trim().toLowerCase();
-      const filtered = ITEMS.filter((item) => {
-        const matchCat = q ? true : item.cat === currentCat;
-        const matchText =
-          !q ||
-          item.title.toLowerCase().includes(q) ||
-          item.sub.toLowerCase().includes(q) ||
-          item.label.toLowerCase().includes(q);
-        return matchCat && matchText;
-      });
+    function renderNominalGroups() {
+      nominalGroupsEl.innerHTML = JOKI_GROUPS.map(
+        (group, gIdx) => `
+          <div class="pkg-group">
+            <div class="pkg-group-title">${group.title}</div>
+            <div class="pkg-grid">
+              ${group.items
+                .map(
+                  (item, iIdx) => `
+                  <button type="button" class="pkg-card" data-g="${gIdx}" data-i="${iIdx}">
+                    <div class="pkg-top">
+                      <img src="${item.icon}" alt="${item.name}" class="pkg-icon" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+                      <div class="pkg-name">${item.name}</div>
+                    </div>
+                    <div class="pkg-price">${formatRp(item.price)}</div>
+                    <div class="pkg-strike">${formatRp(item.strike)}</div>
+                    <div class="pkg-foot">
+                      <span class="disc-pill">${item.disc}</span>
+                    </div>
+                  </button>
+                `
+                )
+                .join("")}
+            </div>
+          </div>
+        `
+      ).join("");
 
-      if (!filtered.length) {
-        catalogGrid.innerHTML = `<div class="empty">Katalog tidak ditemukan. Coba kata kunci lain.</div>`;
+      nominalGroupsEl.querySelectorAll(".pkg-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          nominalGroupsEl.querySelectorAll(".pkg-card").forEach((c) => c.classList.remove("active"));
+          card.classList.add("active");
+          const g = Number(card.dataset.g);
+          const i = Number(card.dataset.i);
+          selectedItem = JOKI_GROUPS[g].items[i];
+          updateSticky();
+        });
+      });
+    }
+
+    function getQty() {
+      const val = parseInt(qtyInput.value, 10);
+      return Number.isNaN(val) || val < 1 ? 1 : val;
+    }
+
+    function getTotal() {
+      if (!selectedItem) return 0;
+      const subtotal = selectedItem.price * getQty();
+      const discounted = Math.round(subtotal * (1 - promoDiscountRate));
+      return discounted;
+    }
+
+    function updateSticky() {
+      if (!selectedItem) {
+        stickyStatus.textContent = "Belum ada item produk yang dipilih.";
+        btnSubmitWa.classList.remove("ready");
+        return;
+      }
+      const qty = getQty();
+      const total = getTotal();
+      stickyStatus.textContent = `${selectedItem.name} (x${qty}) • ${formatRp(total)} • ${selectedPayment}`;
+      btnSubmitWa.classList.add("ready");
+    }
+
+    qtyPlus.addEventListener("click", () => {
+      qtyInput.value = getQty() + 1;
+      updateSticky();
+    });
+
+    qtyMinus.addEventListener("click", () => {
+      qtyInput.value = Math.max(1, getQty() - 1);
+      updateSticky();
+    });
+
+    qtyInput.addEventListener("input", updateSticky);
+
+    document.querySelectorAll("[data-toggle-pay]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.parentElement.classList.toggle("open");
+      });
+    });
+
+    document.querySelectorAll(".pay-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".pay-chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+        selectedPayment = chip.dataset.pay;
+        updateSticky();
+      });
+    });
+
+    btnApplyPromo.addEventListener("click", () => {
+      const code = promoInput.value.trim().toUpperCase();
+      if (!code) {
+        promoDiscountRate = 0;
+        promoMsg.textContent = "Masukkan kode promo terlebih dahulu.";
+      } else if (code === "KABUKI10") {
+        promoDiscountRate = 0.1;
+        promoMsg.textContent = "Kode promo KABUKI10 aktif: potongan 10% diterapkan!";
+      } else {
+        promoDiscountRate = 0;
+        promoMsg.textContent = `Kode "${code}" tidak valid atau sudah berakhir.`;
+      }
+      updateSticky();
+    });
+
+    btnSubmitWa.addEventListener("click", () => {
+      if (!selectedItem) {
+        alert("Silakan pilih paket / nominal joki terlebih dahulu.");
         return;
       }
 
-      catalogGrid.innerHTML = filtered
-        .map(
-          (item) => `
-          <a href="order.html?id=${encodeURIComponent(item.id)}" class="card">
-            <div class="thumb-wrap">
-              <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
-              <span class="thumb-label">${item.label}</span>
-            </div>
-            <div class="card-meta">
-              <div class="card-title">${item.title}</div>
-              <div class="card-sub">${item.sub}</div>
-            </div>
-          </a>
-        `
-        )
-        .join("");
-    }
+      const idNick = document.getElementById("acc-id-nick").value.trim();
+      const rankNow = document.getElementById("acc-rank-now").value.trim();
+      const loginVia = document.getElementById("acc-login-via").value;
+      const emailUser = document.getElementById("acc-email-user").value.trim() || "-";
+      const password = document.getElementById("acc-password").value.trim() || "-";
+      const msgJoki = document.getElementById("acc-msg-joki").value.trim() || "-";
+      const reqHero = document.getElementById("acc-req-hero").value.trim() || "-";
+      const waBuyer = document.getElementById("contact-wa").value.trim();
+      const emailBuyer = document.getElementById("contact-email").value.trim() || "-";
+      const promoCode = promoInput.value.trim() || "-";
 
-    function setCategory(cat) {
-      currentCat = cat;
-      tabs.forEach((btn) => btn.classList.toggle("active", btn.dataset.cat === cat));
-      renderCatalog();
-    }
+      if (!idNick || !rankNow || !waBuyer) {
+        alert("Mohon lengkapi ID & Nick Name, Rank & Star Saat Ini, serta No. WhatsApp.");
+        return;
+      }
 
-    tabs.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        keyword = "";
-        searchInput.value = "";
-        setCategory(btn.dataset.cat);
-      });
+      const qty = getQty();
+      const total = getTotal();
+
+      const text = [
+        "*ORDER JOKI ML - KABUKI JOKI*",
+        "------------------------------",
+        `Paket: *${selectedItem.name}*`,
+        `Jumlah: ${qty}`,
+        `Total Bayar: *${formatRp(total)}*`,
+        `Pembayaran: ${selectedPayment}`,
+        `Kode Promo: ${promoCode}`,
+        "------------------------------",
+        `ID & Nick Name: ${idNick}`,
+        `Rank & Star Saat Ini: ${rankNow}`,
+        `Login Via: ${loginVia}`,
+        `Email ML / Username: ${emailUser}`,
+        `Password: ${password}`,
+        `Pesan Untuk Penjoki: ${msgJoki}`,
+        `Request Hero: ${reqHero}`,
+        "------------------------------",
+        `No. WA: ${waBuyer}`,
+        `Email: ${emailBuyer}`
+      ].join("\n");
+
+      const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
     });
 
-    btnPrev.addEventListener("click", () => {
-      const idx = catOrder.indexOf(currentCat);
-      const prevIdx = (idx - 1 + catOrder.length) % catOrder.length;
-      keyword = "";
-      searchInput.value = "";
-      setCategory(catOrder[prevIdx]);
-    });
-
-    btnNext.addEventListener("click", () => {
-      const idx = catOrder.indexOf(currentCat);
-      const nextIdx = (idx + 1) % catOrder.length;
-      keyword = "";
-      searchInput.value = "";
-      setCategory(catOrder[nextIdx]);
-    });
-
-    searchInput.addEventListener("input", (e) => {
-      keyword = e.target.value;
-      renderCatalog();
-    });
-
-    renderPopular();
-    renderCatalog();
+    renderNominalGroups();
+    updateSticky();
   </script>
 </body>
 </html>
