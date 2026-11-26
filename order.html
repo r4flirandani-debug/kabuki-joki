@@ -612,9 +612,9 @@
 
     .qris-fee {
       text-align: right;
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #f87171;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue-price);
       margin-top: 4px;
     }
 
@@ -664,11 +664,23 @@
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pay-item .pay-price {
+      color: #93c5fd;
+      font-weight: 800;
     }
 
     .pay-item.active {
       background: var(--blue-bar);
       border-color: #60a5fa;
+      color: #fff;
+    }
+
+    .pay-item.active .pay-price {
       color: #fff;
     }
 
@@ -965,11 +977,11 @@
           <h2 class="step-title">Pilih Pembayaran</h2>
         </div>
         <div class="step-body">
-          <div id="qris-card" class="qris-box active" data-pay="QRIS (All Payment)">
+          <div id="qris-card" class="qris-box active" data-pay="QRIS (All Payment)" data-fee="0">
             <span class="best-ribbon">BEST PRICE</span>
             <div class="qris-title">QRIS (All Payment)</div>
             <div class="qris-sub">QRIS • DANA • GoPay • OVO • ShopeePay • Mobile Banking</div>
-            <div class="qris-fee">Max. Rp 100</div>
+            <div id="qris-price" class="qris-fee">Rp 0</div>
           </div>
 
           <div class="pay-group">
@@ -978,10 +990,10 @@
               <span>▾</span>
             </button>
             <div class="pay-panel">
-              <button type="button" class="pay-item" data-pay="DANA">DANA</button>
-              <button type="button" class="pay-item" data-pay="OVO">OVO</button>
-              <button type="button" class="pay-item" data-pay="GoPay">GoPay</button>
-              <button type="button" class="pay-item" data-pay="ShopeePay">ShopeePay</button>
+              <button type="button" class="pay-item" data-pay="DANA" data-fee="500">DANA <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="OVO" data-fee="500">OVO <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="GoPay" data-fee="500">GoPay <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="ShopeePay" data-fee="500">ShopeePay <span class="pay-price">Rp 0</span></button>
             </div>
           </div>
 
@@ -991,10 +1003,10 @@
               <span>▾</span>
             </button>
             <div class="pay-panel">
-              <button type="button" class="pay-item" data-pay="BCA Virtual Account">BCA</button>
-              <button type="button" class="pay-item" data-pay="Mandiri Virtual Account">Mandiri</button>
-              <button type="button" class="pay-item" data-pay="BRI Virtual Account">BRI</button>
-              <button type="button" class="pay-item" data-pay="BNI Virtual Account">BNI</button>
+              <button type="button" class="pay-item" data-pay="BCA Virtual Account" data-fee="1500">BCA <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="Mandiri Virtual Account" data-fee="1500">Mandiri <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="BRI Virtual Account" data-fee="1500">BRI <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="BNI Virtual Account" data-fee="1500">BNI <span class="pay-price">Rp 0</span></button>
             </div>
           </div>
 
@@ -1004,8 +1016,8 @@
               <span>▾</span>
             </button>
             <div class="pay-panel">
-              <button type="button" class="pay-item" data-pay="Alfamart">Alfamart</button>
-              <button type="button" class="pay-item" data-pay="Indomaret">Indomaret</button>
+              <button type="button" class="pay-item" data-pay="Alfamart" data-fee="2500">Alfamart <span class="pay-price">Rp 0</span></button>
+              <button type="button" class="pay-item" data-pay="Indomaret" data-fee="2500">Indomaret <span class="pay-price">Rp 0</span></button>
             </div>
           </div>
         </div>
@@ -1536,6 +1548,7 @@
 
     let selectedItem = null;
     let selectedPayment = "QRIS (All Payment)";
+    let selectedFee = 0;
     let promoDiscount = 0;
     let searchFilter = "";
 
@@ -1552,6 +1565,9 @@
     const qtyInput = document.getElementById("f-qty");
     const bottomSummary = document.getElementById("bottom-summary");
     const btnPesan = document.getElementById("btn-pesan");
+    const qrisCard = document.getElementById("qris-card");
+    const qrisPriceEl = document.getElementById("qris-price");
+    const payItems = Array.from(document.querySelectorAll(".pay-item"));
 
     function getActiveGroups() {
       if (currentGame === "ff") return FF_GROUPS;
@@ -1620,6 +1636,7 @@
       selectedItem = null;
       applyGameMode();
       renderNominals();
+      updatePaymentPrices();
       updateSummary();
     }
 
@@ -1683,6 +1700,7 @@
           const i = Number(btn.dataset.i);
           selectedItem = { ...getActiveGroups()[g].items[i], gIdx: g, iIdx: i };
           renderNominals();
+          updatePaymentPrices();
           updateSummary();
         });
       });
@@ -1693,9 +1711,33 @@
       return Number.isNaN(v) || v < 1 ? 1 : v;
     }
 
-    function getFinalTotal() {
+    function getSubtotalAfterPromo() {
       if (!selectedItem) return 0;
       return Math.round(selectedItem.price * getQty() * (1 - promoDiscount));
+    }
+
+    function getMethodTotal(fee) {
+      if (!selectedItem) return 0;
+      return Math.max(0, getSubtotalAfterPromo() + Number(fee || 0));
+    }
+
+    function getFinalTotal() {
+      return getMethodTotal(selectedFee);
+    }
+
+    function updatePaymentPrices() {
+      const qrisFee = Number(qrisCard.dataset.fee || 0);
+      if (qrisPriceEl) {
+        qrisPriceEl.textContent = selectedItem ? rupiah(getMethodTotal(qrisFee)) : "Rp 0";
+      }
+
+      payItems.forEach((item) => {
+        const fee = Number(item.dataset.fee || 0);
+        const priceEl = item.querySelector(".pay-price");
+        if (priceEl) {
+          priceEl.textContent = selectedItem ? rupiah(getMethodTotal(fee)) : "Rp 0";
+        }
+      });
     }
 
     function updateSummary() {
@@ -1739,24 +1781,27 @@
     // Qty
     document.getElementById("btn-plus").addEventListener("click", () => {
       qtyInput.value = getQty() + 1;
+      updatePaymentPrices();
       updateSummary();
     });
 
     document.getElementById("btn-minus").addEventListener("click", () => {
       qtyInput.value = Math.max(1, getQty() - 1);
+      updatePaymentPrices();
       updateSummary();
     });
 
-    qtyInput.addEventListener("input", updateSummary);
+    qtyInput.addEventListener("input", () => {
+      updatePaymentPrices();
+      updateSummary();
+    });
 
     // Payment
-    const qrisCard = document.getElementById("qris-card");
-    const payItems = Array.from(document.querySelectorAll(".pay-item"));
-
     qrisCard.addEventListener("click", () => {
       payItems.forEach((p) => p.classList.remove("active"));
       qrisCard.classList.add("active");
       selectedPayment = qrisCard.dataset.pay;
+      selectedFee = Number(qrisCard.dataset.fee || 0);
       updateSummary();
     });
 
@@ -1772,6 +1817,7 @@
         payItems.forEach((p) => p.classList.remove("active"));
         item.classList.add("active");
         selectedPayment = item.dataset.pay;
+        selectedFee = Number(item.dataset.fee || 0);
         updateSummary();
       });
     });
@@ -1797,6 +1843,7 @@
         promoDiscount = 0;
         promoInfo.textContent = `Kode promo "${code}" tidak tersedia.`;
       }
+      updatePaymentPrices();
       updateSummary();
     });
 
@@ -1850,6 +1897,7 @@
         "-----------------------------",
         `Item: *${selectedItem.name}*`,
         `Jumlah: ${qty}`,
+        `Biaya Metode: ${rupiah(selectedFee)}`,
         `Total: *${rupiah(total)}*`,
         `Pembayaran: ${selectedPayment}`,
         `Kode Promo: ${promoCode}`,
@@ -1873,6 +1921,7 @@
 
     applyGameMode();
     renderNominals();
+    updatePaymentPrices();
     updateSummary();
   </script>
 </body>
