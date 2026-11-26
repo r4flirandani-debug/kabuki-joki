@@ -333,8 +333,9 @@
 
     .catalog-card img {
       width: 100%;
-      height: 100%;
+      height: 78%;
       object-fit: cover;
+      object-position: center top;
       display: block;
     }
 
@@ -357,8 +358,8 @@
       padding: 24px 7px 9px;
       background: linear-gradient(
         to top,
-        rgba(8, 138, 63, 0.97) 0%,
-        rgba(8, 138, 63, 0.78) 58%,
+        rgba(8, 138, 63, 0.98) 0%,
+        rgba(8, 138, 63, 0.85) 62%,
         transparent 100%
       );
       text-align: center;
@@ -496,7 +497,7 @@
       <div class="eyebrow">● KABUKI JOKI • KATALOG LENGKAP</div>
       <h1 class="hero-title">PILIH LAYANANMU.</h1>
       <p class="hero-desc">
-        Selamat datang di Kabuki Joki. Pilih katalog layanan, top up game, voucher, e-money, maupun pulsa untuk melanjutkan pemesanan.
+        Selamat datang di Kabuki Joki. Pilih katalog layanan, joki rank, top up game, voucher, e-money, maupun pulsa untuk melanjutkan pemesanan.
       </p>
       <div class="hero-highlights">
         <div class="highlight-chip">⚡ Proses Cepat</div>
@@ -525,7 +526,7 @@
         type="search"
         id="search-input"
         class="search-input"
-        placeholder="Cari nama game, voucher, e-money, atau pulsa..."
+        placeholder="Cari nama game, joki, voucher, e-money, atau pulsa..."
         autocomplete="off"
       />
     </div>
@@ -534,6 +535,7 @@
       <button type="button" id="scroll-left" class="arrow-btn" aria-label="Geser kiri">&lt;</button>
       <div id="category-scroll" class="category-scroll">
         <button type="button" class="cat-btn active" data-category="all">✨ Semua Katalog</button>
+        <button type="button" class="cat-btn" data-category="joki">⚔️ Joki</button>
         <button type="button" class="cat-btn" data-category="games">🎮 Top Up Games</button>
         <button type="button" class="cat-btn" data-category="voucher">🏷️ Voucher &amp; Tagihan</button>
         <button type="button" class="cat-btn" data-category="emoney">💳 E-Money</button>
@@ -566,22 +568,119 @@
   </div>
 
   <script>
-    const FALLBACK_CATALOG = [
-      { id: "sword-of-justice", name: "Sword of Justice", category: "games", badge: "01", image: "assets/catalog/sword-of-justice.webp" },
-      { id: "mobile-legends", name: "Mobile Legends", category: "games", badge: "02", image: "assets/catalog/mobile-legends.webp" },
-      { id: "magic-chess-go-go", name: "Magic Chess Go Go", category: "games", badge: "03", image: "assets/catalog/magic-chess-go-go.webp" },
-      { id: "honor-of-kings", name: "Honor of Kings", category: "games", badge: "04", image: "assets/catalog/honor-of-kings.webp" },
-      { id: "arena-of-valor", name: "Arena of Valor", category: "games", badge: "05", image: "assets/catalog/arena-of-valor.webp" },
-      { id: "free-fire", name: "Free Fire", category: "games", badge: "06", image: "assets/catalog/free-fire.webp" },
-      { id: "free-fire-max", name: "Free Fire Max", category: "games", badge: "07", image: "assets/catalog/free-fire-max.webp" },
-      { id: "genshin-impact", name: "Genshin Impact", category: "games", badge: "08", image: "assets/catalog/genshin-impact.webp" },
-      { id: "honkai-impact-3", name: "Honkai Impact 3", category: "games", badge: "09", image: "assets/catalog/honkai-impact-3.webp" },
-      { id: "honkai-star-rail", name: "Honkai: Star Rail", category: "games", badge: "10", image: "assets/catalog/honkai-star-rail.webp" },
-      { id: "wuthering-waves", name: "Wuthering Waves", category: "games", badge: "11", image: "assets/catalog/wuthering-waves.webp" },
-      { id: "haikyu-fly-high", name: "Haikyu!! Fly High", category: "games", badge: "12", image: "assets/catalog/haikyu-fly-high.webp" },
-      { id: "voucher-tagihan", name: "Voucher & Tagihan", category: "voucher", badge: "13", image: "assets/catalog/voucher-tagihan.webp" },
-      { id: "e-money", name: "E-Money", category: "emoney", badge: "14", image: "assets/catalog/e-money.webp" },
-      { id: "pulsa-masa-aktif", name: "Pulsa & Masa Aktif", category: "pulsa", badge: "15", image: "assets/catalog/pulsa-masa-aktif.webp" }
+    const DIRECT_IMAGE_CATALOG = [
+      {
+        id: "joki-mlbb",
+        name: "Joki MLBB",
+        category: "joki",
+        badge: "JOKI",
+        image: "https://img.layarkaca.org/wp-content/uploads/2022/03/Fanny-Lightborn-Skin.png"
+      },
+      {
+        id: "sword-of-justice",
+        name: "Sword of Justice",
+        category: "games",
+        badge: "01",
+        image: "https://i.ytimg.com/vi/O0vEwYv6j9U/maxresdefault.jpg"
+      },
+      {
+        id: "mobile-legends",
+        name: "Mobile Legends",
+        category: "games",
+        badge: "02",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Mobile_Legends_Bang_Bang_logo.png/1200px-Mobile_Legends_Bang_Bang_logo.png"
+      },
+      {
+        id: "magic-chess-go-go",
+        name: "Magic Chess Go Go",
+        category: "games",
+        badge: "03",
+        image: "https://mmoculture.com/wp-content/uploads/2020/02/Magic-Chess-logo.jpg"
+      },
+      {
+        id: "honor-of-kings",
+        name: "Honor of Kings",
+        category: "games",
+        badge: "04",
+        image: "https://play-lh.googleusercontent.com/OQJ-m2R6-53m_v7j8Zg7X7s-5W-w3-w3-w3-w3-w3-w3-w3-w3-w3-w3-w3-w3=w240-h480-rw"
+      },
+      {
+        id: "arena-of-valor",
+        name: "Arena of Valor",
+        category: "games",
+        badge: "05",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Arena_of_Valor_logo.png"
+      },
+      {
+        id: "free-fire",
+        name: "Free Fire",
+        category: "games",
+        badge: "06",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Garena_Free_Fire_logo.png/640px-Garena_Free_Fire_logo.png"
+      },
+      {
+        id: "free-fire-max",
+        name: "Free Fire Max",
+        category: "games",
+        badge: "07",
+        image: "https://img.gurugamer.com/resize/740x-/2021/01/18/free-fire-max-logo-3732.jpg"
+      },
+      {
+        id: "genshin-impact",
+        name: "Genshin Impact",
+        category: "games",
+        badge: "08",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Genshin_Impact_logo.svg/2560px-Genshin_Impact_logo.svg.png"
+      },
+      {
+        id: "honkai-impact-3",
+        name: "Honkai Impact 3",
+        category: "games",
+        badge: "09",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Honkai_Impact_3rd_logo.png/640px-Honkai_Impact_3rd_logo.png"
+      },
+      {
+        id: "honkai-star-rail",
+        name: "Honkai: Star Rail",
+        category: "games",
+        badge: "10",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Honkai_Star_Rail_logo.png/640px-Honkai_Star_Rail_logo.png"
+      },
+      {
+        id: "wuthering-waves",
+        name: "Wuthering Waves",
+        category: "games",
+        badge: "11",
+        image: "https://pbs.twimg.com/profile_images/1660249381672529920/iN9U-1gK_400x400.jpg"
+      },
+      {
+        id: "haikyu-fly-high",
+        name: "Haikyu!! Fly High",
+        category: "games",
+        badge: "12",
+        image: "https://img.game.tv/community/Game.tv/game_tv_com/1687875021800.jpg"
+      },
+      {
+        id: "voucher-tagihan",
+        name: "Voucher & Tagihan",
+        category: "voucher",
+        badge: "13",
+        image: "https://cdn-icons-png.flaticon.com/512/3308/3308356.png"
+      },
+      {
+        id: "e-money",
+        name: "E-Money",
+        category: "emoney",
+        badge: "14",
+        image: "https://cdn-icons-png.flaticon.com/512/11325/11325388.png"
+      },
+      {
+        id: "pulsa-masa-aktif",
+        name: "Pulsa & Masa Aktif",
+        category: "pulsa",
+        badge: "15",
+        image: "https://cdn-icons-png.flaticon.com/512/3135/3135763.png"
+      }
     ];
 
     let CATALOG_DATA = [];
@@ -608,10 +707,9 @@
         const res = await fetch("data/catalog.json");
         if (!res.ok) throw new Error("JSON not found");
         const data = await res.json();
-        CATALOG_DATA = Array.isArray(data) && data.length ? data : FALLBACK_CATALOG;
+        CATALOG_DATA = Array.isArray(data) && data.length ? data : DIRECT_IMAGE_CATALOG;
       } catch (err) {
-        // Fallback otomatis jika data/catalog.json belum dibuat atau dibuka lokal
-        CATALOG_DATA = FALLBACK_CATALOG;
+        CATALOG_DATA = DIRECT_IMAGE_CATALOG;
       }
       renderGrid();
     }
