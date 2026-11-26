@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order Katalog - KABUKI JOKI</title>
+  <title>Order Layanan - KABUKI JOKI</title>
   <style>
     :root {
-      --bg-main: #060e16;
-      --bg-card: #0c1824;
-      --bg-input: #08121c;
-      --accent-green: #16a34a;
-      --accent-green-bright: #22c55e;
-      --text-main: #ffffff;
+      --bg-main: #121316;
+      --bg-panel: #181a1f;
+      --bg-card: #19202b;
+      --blue-main: #1d74f5;
+      --blue-bright: #3b82f6;
+      --cyan-accent: #38bdf8;
+      --green-wa: #16a34a;
+      --green-wa-bright: #22c55e;
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --border-soft: rgba(255, 255, 255, 0.1);
     }
@@ -24,145 +27,171 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.15), transparent 45%),
-                  var(--bg-main);
+      background: var(--bg-main);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 40px;
+      padding-bottom: 48px;
     }
 
+    /* Topbar */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(6, 14, 22, 0.94);
+      padding: 10px 14px;
+      background: rgba(18, 19, 22, 0.95);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-soft);
     }
 
-    .back-btn {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       text-decoration: none;
       color: var(--text-main);
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      padding: 8px 12px;
-      border-radius: 10px;
+      font-weight: 900;
       font-size: 13px;
-      font-weight: 700;
     }
 
-    .region-badge {
-      background: var(--bg-card);
+    .brand-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: #e2e8f0;
+      background: var(--bg-panel);
       border: 1px solid var(--border-soft);
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 6px 12px;
+      border-radius: 7px;
       font-size: 12px;
       font-weight: 700;
     }
 
-    .wrap {
-      max-width: 720px;
+    .back-btn:hover {
+      border-color: var(--cyan-accent);
+    }
+
+    /* Layout */
+    .container {
+      max-width: 960px;
       margin: 0 auto;
-      padding: 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      padding: 16px 14px 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
     }
 
-    .hero-box {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: linear-gradient(160deg, #0e1d2b 0%, #081a13 100%);
-      border: 1px solid rgba(34, 197, 94, 0.28);
-      border-radius: 16px;
-      padding: 14px;
+    @media (min-width: 820px) {
+      .container {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: start;
+      }
     }
 
-    .thumb {
-      width: 78px;
-      height: 102px;
-      border-radius: 12px;
-      object-fit: cover;
-      background: #102536;
-      flex-shrink: 0;
-    }
-
-    .badge {
-      display: inline-block;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      color: #86efac;
-      background: rgba(34, 197, 94, 0.14);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      padding: 3px 8px;
-      border-radius: 999px;
-      margin-bottom: 6px;
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 900;
-      margin-bottom: 4px;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .card {
-      background: var(--bg-card);
+    .panel {
+      background: var(--bg-panel);
       border: 1px solid var(--border-soft);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 14px;
     }
 
-    .card-title {
-      font-size: 15px;
-      font-weight: 800;
+    /* Service Info Card */
+    .service-hero {
+      display: flex;
+      gap: 12px;
+      align-items: center;
       margin-bottom: 12px;
     }
 
-    .label {
-      display: block;
-      font-size: 13px;
+    .service-img {
+      width: 76px;
+      height: 84px;
+      border-radius: 9px;
+      object-fit: cover;
+      background: #0d131c;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      flex-shrink: 0;
+    }
+
+    .cat-pill {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #7dd3fc;
+      background: rgba(29, 116, 245, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 5px;
+    }
+
+    .service-title {
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .service-sub {
+      font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 6px;
-      margin-top: 10px;
+      margin-top: 2px;
     }
 
-    .label:first-of-type {
-      margin-top: 0;
+    .service-note {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 9px;
+      padding: 10px 12px;
     }
 
-    .input {
-      width: 100%;
-      padding: 11px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-input);
-      color: var(--text-main);
-      font-size: 14px;
-      outline: none;
+    .step-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    .input:focus {
-      border-color: var(--accent-green-bright);
+    .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--blue-main);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      display: inline-grid;
+      place-items: center;
     }
 
+    /* Package Grid */
     .pkg-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
-    @media (min-width: 600px) {
+    @media (min-width: 520px) {
       .pkg-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -170,219 +199,514 @@
 
     .pkg-btn {
       text-align: left;
-      padding: 12px;
-      border-radius: 12px;
+      padding: 10px;
+      border-radius: 9px;
       border: 1px solid var(--border-soft);
-      background: var(--bg-input);
+      background: var(--bg-card);
       color: var(--text-main);
       cursor: pointer;
+      transition: border-color 0.14s ease, background 0.14s ease;
+    }
+
+    .pkg-btn:hover {
+      border-color: var(--cyan-accent);
     }
 
     .pkg-btn.active {
-      border-color: var(--accent-green-bright);
-      background: rgba(34, 197, 94, 0.14);
+      border-color: var(--cyan-accent);
+      background: rgba(29, 116, 245, 0.22);
     }
 
     .pkg-name {
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 4px;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 3px;
     }
 
     .pkg-price {
-      font-size: 12px;
-      font-weight: 800;
-      color: #4ade80;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #7dd3fc;
     }
 
-    .summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 11px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--border-soft);
       background: var(--bg-card);
-      border: 1px solid rgba(34, 197, 94, 0.25);
-      border-radius: 16px;
-      padding: 14px;
+      color: var(--text-main);
+      font-size: 12.5px;
+      font-family: inherit;
+      outline: none;
     }
 
-    .sum-label {
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--cyan-accent);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 68px;
+    }
+
+    /* Summary Box */
+    .summary-box {
+      background: var(--bg-card);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 10px;
+      padding: 11px 12px;
+      margin: 14px 0;
       font-size: 12px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 5px;
       color: var(--text-muted);
     }
 
-    .sum-price {
-      font-size: 18px;
-      font-weight: 900;
-      color: #4ade80;
+    .summary-row:last-child {
+      margin-bottom: 0;
+      padding-top: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .summary-val {
+      color: #f8fafc;
+      font-weight: 700;
+      text-align: right;
     }
 
     .btn-wa {
-      background: var(--accent-green-bright);
-      color: #052010;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 9px;
       border: none;
-      border-radius: 12px;
-      padding: 12px 18px;
-      font-size: 14px;
-      font-weight: 900;
+      background: var(--green-wa);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 800;
       cursor: pointer;
     }
 
-    .status-msg {
-      text-align: center;
-      padding: 36px 16px;
-      color: var(--text-muted);
+    .btn-wa:hover {
+      background: var(--green-wa-bright);
+      color: #052010;
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
   <header class="topbar">
-    <a href="index.html" class="back-btn">← Kembali</a>
-    <div class="region-badge">🇮🇩 ID / IDR</div>
+    <a href="index.html" class="brand">
+      <div class="brand-badge">KJ</div>
+      <span>KABUKI JOKI</span>
+    </a>
+    <a href="index.html" class="back-btn">← Kembali ke Katalog</a>
   </header>
 
-  <main id="order-app" class="wrap">
-    <div class="status-msg">Memuat detail katalog...</div>
+  <main class="container">
+    <!-- Info Layanan -->
+    <section class="panel">
+      <div class="service-hero">
+        <img id="svc-img" src="" alt="" class="service-img" onerror="this.style.opacity='0.2'" />
+        <div>
+          <span id="svc-cat" class="cat-pill">KATALOG</span>
+          <h1 id="svc-title" class="service-title">Memuat Layanan...</h1>
+          <div id="svc-sub" class="service-sub"></div>
+        </div>
+      </div>
+      <div id="svc-note" class="service-note"></div>
+    </section>
+
+    <!-- Form Pemesanan -->
+    <section class="panel">
+      <div class="step-title">
+        <span class="step-num">1</span>
+        <span>Pilih Paket / Nominal</span>
+      </div>
+      <div id="pkg-grid" class="pkg-grid"></div>
+
+      <div class="step-title">
+        <span class="step-num">2</span>
+        <span>Lengkapi Data Pesanan</span>
+      </div>
+
+      <form id="order-form">
+        <!-- Field khusus Top Up -->
+        <div id="topup-fields">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="game-id">User ID / Player ID</label>
+              <input id="game-id" type="text" placeholder="Contoh: 123456789" required />
+            </div>
+            <div id="zone-wrap" class="form-group">
+              <label for="zone-id">Server / Zone ID</label>
+              <input id="zone-id" type="text" placeholder="Contoh: 2468" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Field khusus Joki ML -->
+        <div id="joki-fields" class="hidden">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="ml-id-server">ID &amp; Server MLBB</label>
+              <input id="ml-id-server" type="text" placeholder="Contoh: 12345678 (2468)" />
+            </div>
+            <div class="form-group">
+              <label for="login-via">Login Akun Via</label>
+              <select id="login-via">
+                <option value="Moonton">Moonton</option>
+                <option value="VK">VK</option>
+                <option value="TikTok">TikTok</option>
+                <option value="Mabar / Party">Mabar / Party (Tanpa Login)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email-pass">Email / ID Login &amp; Password (atau Nickname Mabar)</label>
+            <input id="email-pass" type="text" placeholder="Isi sesuai metode login yang dipilih" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="wa-buyer">No. WhatsApp Kamu</label>
+            <input id="wa-buyer" type="tel" placeholder="Contoh: 081234567890" required />
+          </div>
+          <div class="form-group">
+            <label for="payment-method">Metode Pembayaran</label>
+            <select id="payment-method">
+              <option value="QRIS">QRIS (Semua E-Wallet &amp; Bank)</option>
+              <option value="DANA">DANA</option>
+              <option value="OVO">OVO</option>
+              <option value="GoPay">GoPay</option>
+              <option value="Transfer Bank">Transfer Bank</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Catatan Tambahan (Opsional)</label>
+          <textarea id="notes" placeholder="Contoh: Request hero, jam main, atau catatan khusus..."></textarea>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-row">
+            <span>Layanan</span>
+            <span id="sum-service" class="summary-val">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Paket Dipilih</span>
+            <span id="sum-pkg" class="summary-val">-</span>
+          </div>
+          <div class="summary-row">
+            <span>Pembayaran</span>
+            <span id="sum-pay" class="summary-val">QRIS</span>
+          </div>
+          <div class="summary-row">
+            <span>Total Harga</span>
+            <span id="sum-price" class="summary-val">Rp 0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-wa">Pesan Sekarang via WhatsApp</button>
+      </form>
+    </section>
   </main>
 
   <script>
-    const orderApp = document.getElementById("order-app");
-    let selectedItem = null;
-    let selectedPkg = null;
+    const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
+
+    const SERVICES = {
+      "joki-rank": {
+        title: "Joki Rank",
+        sub: "Jasa Joki (Up Rank)",
+        cat: "joki-ml",
+        catLabel: "Joki ML",
+        image: "assets/catalog/joki-rank.webp",
+        note: "Pastikan verifikasi akun dua langkah (2FA) dimatikan sementara saat proses joki berlangsung, atau pilih Mabar jika tidak ingin akun di-login."
+      },
+      "joki-hero-mmr": {
+        title: "Jasa Joki Ranked",
+        sub: "1 Hero (Up MMR)",
+        cat: "joki-ml",
+        catLabel: "Joki ML",
+        image: "assets/catalog/joki-hero-mmr.webp",
+        note: "Fokus push MMR untuk 1 hero pilihan. Cantumkan nama hero target di kolom catatan."
+      },
+      "jasa-gendong": {
+        title: "Jasa Mabar / Gendong",
+        sub: "Party Bareng Pro",
+        cat: "joki-ml",
+        catLabel: "Joki ML",
+        image: "assets/catalog/jasa-gendong.webp",
+        note: "Main bareng tim/joki tanpa perlu menyerahkan password akun. Siapkan ID & nickname saat antrean dimulai."
+      },
+      "joki-classic": {
+        title: "Joki Classic",
+        sub: "Up Winrate Hero",
+        cat: "joki-ml",
+        catLabel: "Joki ML",
+        image: "assets/catalog/joki-classic.webp",
+        note: "Bantu naikkan winrate hero/akun di mode Classic sesuai paket match yang dipilih."
+      },
+      "joki-magic-chess": {
+        title: "Joki Magic Chess",
+        sub: "Push Rank Magic Chess",
+        cat: "joki-ml",
+        catLabel: "Joki ML",
+        image: "assets/catalog/joki-magic-chess.webp",
+        note: "Jasa push rank mode Magic Chess secara aman dan bertahap."
+      },
+      "joki-montage": {
+        title: "Joki Video Montage",
+        sub: "Jasa Video Highlight",
+        cat: "joki-ml",
+        catLabel: "Joki ML",
+        image: "assets/catalog/joki-montage.webp",
+        note: "Pembuatan video highlight/montage gameplay MLBB. Kirimkan ID/replay atau catatan konsep di catatan pesanan."
+      },
+      "topup-mlbb": {
+        title: "Mobile Legends",
+        sub: "Moonton • Diamonds",
+        cat: "topup-game",
+        catLabel: "Top Up Game",
+        needZone: true,
+        image: "assets/catalog/topup-mlbb.webp",
+        note: "Masukkan User ID dan Zone ID dengan benar. Diamonds / WDP masuk otomatis sesuai antrean."
+      },
+      "topup-ff": {
+        title: "Free Fire",
+        sub: "Garena • Diamond",
+        cat: "topup-game",
+        catLabel: "Top Up Game",
+        needZone: false,
+        image: "assets/catalog/topup-ff.webp",
+        note: "Masukkan Player ID Free Fire dengan benar sebelum melanjutkan pembayaran."
+      },
+      "topup-ff-max": {
+        title: "Free Fire Max",
+        sub: "Garena • Diamond",
+        cat: "topup-game",
+        catLabel: "Top Up Game",
+        needZone: false,
+        image: "assets/catalog/topup-ff-max.webp",
+        note: "Top up diamond untuk akun Free Fire / Free Fire Max menggunakan Player ID."
+      },
+      "topup-pubgm": {
+        title: "PUBG Mobile",
+        sub: "Tencent • UC",
+        cat: "topup-game",
+        catLabel: "Top Up Game",
+        needZone: false,
+        image: "assets/catalog/topup-pubgm.webp",
+        note: "Masukkan Character ID PUBG Mobile secara tepat agar UC masuk tanpa kendala."
+      },
+      "topup-hok": {
+        title: "Honor of Kings",
+        sub: "Level Infinite • Tokens",
+        cat: "topup-game",
+        catLabel: "Top Up Game",
+        needZone: false,
+        image: "assets/catalog/topup-hok.webp",
+        note: "Masukkan Player ID Honor of Kings untuk pengisian Tokens."
+      },
+      "topup-genshin": {
+        title: "Genshin Impact",
+        sub: "HoYoverse • Crystals",
+        cat: "topup-game",
+        catLabel: "Top Up Game",
+        needZone: true,
+        image: "assets/catalog/topup-genshin.webp",
+        note: "Masukkan UID dan pilih Server (Asia / America / Europe / TW,HK,MO) dengan tepat."
+      }
+    };
+
+    const PACKAGES_BY_CAT = {
+      "joki-ml": [
+        { name: "Paket 5 Bintang", price: 25000 },
+        { name: "Paket 10 Bintang", price: 48000 },
+        { name: "Paket 20 Bintang", price: 92000 },
+        { name: "Paket 30 Bintang", price: 135000 },
+        { name: "Paket 50 Bintang", price: 215000 },
+        { name: "Custom / Konsultasi", price: 0 }
+      ],
+      "topup-game": [
+        { name: "Weekly Pass / Hemat", price: 28000 },
+        { name: "Paket Kecil (86 DM)", price: 22000 },
+        { name: "Paket Menengah (172 DM)", price: 44000 },
+        { name: "Paket Besar (257 DM)", price: 66000 },
+        { name: "Paket Sultan (706 DM)", price: 178000 },
+        { name: "Custom Nominal", price: 0 }
+      ]
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const serviceId = params.get("id") || "joki-rank";
+    const service = SERVICES[serviceId] || SERVICES["joki-rank"];
+    const packages = PACKAGES_BY_CAT[service.cat] || PACKAGES_BY_CAT["joki-ml"];
+
+    let selectedPkg = packages[0];
+
+    const svcImg = document.getElementById("svc-img");
+    const svcCat = document.getElementById("svc-cat");
+    const svcTitle = document.getElementById("svc-title");
+    const svcSub = document.getElementById("svc-sub");
+    const svcNote = document.getElementById("svc-note");
+    const pkgGrid = document.getElementById("pkg-grid");
+
+    const topupFields = document.getElementById("topup-fields");
+    const jokiFields = document.getElementById("joki-fields");
+    const zoneWrap = document.getElementById("zone-wrap");
+    const gameIdInput = document.getElementById("game-id");
+    const zoneIdInput = document.getElementById("zone-id");
+    const mlIdServerInput = document.getElementById("ml-id-server");
+    const loginViaSelect = document.getElementById("login-via");
+    const emailPassInput = document.getElementById("email-pass");
+    const waBuyerInput = document.getElementById("wa-buyer");
+    const paymentSelect = document.getElementById("payment-method");
+    const notesInput = document.getElementById("notes");
+
+    const sumService = document.getElementById("sum-service");
+    const sumPkg = document.getElementById("sum-pkg");
+    const sumPay = document.getElementById("sum-pay");
+    const sumPrice = document.getElementById("sum-price");
+    const orderForm = document.getElementById("order-form");
 
     function formatRupiah(num) {
-      return new Intl.NumberFormat("id-ID", {
-        style: "currency",
-        currency: "IDR",
-        maximumFractionDigits: 0
-      }).format(num);
+      if (!num || num <= 0) return "Menyesuaikan";
+      return "Rp " + num.toLocaleString("id-ID");
     }
 
-    async function loadOrderPage() {
-      const params = new URLSearchParams(window.location.search);
-      const idParam = params.get("id");
+    function initServicePage() {
+      document.title = `${service.title} - KABUKI JOKI`;
+      svcImg.src = service.image;
+      svcImg.alt = service.title;
+      svcCat.textContent = service.catLabel;
+      svcTitle.textContent = service.title;
+      svcSub.textContent = service.sub;
+      svcNote.textContent = service.note;
 
-      try {
-        const res = await fetch("data/catalog.json");
-        const list = await res.json();
-        selectedItem = list.find((item) => item.id === idParam) || list[0];
+      const isJoki = service.cat === "joki-ml";
+      topupFields.classList.toggle("hidden", isJoki);
+      jokiFields.classList.toggle("hidden", !isJoki);
+      gameIdInput.required = !isJoki;
+      mlIdServerInput.required = isJoki;
 
-        if (!selectedItem) {
-          orderApp.innerHTML = `<div class="status-msg">Data katalog tidak ditemukan.</div>`;
-          return;
-        }
-
-        document.title = `${selectedItem.name} - Order | KABUKI JOKI`;
-
-        const packages = selectedItem.packages && selectedItem.packages.length
-          ? selectedItem.packages
-          : [{ label: "Paket Standar", price: 25000 }];
-
-        orderApp.innerHTML = `
-          <section class="hero-box">
-            <img
-              src="${selectedItem.image}"
-              alt="${selectedItem.name}"
-              class="thumb"
-              onerror="this.style.opacity='0'"
-            />
-            <div>
-              <span class="badge">KATALOG #${selectedItem.badge || ""}</span>
-              <h1 class="title">${selectedItem.name}</h1>
-              <p class="subtitle">Lengkapi data tujuan dan pilih paket untuk melanjutkan order.</p>
-            </div>
-          </section>
-
-          <section class="card">
-            <h2 class="card-title">1. Data Pesanan</h2>
-            <label for="target-field" class="label">${selectedItem.inputLabel || "Data Tujuan"}</label>
-            <input
-              type="text"
-              id="target-field"
-              class="input"
-              placeholder="Contoh: 12345678 (1234) atau nomor tujuan..."
-            />
-
-            <label for="pay-field" class="label">Metode Pembayaran</label>
-            <select id="pay-field" class="input">
-              <option value="QRIS">QRIS</option>
-              <option value="Transfer Bank">Transfer Bank</option>
-              <option value="E-Wallet (DANA / OVO / GoPay)">E-Wallet (DANA / OVO / GoPay)</option>
-            </select>
-          </section>
-
-          <section class="card">
-            <h2 class="card-title">2. Pilih Paket / Nominal</h2>
-            <div id="pkg-list" class="pkg-grid">
-              ${packages
-                .map(
-                  (pkg, idx) => `
-                  <button type="button" class="pkg-btn" data-idx="${idx}">
-                    <div class="pkg-name">${pkg.label}</div>
-                    <div class="pkg-price">${formatRupiah(pkg.price)}</div>
-                  </button>
-                `
-                )
-                .join("")}
-            </div>
-          </section>
-
-          <section class="summary">
-            <div>
-              <div class="sum-label">Total Pembayaran</div>
-              <div id="sum-price" class="sum-price">${formatRupiah(packages[0].price)}</div>
-            </div>
-            <button type="button" id="btn-kirim-wa" class="btn-wa">Order via WhatsApp</button>
-          </section>
-        `;
-
-        const pkgBtns = document.querySelectorAll(".pkg-btn");
-        const sumPrice = document.getElementById("sum-price");
-
-        pkgBtns.forEach((btn) => {
-          btn.addEventListener("click", () => {
-            pkgBtns.forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-            const idx = Number(btn.dataset.idx);
-            selectedPkg = packages[idx];
-            sumPrice.textContent = formatRupiah(selectedPkg.price);
-          });
-        });
-
-        pkgBtns[0].click();
-
-        document.getElementById("btn-kirim-wa").addEventListener("click", () => {
-          const targetVal = document.getElementById("target-field").value.trim();
-          const payVal = document.getElementById("pay-field").value;
-
-          if (!targetVal) {
-            alert("Silakan isi data tujuan terlebih dahulu.");
-            document.getElementById("target-field").focus();
-            return;
-          }
-
-          const waNum = selectedItem.waNumber || "6281234567890";
-          const pesan = [
-            "Halo Admin KABUKI JOKI, saya mau order:",
-            `• Katalog: ${selectedItem.name}`,
-            `• Paket: ${selectedPkg.label}`,
-            `• Harga: ${formatRupiah(selectedPkg.price)}`,
-            `• ${selectedItem.inputLabel || "Tujuan"}: ${targetVal}`,
-            `• Pembayaran: ${payVal}`
-          ].join("\n");
-
-          window.open(
-            `https://wa.me/${waNum}?text=${encodeURIComponent(pesan)}`,
-            "_blank",
-            "noopener,noreferrer"
-          );
-        });
-      } catch (err) {
-        orderApp.innerHTML = `<div class="status-msg">Gagal memuat data dari data/catalog.json.</div>`;
+      if (!isJoki) {
+        zoneWrap.classList.toggle("hidden", !service.needZone);
       }
+
+      pkgGrid.innerHTML = packages
+        .map(
+          (pkg, idx) => `
+          <button type="button" class="pkg-btn ${idx === 0 ? "active" : ""}" data-idx="${idx}">
+            <div class="pkg-name">${pkg.name}</div>
+            <div class="pkg-price">${formatRupiah(pkg.price)}</div>
+          </button>
+        `
+        )
+        .join("");
+
+      pkgGrid.querySelectorAll(".pkg-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          pkgGrid.querySelectorAll(".pkg-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedPkg = packages[Number(btn.dataset.idx)];
+          updateSummary();
+        });
+      });
+
+      paymentSelect.addEventListener("change", updateSummary);
+      updateSummary();
     }
 
-    loadOrderPage();
+    function updateSummary() {
+      sumService.textContent = service.title;
+      sumPkg.textContent = selectedPkg.name;
+      sumPay.textContent = paymentSelect.value;
+      sumPrice.textContent = formatRupiah(selectedPkg.price);
+    }
+
+    orderForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const waBuyer = waBuyerInput.value.trim();
+      const payMethod = paymentSelect.value;
+      const notes = notesInput.value.trim() || "-";
+
+      let accountLines = "";
+      if (service.cat === "joki-ml") {
+        const idSrv = mlIdServerInput.value.trim();
+        const loginVia = loginViaSelect.value;
+        const loginData = emailPassInput.value.trim() || "-";
+        accountLines = [
+          `ID & Server: ${idSrv}`,
+          `Login Via: ${loginVia}`,
+          `Detail Akun: ${loginData}`
+        ].join("\n");
+      } else {
+        const gid = gameIdInput.value.trim();
+        const zid = zoneIdInput.value.trim();
+        accountLines = service.needZone
+          ? `User ID: ${gid}\nServer / Zone: ${zid || "-"}`
+          : `Player ID: ${gid}`;
+      }
+
+      const message = [
+        `*ORDER BARU - KABUKI JOKI*`,
+        `----------------------------`,
+        `Kategori: ${service.catLabel}`,
+        `Layanan: ${service.title}`,
+        `Paket: ${selectedPkg.name}`,
+        `Harga: ${formatRupiah(selectedPkg.price)}`,
+        `----------------------------`,
+        accountLines,
+        `No. WA Pembeli: ${waBuyer}`,
+        `Pembayaran: ${payMethod}`,
+        `Catatan: ${notes}`
+      ].join("\n");
+
+      const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    initServicePage();
   </script>
 </body>
 </html>
