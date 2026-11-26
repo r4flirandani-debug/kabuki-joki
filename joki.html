@@ -142,6 +142,95 @@
       padding: 10px 10px 0;
     }
 
+    /* Gendong Hero Banner */
+    .gendong-hero {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .gendong-banner {
+      background: linear-gradient(135deg, #0d2b6b 0%, #1565d8 52%, #0891b2 100%);
+      padding: 18px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .gendong-banner-badge {
+      display: inline-block;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #e0f2fe;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .gendong-banner h1 {
+      font-size: 19px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .gendong-banner p {
+      font-size: 11.5px;
+      color: #e0f2fe;
+      margin-top: 3px;
+    }
+
+    .gendong-meta {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      background: #202227;
+    }
+
+    .gendong-thumb {
+      width: 44px;
+      height: 52px;
+      border-radius: 7px;
+      background: linear-gradient(160deg, #1d4ed8, #0284c7);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+
+    .gendong-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .gendong-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .gendong-perks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e5e7eb;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
     /* Top Mode Tabs (Transaksi / Keterangan) */
     .mode-tabs {
       display: grid;
@@ -760,6 +849,27 @@
   </header>
 
   <main class="container">
+    <!-- Banner Khusus Mode Joki Gendong / Mabar -->
+    <section id="gendong-hero" class="gendong-hero hidden">
+      <div class="gendong-banner">
+        <span class="gendong-banner-badge">KABUKI JOKI • MABAR / GENDONG</span>
+        <h1>JOKI GENDONG / MABAR</h1>
+        <p>Main bareng penjoki profesional Mobile Legends tanpa serahkan password akun</p>
+      </div>
+      <div class="gendong-meta">
+        <div class="gendong-thumb">ML<br />MABAR</div>
+        <div>
+          <div class="gendong-title">JOKI GENDONG / MABAR</div>
+          <div class="gendong-sub">Mobile Legends</div>
+        </div>
+      </div>
+      <div class="gendong-perks">
+        <span>⚡ Proses Cepat</span>
+        <span>💬 Layanan Chat 24/7</span>
+        <span>🛡️ Pembayaran Aman</span>
+      </div>
+    </section>
+
     <!-- Transaksi / Keterangan Tabs -->
     <div class="mode-tabs">
       <button type="button" id="tab-transaksi" class="mode-tab active">Transaksi</button>
@@ -770,8 +880,8 @@
     <section id="panel-keterangan" class="info-box hidden">
       <h3>Ketentuan Joki Mobile Legends - KABUKI JOKI</h3>
       <ul>
-        <li>Matikan sementara verifikasi akun dua langkah (2FA) saat proses login berlangsung, atau pilih opsi Mabar/Gendong jika tidak ingin akun di-login.</li>
-        <li>Cantumkan request hero serta catatan jam login akun agar pengerjaan berjalan lancar.</li>
+        <li>Untuk <strong>Joki Gendong / Mabar</strong>, tidak perlu memberikan email maupun password akun. Siapkan jadwal main dan role kamu.</li>
+        <li>Untuk <strong>Joki Rank / 1 Hero MMR</strong>, matikan sementara verifikasi akun dua langkah (2FA) saat proses login berlangsung.</li>
         <li>Setelah klik <strong>Pesan Sekarang!</strong>, detail pesanan otomatis tersusun untuk dikirim ke WhatsApp admin.</li>
       </ul>
     </section>
@@ -784,42 +894,7 @@
           <h2 class="step-title">Masukkan Data Akun</h2>
         </div>
         <div class="step-body">
-          <div class="grid-2">
-            <div class="field">
-              <label for="f-id-nick">ID &amp; Nick Name <span class="q-icon">?</span></label>
-              <input id="f-id-nick" type="text" placeholder="Masukkan ID &amp; Nick Name" required />
-            </div>
-            <div class="field">
-              <label for="f-rank-now">Rank &amp; Star Saat Ini</label>
-              <input id="f-rank-now" type="text" placeholder="Masukkan Rank &amp; Star Saat Ini" required />
-            </div>
-            <div class="field">
-              <label for="f-login-via">Login Via</label>
-              <select id="f-login-via">
-                <option value="">Pilih Login Via</option>
-                <option value="Moonton">Moonton</option>
-                <option value="VK">VK</option>
-                <option value="TikTok">TikTok</option>
-                <option value="Mabar / Gendong">Mabar / Gendong</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-email-ml">Email ML / Username</label>
-              <input id="f-email-ml" type="text" placeholder="Masukkan Email ML / Username" />
-            </div>
-            <div class="field">
-              <label for="f-password">Password</label>
-              <input id="f-password" type="text" placeholder="Masukkan Password" />
-            </div>
-            <div class="field">
-              <label for="f-pesan-joki">Pesan Untuk Penjoki</label>
-              <input id="f-pesan-joki" type="text" placeholder="Masukkan Pesan Untuk Penjoki" />
-            </div>
-            <div class="field field-full">
-              <label id="lbl-req-hero" for="f-req-hero">Free Request Minimal 3 Hero</label>
-              <input id="f-req-hero" type="text" placeholder="Masukkan Free Request Minimal 3 Hero" />
-            </div>
-          </div>
+          <div id="account-fields" class="grid-2"></div>
           <div class="account-tip">
             <span>ⓘ</span>
             <span>Please make sure you fill the correct account data.</span>
@@ -837,6 +912,7 @@
           <div class="joki-switch">
             <button type="button" id="sw-rank" class="switch-btn">Joki Rank Biasa</button>
             <button type="button" id="sw-mmr" class="switch-btn">Joki Hero 1 MMR</button>
+            <button type="button" id="sw-gendong" class="switch-btn">Joki Gendong / Mabar</button>
           </div>
 
           <!-- Flash Sale Box (khusus Joki Rank Biasa) -->
@@ -981,7 +1057,8 @@
         <text x="60" y="66" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="900" fill="#60a5fa">KJ ML</text>
       </svg>`);
 
-    function detectInitialMmrMode() {
+    // Mode: "rank" | "mmr" | "gendong"
+    function detectInitialMode() {
       const hrefLower = window.location.href.toLowerCase();
       const params = new URLSearchParams(window.location.search);
       const raw = [
@@ -995,17 +1072,23 @@
         .join(" ")
         .toLowerCase();
 
-      return (
+      if (raw.includes("gendong") || raw.includes("mabar") || hrefLower.includes("gendong") || hrefLower.includes("mabar")) {
+        return "gendong";
+      }
+      if (
         raw.includes("mmr") ||
         raw.includes("1-hero") ||
         raw.includes("1_hero") ||
         raw.includes("hero-mmr") ||
         hrefLower.includes("joki-hero-mmr") ||
         hrefLower.includes("mmr")
-      );
+      ) {
+        return "mmr";
+      }
+      return "rank";
     }
 
-    let isHeroMmrMode = detectInitialMmrMode();
+    let currentMode = detectInitialMode();
 
     const FLASH_ITEMS = [
       {
@@ -1035,7 +1118,21 @@
       }
     ];
 
-    const REGULAR_GROUPS = [
+    const GENDONG_GROUPS = [
+      {
+        title: "Joki Gendong / WIN",
+        items: [
+          { name: "Mabar Epic / Win", price: 7000, strike: 12000, disc: "Disc 42%", tag: "🛒", icon: "1795684016988.png" },
+          { name: "Mabar Legend / Win", price: 8000, strike: 15000, disc: "Disc 47%", tag: "🛒", icon: "1795684016988.png" },
+          { name: "Mabar Mythic / Win", price: 14000, strike: 25000, disc: "Disc 44%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Mabar Honor / Win", price: 16000, strike: 28000, disc: "Disc 43%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Mabar Glory / Win", price: 21000, strike: 35000, disc: "Disc 40%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Mabar Immortal / Win", price: 35000, strike: 50000, disc: "Disc 30%", tag: "🛒", icon: "1795684363565.png" }
+        ]
+      }
+    ];
+
+    const RANK_GROUPS = [
       {
         title: "🔥 Special Bonus Star",
         items: [
@@ -1123,6 +1220,8 @@
     let promoDiscount = 0;
     let searchFilter = "";
 
+    const gendongHero = document.getElementById("gendong-hero");
+    const accountFields = document.getElementById("account-fields");
     const flashBoxWrap = document.getElementById("flash-box-wrap");
     const flashGrid = document.getElementById("flash-grid");
     const regularGroups = document.getElementById("regular-groups");
@@ -1132,39 +1231,126 @@
     const btnPesan = document.getElementById("btn-pesan");
     const swRank = document.getElementById("sw-rank");
     const swMmr = document.getElementById("sw-mmr");
+    const swGendong = document.getElementById("sw-gendong");
 
     function getActiveGroups() {
-      return isHeroMmrMode ? HERO_MMR_GROUPS : REGULAR_GROUPS;
+      if (currentMode === "gendong") return GENDONG_GROUPS;
+      if (currentMode === "mmr") return HERO_MMR_GROUPS;
+      return RANK_GROUPS;
+    }
+
+    function renderAccountForm() {
+      if (currentMode === "gendong") {
+        accountFields.innerHTML = `
+          <div class="field">
+            <label for="f-id-nick">ID &amp; Nick Name <span class="q-icon">?</span></label>
+            <input id="f-id-nick" type="text" placeholder="Masukkan ID &amp; Nick Name" required />
+          </div>
+          <div class="field">
+            <label for="f-rank-now">Rank &amp; Star Saat Ini</label>
+            <input id="f-rank-now" type="text" placeholder="Masukkan Rank &amp; Star Saat Ini" required />
+          </div>
+          <div class="field">
+            <label for="f-jadwal-mabar">Tanggal &amp; Jam Booking Main</label>
+            <input id="f-jadwal-mabar" type="text" placeholder="Masukkan Tanggal &amp; Jam Booking Main" />
+          </div>
+          <div class="field">
+            <label for="f-role-kamu">Role Kamu</label>
+            <select id="f-role-kamu">
+              <option value="">Pilih Role Kamu</option>
+              <option value="Gold Lane">Gold Lane</option>
+              <option value="EXP Lane">EXP Lane</option>
+              <option value="Mid Lane">Mid Lane</option>
+              <option value="Roamer">Roamer</option>
+              <option value="Jungler">Jungler</option>
+            </select>
+          </div>
+          <div class="field field-full">
+            <label for="f-pesan-joki">Pesan Untuk Penjoki</label>
+            <input id="f-pesan-joki" type="text" placeholder="Masukkan Pesan Untuk Penjoki" />
+          </div>
+        `;
+        return;
+      }
+
+      const reqLabel =
+        currentMode === "mmr"
+          ? "Request 1 Hero (Opsi jika di Ban/Pick) 1 Role"
+          : "Free Request Minimal 3 Hero";
+      const reqPlaceholder =
+        currentMode === "mmr"
+          ? "Masukkan Request 1 Hero (Opsi jika di Ban/Pick) 1 Role"
+          : "Masukkan Free Request Minimal 3 Hero";
+
+      accountFields.innerHTML = `
+        <div class="field">
+          <label for="f-id-nick">ID &amp; Nick Name <span class="q-icon">?</span></label>
+          <input id="f-id-nick" type="text" placeholder="Masukkan ID &amp; Nick Name" required />
+        </div>
+        <div class="field">
+          <label for="f-rank-now">Rank &amp; Star Saat Ini</label>
+          <input id="f-rank-now" type="text" placeholder="Masukkan Rank &amp; Star Saat Ini" required />
+        </div>
+        <div class="field">
+          <label for="f-login-via">Login Via</label>
+          <select id="f-login-via">
+            <option value="">Pilih Login Via</option>
+            <option value="Moonton">Moonton</option>
+            <option value="VK">VK</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Mabar / Gendong">Mabar / Gendong</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-email-ml">Email ML / Username</label>
+          <input id="f-email-ml" type="text" placeholder="Masukkan Email ML / Username" />
+        </div>
+        <div class="field">
+          <label for="f-password">Password</label>
+          <input id="f-password" type="text" placeholder="Masukkan Password" />
+        </div>
+        <div class="field">
+          <label for="f-pesan-joki">Pesan Untuk Penjoki</label>
+          <input id="f-pesan-joki" type="text" placeholder="Masukkan Pesan Untuk Penjoki" />
+        </div>
+        <div class="field field-full">
+          <label for="f-req-hero">${reqLabel}</label>
+          <input id="f-req-hero" type="text" placeholder="${reqPlaceholder}" />
+        </div>
+      `;
     }
 
     function applyLayananMode() {
-      swRank.classList.toggle("active", !isHeroMmrMode);
-      swMmr.classList.toggle("active", isHeroMmrMode);
+      swRank.classList.toggle("active", currentMode === "rank");
+      swMmr.classList.toggle("active", currentMode === "mmr");
+      swGendong.classList.toggle("active", currentMode === "gendong");
 
-      if (isHeroMmrMode) {
+      gendongHero.classList.toggle("hidden", currentMode !== "gendong");
+      flashBoxWrap.classList.toggle("hidden", currentMode !== "rank");
+
+      if (currentMode === "gendong") {
+        document.title = "Joki Gendong / Mabar ML - KABUKI JOKI";
+      } else if (currentMode === "mmr") {
         document.title = "Joki / Star Rank 1 Hero MMR - KABUKI JOKI";
-        document.getElementById("lbl-req-hero").textContent = "Request 1 Hero (Opsi jika di Ban/Pick) 1 Role";
-        document.getElementById("f-req-hero").placeholder = "Masukkan Request 1 Hero (Opsi jika di Ban/Pick) 1 Role";
-        flashBoxWrap.classList.add("hidden");
       } else {
         document.title = "Joki Mobile Legends - KABUKI JOKI";
-        document.getElementById("lbl-req-hero").textContent = "Free Request Minimal 3 Hero";
-        document.getElementById("f-req-hero").placeholder = "Masukkan Free Request Minimal 3 Hero";
-        flashBoxWrap.classList.remove("hidden");
       }
+
+      renderAccountForm();
     }
 
-    function switchMode(mmrMode) {
-      if (isHeroMmrMode === mmrMode) return;
-      isHeroMmrMode = mmrMode;
+    function switchMode(nextMode) {
+      if (currentMode === nextMode) return;
+      currentMode = nextMode;
       selectedItem = null;
       applyLayananMode();
       renderNominals();
       updateSummary();
     }
 
-    swRank.addEventListener("click", () => switchMode(false));
-    swMmr.addEventListener("click", () => switchMode(true));
+    swRank.addEventListener("click", () => switchMode("rank"));
+    swMmr.addEventListener("click", () => switchMode("mmr"));
+    swGendong.addEventListener("click", () => switchMode("gendong"));
 
     function rupiah(n) {
       return "Rp " + Number(n || 0).toLocaleString("id-ID");
@@ -1197,7 +1383,7 @@
       const q = searchFilter.trim().toLowerCase();
       const activeGroups = getActiveGroups();
 
-      if (!isHeroMmrMode) {
+      if (currentMode === "rank") {
         const flashFiltered = FLASH_ITEMS.map((item, idx) => ({ item, idx })).filter(
           ({ item }) => !q || item.name.toLowerCase().includes(q)
         );
@@ -1359,13 +1545,9 @@
         return;
       }
 
-      const idNick = document.getElementById("f-id-nick").value.trim();
-      const rankNow = document.getElementById("f-rank-now").value.trim();
-      const loginVia = document.getElementById("f-login-via").value || "-";
-      const emailMl = document.getElementById("f-email-ml").value.trim() || "-";
-      const password = document.getElementById("f-password").value.trim() || "-";
-      const pesanJoki = document.getElementById("f-pesan-joki").value.trim() || "-";
-      const reqHero = document.getElementById("f-req-hero").value.trim() || "-";
+      const idNick = (document.getElementById("f-id-nick")?.value || "").trim();
+      const rankNow = (document.getElementById("f-rank-now")?.value || "").trim();
+      const pesanJoki = (document.getElementById("f-pesan-joki")?.value || "").trim() || "-";
       const promoCode = promoInput.value.trim() || "-";
       const emailBuyer = document.getElementById("f-email-buyer").value.trim() || "-";
       const waBuyer = document.getElementById("f-wa-buyer").value.trim();
@@ -1378,8 +1560,14 @@
       const qty = getQty();
       const total = getFinalTotal();
 
-      const msg = [
-        `*ORDER ${isHeroMmrMode ? "JOKI 1 HERO MMR" : "JOKI ML"} - KABUKI JOKI*`,
+      const lines = [
+        `*ORDER ${
+          currentMode === "gendong"
+            ? "JOKI GENDONG / MABAR"
+            : currentMode === "mmr"
+            ? "JOKI 1 HERO MMR"
+            : "JOKI ML"
+        } - KABUKI JOKI*`,
         "-----------------------------",
         `Paket: *${selectedItem.name}*`,
         `Jumlah: ${qty}`,
@@ -1388,18 +1576,36 @@
         `Kode Promo: ${promoCode}`,
         "-----------------------------",
         `ID & Nick Name: ${idNick}`,
-        `Rank & Star Saat Ini: ${rankNow}`,
-        `Login Via: ${loginVia}`,
-        `Email ML / Username: ${emailMl}`,
-        `Password: ${password}`,
-        `Pesan Untuk Penjoki: ${pesanJoki}`,
-        `${isHeroMmrMode ? "Request 1 Hero & Role" : "Request Hero"}: ${reqHero}`,
-        "-----------------------------",
-        `No. WA: +62${waBuyer.replace(/^0+/, "")}`,
-        `Email: ${emailBuyer}`
-      ].join("\n");
+        `Rank & Star Saat Ini: ${rankNow}`
+      ];
 
-      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+      if (currentMode === "gendong") {
+        const jadwalMabar = (document.getElementById("f-jadwal-mabar")?.value || "").trim() || "-";
+        const roleKamu = document.getElementById("f-role-kamu")?.value || "-";
+        lines.push(`Tanggal & Jam Booking: ${jadwalMabar}`);
+        lines.push(`Role Kamu: ${roleKamu}`);
+        lines.push(`Pesan Untuk Penjoki: ${pesanJoki}`);
+      } else {
+        const loginVia = document.getElementById("f-login-via")?.value || "-";
+        const emailMl = (document.getElementById("f-email-ml")?.value || "").trim() || "-";
+        const password = (document.getElementById("f-password")?.value || "").trim() || "-";
+        const reqHero = (document.getElementById("f-req-hero")?.value || "").trim() || "-";
+        lines.push(`Login Via: ${loginVia}`);
+        lines.push(`Email ML / Username: ${emailMl}`);
+        lines.push(`Password: ${password}`);
+        lines.push(`Pesan Untuk Penjoki: ${pesanJoki}`);
+        lines.push(`${currentMode === "mmr" ? "Request 1 Hero & Role" : "Request Hero"}: ${reqHero}`);
+      }
+
+      lines.push("-----------------------------");
+      lines.push(`No. WA: +62${waBuyer.replace(/^0+/, "")}`);
+      lines.push(`Email: ${emailBuyer}`);
+
+      window.open(
+        `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
     });
 
     applyLayananMode();
@@ -1408,4 +1614,3 @@
   </script>
 </body>
 </html>
- 
