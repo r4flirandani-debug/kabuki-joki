@@ -1350,6 +1350,44 @@
     const ACC_IMG_1 = "file_00000000c4d482078d3bde42f15af968.png";
     const ACC_IMG_2 = "file_00000000111c8211a6ccaa34610deb3b.png";
 
+    const ACC_899K_IMG_1 = "file_00000000cf908211b66fdaaddb5f0307.png";
+    const ACC_899K_IMG_2 = "file_00000000c7d48207810fecc9feed5646.png";
+
+    const ACC_899K_DESCRIPTION = `KABUKI STORE SELALU ON POINT! 🎮
+
+📌 Detail Akun Mobile Legends
+
+🔐 Login: Moonton
+💰 Harga: Rp 899.000
+✅ No Minus
+✅ Aman & siap langsung digunakan
+✅ Garansi Seumur Hidup
+
+🔥 Spesifikasi Akun ML
+
+⭐ Skin Highlight: -
+🎮 Total Skin: 257 Skin
+🦸 Total Hero: 120 Hero
+
+🛡️ Ketentuan Garansi Akun
+
+Garansi berlaku selama data akun tidak diubah oleh customer.
+
+Garansi akan hangus apabila customer melakukan:
+• Mengganti password akun.
+• Mengganti email.
+• Menghubungkan akun ke media sosial lain.
+• Mengubah data keamanan akun.
+• Melakukan perubahan data akun lainnya yang dapat memengaruhi akses atau keamanan akun.
+
+Apabila perubahan tersebut dilakukan, seluruh risiko dan tanggung jawab menjadi milik customer.
+
+📲 Cara Membeli Akun Mobile Legends
+
+Untuk membeli akun Mobile Legends di Kabuki store, hubungi Customer Service Kabuki melalui WhatsApp untuk melakukan pemesanan dan pengecekan stok.
+
+⚡ Stok akun terbatas, jadi segera lakukan reservasi sebelum akun dibeli customer lain.`;
+
     const DEFAULT_ACC_DESCRIPTION = `KABUKI STORE SELALU ON POINT! 🎮
 
 📌 Detail Akun Mobile Legends
@@ -1385,6 +1423,19 @@ Untuk membeli akun Mobile Legends di KABUKI STORE, hubungi Customer Service KABU
 
 ⚡ Stok akun terbatas, jadi segera lakukan reservasi sebelum akun dibeli customer lain.`;
 
+    const ACC_899K_DATA = {
+      title: "AKUN MLBB • 120 HERO • 257 SKIN",
+      budget: "BUDGET PELAJAR (300-1,999K)",
+      status: "Ready",
+      isReady: true,
+      priceText: "Rp 899.000",
+      hero: "120 Hero",
+      skin: "257 Skin",
+      login: "Moonton",
+      images: [ACC_899K_IMG_1, ACC_899K_IMG_2],
+      description: ACC_899K_DESCRIPTION
+    };
+
     const MLBB_ACCOUNTS = {
       "akun-pelajar-01": {
         title: "LING CHOU KAGURA • 133 HERO • 282 SKIN",
@@ -1397,7 +1448,9 @@ Untuk membeli akun Mobile Legends di KABUKI STORE, hubungi Customer Service KABU
         login: "Moonton",
         images: [ACC_IMG_1, ACC_IMG_2],
         description: DEFAULT_ACC_DESCRIPTION
-      }
+      },
+      "akun-pelajar-02": ACC_899K_DATA,
+      "akun-899k": ACC_899K_DATA
     };
 
     function getAccountFromUrl() {
@@ -1406,16 +1459,16 @@ Untuk membeli akun Mobile Legends di KABUKI STORE, hubungi Customer Service KABU
       if (!id || !id.startsWith("akun-")) return null;
       return (
         MLBB_ACCOUNTS[id] || {
-          title: `AKUN MLBB (${id.toUpperCase()}) • 133 HERO • 282 SKIN`,
+          title: `AKUN MLBB (${id.toUpperCase()}) • 120 HERO • 257 SKIN`,
           budget: "JUAL AKUN MLBB",
           status: "Ready",
           isReady: true,
-          priceText: "Rp 549.000",
-          hero: "133 Hero",
-          skin: "282 Skin",
+          priceText: "Rp 899.000",
+          hero: "120 Hero",
+          skin: "257 Skin",
           login: "Moonton",
-          images: [ACC_IMG_1, ACC_IMG_2],
-          description: DEFAULT_ACC_DESCRIPTION
+          images: [ACC_899K_IMG_1, ACC_899K_IMG_2],
+          description: ACC_899K_DESCRIPTION
         }
       );
     }
