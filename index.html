@@ -208,6 +208,91 @@
       white-space: nowrap;
     }
 
+    /* Interactive Image Slider Banner */
+    .banner-slider {
+      position: relative;
+      width: 100%;
+      margin: 0 auto 18px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: var(--bg-panel);
+      touch-action: pan-y;
+      user-select: none;
+      cursor: grab;
+    }
+
+    .banner-slider:active {
+      cursor: grabbing;
+    }
+
+    .slides-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .slide {
+      min-width: 100%;
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      display: block;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 7px;
+      z-index: 2;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: width 0.2s ease, background 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--cyan-accent);
+      width: 20px;
+      border-radius: 999px;
+    }
+
     /* Popular Section */
     .popular-head {
       margin-bottom: 10px;
@@ -482,6 +567,25 @@
       <a href="#katalog-utama" class="promo-cta">Pilih Layanan</a>
     </section>
 
+    <!-- Banner Slider Bergerak (Otomatis & Manual) -->
+    <section class="banner-slider" id="bannerSlider" aria-label="Banner Promo Slider">
+      <div class="slides-track" id="slidesTrack">
+        <a href="joki.html" class="slide">
+          <img src="file_00000000c2448211adbc1a26ff563eef.webp" alt="Banner Promo 1" />
+        </a>
+        <a href="order.html?id=topup-mlbb" class="slide">
+          <img src="file_000000004cc0821182b1050aa195c83d.webp" alt="Banner Promo 2" />
+        </a>
+        <a href="#katalog-utama" class="slide">
+          <img src="file_000000008d44821182671a3c692a2153.webp" alt="Banner Promo 3" />
+        </a>
+      </div>
+
+      <button type="button" class="nav-btn prev" id="prevBtn" aria-label="Sebelumnya">&lsaquo;</button>
+      <button type="button" class="nav-btn next" id="nextBtn" aria-label="Berikutnya">&rsaquo;</button>
+      <div class="dots" id="dots"></div>
+    </section>
+
     <!-- Populer Sekarang -->
     <section id="populer">
       <div class="popular-head">
@@ -741,6 +845,193 @@
 
     renderPopular();
     renderCatalog();
+
+    // --- BANNER SLIDER (AUTO + SWIPE + DRAG + INFINITE LOOP) ---
+    (function initBannerSlider() {
+      const slider = document.getElementById("bannerSlider");
+      const track = document.getElementById("slidesTrack");
+      const originalSlides = Array.from(track.querySelectorAll(".slide"));
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const dotsContainer = document.getElementById("dots");
+
+      if (!slider || !track || originalSlides.length === 0) return;
+
+      const totalOriginal = originalSlides.length;
+      const firstClone = originalSlides[0].cloneNode(true);
+      const lastClone = originalSlides[totalOriginal - 1].cloneNode(true);
+      track.appendChild(firstClone);
+      track.insertBefore(lastClone, originalSlides[0]);
+
+      const allSlides = track.querySelectorAll(".slide");
+
+      let index = 1;
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
+      let hasMoved = false;
+      let isTransitioning = false;
+      let autoSlideTimer;
+
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      originalSlides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", `Slide ${i + 1}`);
+        dot.addEventListener("click", () => {
+          if (isTransitioning) return;
+          goToSlide(i + 1);
+          resetAutoSlide();
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = dotsContainer.querySelectorAll(".dot");
+
+      function updateDots() {
+        let realIndex = index - 1;
+        if (index === 0) realIndex = totalOriginal - 1;
+        if (index === totalOriginal + 1) realIndex = 0;
+        dots.forEach((d, idx) => d.classList.toggle("active", idx === realIndex));
+      }
+
+      function goToSlide(targetIndex) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        index = targetIndex;
+        track.style.transition = "transform 0.4s ease";
+        track.style.transform = `translateX(-${index * 100}%)`;
+        updateDots();
+      }
+
+      track.addEventListener("transitionend", () => {
+        isTransitioning = false;
+
+        if (index === totalOriginal + 1) {
+          track.style.transition = "none";
+          index = 1;
+          track.style.transform = `translateX(-${index * 100}%)`;
+        } else if (index === 0) {
+          track.style.transition = "none";
+          index = totalOriginal;
+          track.style.transform = `translateX(-${index * 100}%)`;
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
+        goToSlide(index - 1);
+        resetAutoSlide();
+      });
+
+      nextBtn.addEventListener("click", () => {
+        goToSlide(index + 1);
+        resetAutoSlide();
+      });
+
+      function startDrag(clientX) {
+        if (isTransitioning) return;
+        startX = clientX;
+        currentX = clientX;
+        isDragging = true;
+        hasMoved = false;
+        track.style.transition = "none";
+        clearInterval(autoSlideTimer);
+      }
+
+      function moveDrag(clientX) {
+        if (!isDragging) return;
+        currentX = clientX;
+        const diffX = currentX - startX;
+
+        if (Math.abs(diffX) > 8) {
+          hasMoved = true;
+        }
+
+        const slideWidth = slider.offsetWidth;
+        const baseOffset = -index * slideWidth;
+        track.style.transform = `translateX(${baseOffset + diffX}px)`;
+      }
+
+      function endDrag() {
+        if (!isDragging) return;
+        isDragging = false;
+
+        const diffX = currentX - startX;
+        const threshold = 50;
+
+        if (diffX < -threshold) {
+          goToSlide(index + 1);
+        } else if (diffX > threshold) {
+          goToSlide(index - 1);
+        } else {
+          track.style.transition = "transform 0.3s ease";
+          track.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        resetAutoSlide();
+
+        setTimeout(() => {
+          hasMoved = false;
+        }, 0);
+      }
+
+      slider.addEventListener("touchstart", (e) => {
+        startDrag(e.touches[0].clientX);
+      }, { passive: true });
+
+      slider.addEventListener("touchmove", (e) => {
+        moveDrag(e.touches[0].clientX);
+      }, { passive: true });
+
+      slider.addEventListener("touchend", endDrag);
+
+      slider.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+        startDrag(e.clientX);
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        moveDrag(e.clientX);
+      });
+
+      window.addEventListener("mouseup", endDrag);
+
+      allSlides.forEach((slide) => {
+        slide.addEventListener("click", (e) => {
+          if (hasMoved) {
+            e.preventDefault();
+          }
+        });
+      });
+
+      function startAutoSlide() {
+        clearInterval(autoSlideTimer);
+        autoSlideTimer = setInterval(() => {
+          if (!document.hidden) {
+            goToSlide(index + 1);
+          }
+        }, 4000);
+      }
+
+      function resetAutoSlide() {
+        clearInterval(autoSlideTimer);
+        startAutoSlide();
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          clearInterval(autoSlideTimer);
+        } else {
+          isTransitioning = false;
+          startAutoSlide();
+        }
+      });
+
+      startAutoSlide();
+    })();
   </script>
 </body>
-</html>
+  </html>
