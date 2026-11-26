@@ -504,6 +504,239 @@
       line-height: 1.2;
     }
 
+    /* Katalog 3: 4 Pilihan Budget Akun MLBB */
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .budget-card {
+      position: relative;
+      border: 2px solid rgba(96, 165, 250, 0.55);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 122px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+      background: var(--budget-bg, linear-gradient(135deg, #1d4ed8, #0f172a));
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .budget-card:hover {
+      transform: translateY(-2px);
+      border-color: #facc15;
+    }
+
+    .budget-kicker {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #fde047;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.85);
+      margin-bottom: 2px;
+    }
+
+    .budget-main-title {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow:
+        0 2px 0 #0f172a,
+        0 4px 10px rgba(0, 0, 0, 0.85);
+      margin-bottom: 7px;
+    }
+
+    @media (max-width: 520px) {
+      .budget-card {
+        min-height: 106px;
+      }
+
+      .budget-main-title {
+        font-size: 16.5px;
+      }
+    }
+
+    .budget-range-pill {
+      display: inline-block;
+      background: #facc15;
+      color: #0f172a;
+      border: 1.5px solid #0f172a;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Katalog 3: Daftar Akun setelah Budget Diklik */
+    .akun-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .akun-section-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14.5px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .akun-section-title::before {
+      content: "";
+      width: 4px;
+      height: 16px;
+      border-radius: 999px;
+      background: #38bdf8;
+      display: inline-block;
+    }
+
+    .btn-back-budget {
+      height: 30px;
+      padding: 0 11px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: #1b2838;
+      color: #e0f2fe;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-back-budget:hover {
+      background: #24364d;
+    }
+
+    .akun-list-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .akun-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background: linear-gradient(180deg, #1b2d52 0%, #101b33 100%);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.14s ease, border-color 0.14s ease;
+    }
+
+    .akun-card:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+
+    .akun-preview-wrap {
+      position: relative;
+      background: linear-gradient(160deg, #1597bb 0%, #1e63b8 65%, #163a70 100%);
+      padding: 10px;
+    }
+
+    .akun-top-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .akun-mini-tag {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #e0f2fe;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 999px;
+      letter-spacing: 0.4px;
+    }
+
+    .akun-status-pill {
+      background: #0f2942;
+      color: #e2e8f0;
+      font-size: 9.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      white-space: nowrap;
+    }
+
+    .akun-status-pill.ready {
+      background: #14532d;
+      color: #bbf7d0;
+      border-color: rgba(74, 222, 128, 0.45);
+    }
+
+    .akun-img-box {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: #0b1324;
+      aspect-ratio: 16 / 10;
+    }
+
+    .akun-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .akun-meta {
+      padding: 10px 11px 12px;
+      background: #0d1930;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .akun-game-label {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      color: #7dd3fc;
+      text-transform: uppercase;
+    }
+
+    .akun-heroes {
+      font-size: 12.5px;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .akun-price {
+      font-size: 14px;
+      font-weight: 900;
+      color: #f8fafc;
+      margin-top: 2px;
+    }
+
     .empty {
       grid-column: 1 / -1;
       text-align: center;
@@ -752,44 +985,178 @@
         title: "Genshin Impact",
         sub: "HoYoverse • Crystals",
         image: "9b0b6393-7fa9-4f8a-ae30-130b2a421d48.webp"
-      },
+      }
+    ];
 
-      // KATALOG 3: JUAL AKUN MLBB
+    // KATALOG 3: JUAL AKUN MLBB (4 Pilihan Budget -> Daftar Akun)
+    const AKUN_MLBB_BUDGETS = [
       {
-        id: "akun-mlbb-starter",
-        cat: "jual-akun-mlbb",
-        popular: false,
-        label: "AKUN MLBB",
-        title: "Akun MLBB Starter",
-        sub: "Moonton • Siap Pakai",
-        image: "logomlbbck-ezgif.jpeg"
+        id: "budget-pelajar",
+        kicker: "BUDGET",
+        title: "PELAJAR",
+        range: "300-1,999K",
+        bg: "linear-gradient(135deg, rgba(14, 116, 144, 0.92), rgba(29, 78, 216, 0.92))",
+        image: "1795684016988.png",
+        accounts: [
+          {
+            id: "akun-pelajar-01",
+            status: "Ready",
+            isReady: true,
+            heroes: "LING CHOU KAGURA",
+            price: "Rp 450.000",
+            image: "1795684016988.png"
+          },
+          {
+            id: "akun-pelajar-02",
+            status: "Ready",
+            isReady: true,
+            heroes: "BEATRIX WANWAN LANCELOT",
+            price: "Rp 850.000",
+            image: "1795684363565.png"
+          },
+          {
+            id: "akun-pelajar-03",
+            status: "Promo Selesai",
+            isReady: false,
+            heroes: "YU ZHONG BENEDETTA",
+            price: "Rp 1.250.000",
+            image: "1795684340955.png"
+          },
+          {
+            id: "akun-pelajar-04",
+            status: "Ready",
+            isReady: true,
+            heroes: "GUSION HAYABUSA VALENTINA",
+            price: "Rp 1.750.000",
+            image: "1795684487111.png"
+          }
+        ]
       },
       {
-        id: "akun-mlbb-skin",
-        cat: "jual-akun-mlbb",
-        popular: false,
-        label: "SKIN PACK",
-        title: "Akun MLBB Koleksi Skin",
-        sub: "Moonton • Multi Skin",
-        image: "1795684016988.png"
+        id: "budget-umr",
+        kicker: "BUDGET",
+        title: "UMR",
+        range: "2JT - 5,9JT",
+        bg: "linear-gradient(135deg, rgba(120, 53, 15, 0.92), rgba(180, 83, 9, 0.92))",
+        image: "1795684363565.png",
+        accounts: [
+          {
+            id: "akun-umr-01",
+            status: "Ready",
+            isReady: true,
+            heroes: "LAYLA FREYA JOHNSON",
+            price: "Rp 3.100.000",
+            image: "1795684363565.png"
+          },
+          {
+            id: "akun-umr-02",
+            status: "Ready",
+            isReady: true,
+            heroes: "FREYA LUNOX",
+            price: "Rp 3.375.000",
+            image: "1795684016988.png"
+          },
+          {
+            id: "akun-umr-03",
+            status: "Promo Selesai",
+            isReady: false,
+            heroes: "FANNY LING GRANGER",
+            price: "Rp 4.500.000",
+            image: "1795684433125.png"
+          },
+          {
+            id: "akun-umr-04",
+            status: "Ready",
+            isReady: true,
+            heroes: "CHOU KAGURA SELENA",
+            price: "Rp 5.400.000",
+            image: "1795684340955.png"
+          }
+        ]
       },
       {
-        id: "akun-mlbb-rank",
-        cat: "jual-akun-mlbb",
-        popular: false,
-        label: "HIGH RANK",
-        title: "Akun MLBB Rank Mythic",
-        sub: "Moonton • Emblem Tinggi",
-        image: "1795684363565.png"
+        id: "budget-sultan",
+        kicker: "BUDGET",
+        title: "SULTAN",
+        range: "6JT - 19,9JT",
+        bg: "linear-gradient(135deg, rgba(153, 27, 27, 0.92), rgba(127, 29, 29, 0.94))",
+        image: "1795684340955.png",
+        accounts: [
+          {
+            id: "akun-sultan-01",
+            status: "Ready",
+            isReady: true,
+            heroes: "FANNY FRANCO GRANGER",
+            price: "Rp 7.800.000",
+            image: "1795684340955.png"
+          },
+          {
+            id: "akun-sultan-02",
+            status: "Ready",
+            isReady: true,
+            heroes: "CHOU FANNY LING",
+            price: "Rp 11.500.000",
+            image: "1795684016988.png"
+          },
+          {
+            id: "akun-sultan-03",
+            status: "Promo Selesai",
+            isReady: false,
+            heroes: "GUSION LUNOX BEATRIX",
+            price: "Rp 14.900.000",
+            image: "1795684363565.png"
+          },
+          {
+            id: "akun-sultan-04",
+            status: "Ready",
+            isReady: true,
+            heroes: "ALL ROLE KOLEKSI SKIN",
+            price: "Rp 18.500.000",
+            image: "1795684433125.png"
+          }
+        ]
       },
       {
-        id: "akun-mlbb-custom",
-        cat: "jual-akun-mlbb",
-        popular: false,
-        label: "REQUEST AKUN",
-        title: "Request Akun MLBB",
-        sub: "Cari Spesifikasi Khusus",
-        image: "1795684340955.png"
+        id: "financial-freedom",
+        kicker: "FINANCIAL",
+        title: "FREEDOM",
+        range: "20JT-50JT",
+        bg: "linear-gradient(135deg, rgba(161, 98, 7, 0.92), rgba(30, 58, 138, 0.92))",
+        image: "1795684433125.png",
+        accounts: [
+          {
+            id: "akun-ff-01",
+            status: "Ready",
+            isReady: true,
+            heroes: "MEGA KOLEKSI SKIN LIMIT",
+            price: "Rp 22.000.000",
+            image: "1795684433125.png"
+          },
+          {
+            id: "akun-ff-02",
+            status: "Ready",
+            isReady: true,
+            heroes: "FANNY LING CHOU LEGEND",
+            price: "Rp 31.500.000",
+            image: "1795684016988.png"
+          },
+          {
+            id: "akun-ff-03",
+            status: "Promo Selesai",
+            isReady: false,
+            heroes: "PRIME + LEGEND + ZODIAC",
+            price: "Rp 39.000.000",
+            image: "1795684363565.png"
+          },
+          {
+            id: "akun-ff-04",
+            status: "Ready",
+            isReady: true,
+            heroes: "SULTAN TIER ENDGAME MLBB",
+            price: "Rp 48.000.000",
+            image: "1795684340955.png"
+          }
+        ]
       }
     ];
 
@@ -802,6 +1169,7 @@
 
     const catOrder = ["joki-ml", "topup-game", "jual-akun-mlbb"];
     let currentCat = "joki-ml";
+    let selectedBudgetId = null;
     let keyword = "";
 
     const popularGrid = document.getElementById("popular-grid");
@@ -828,8 +1196,145 @@
         .join("");
     }
 
+    function renderAkunMlbbCatalog(q) {
+      catalogGrid.className = "";
+
+      if (q) {
+        const matches = [];
+        AKUN_MLBB_BUDGETS.forEach((b) => {
+          b.accounts.forEach((acc) => {
+            const matchText =
+              acc.heroes.toLowerCase().includes(q) ||
+              acc.price.toLowerCase().includes(q) ||
+              b.title.toLowerCase().includes(q) ||
+              b.range.toLowerCase().includes(q);
+            if (matchText) {
+              matches.push({ ...acc, budgetTitle: `${b.kicker} ${b.title}` });
+            }
+          });
+        });
+
+        if (!matches.length) {
+          catalogGrid.className = "grid";
+          catalogGrid.innerHTML = `<div class="empty">Akun MLBB tidak ditemukan. Coba kata kunci lain.</div>`;
+          return;
+        }
+
+        catalogGrid.innerHTML = `
+          <div class="akun-header-bar">
+            <div class="akun-section-title">Hasil Pencarian Akun MLBB</div>
+          </div>
+          <div class="akun-list-grid">
+            ${matches
+              .map(
+                (acc) => `
+              <a href="order.html?id=${encodeURIComponent(acc.id)}" class="akun-card">
+                <div class="akun-preview-wrap">
+                  <div class="akun-top-badge-row">
+                    <span class="akun-mini-tag">${acc.budgetTitle}</span>
+                    <span class="akun-status-pill ${acc.isReady ? "ready" : ""}">${acc.status}</span>
+                  </div>
+                  <div class="akun-img-box">
+                    <img src="${acc.image}" alt="${acc.heroes}" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+                  </div>
+                </div>
+                <div class="akun-meta">
+                  <div>
+                    <div class="akun-game-label">MOBILE LEGENDS</div>
+                    <div class="akun-heroes">${acc.heroes}</div>
+                  </div>
+                  <div class="akun-price">${acc.price}</div>
+                </div>
+              </a>
+            `
+              )
+              .join("")}
+          </div>
+        `;
+        return;
+      }
+
+      if (selectedBudgetId) {
+        const budget = AKUN_MLBB_BUDGETS.find((b) => b.id === selectedBudgetId);
+        if (budget) {
+          catalogGrid.innerHTML = `
+            <div class="akun-header-bar">
+              <div class="akun-section-title">Daftar Akun • ${budget.kicker} ${budget.title} (${budget.range})</div>
+              <button type="button" id="btn-back-budget" class="btn-back-budget">← Pilihan Budget</button>
+            </div>
+            <div class="akun-list-grid">
+              ${budget.accounts
+                .map(
+                  (acc) => `
+                <a href="order.html?id=${encodeURIComponent(acc.id)}" class="akun-card">
+                  <div class="akun-preview-wrap">
+                    <div class="akun-top-badge-row">
+                      <span class="akun-mini-tag">KABUKI MLBB</span>
+                      <span class="akun-status-pill ${acc.isReady ? "ready" : ""}">${acc.status}</span>
+                    </div>
+                    <div class="akun-img-box">
+                      <img src="${acc.image}" alt="${acc.heroes}" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+                    </div>
+                  </div>
+                  <div class="akun-meta">
+                    <div>
+                      <div class="akun-game-label">MOBILE LEGENDS</div>
+                      <div class="akun-heroes">${acc.heroes}</div>
+                    </div>
+                    <div class="akun-price">${acc.price}</div>
+                  </div>
+                </a>
+              `
+                )
+                .join("")}
+            </div>
+          `;
+
+          document.getElementById("btn-back-budget")?.addEventListener("click", () => {
+            selectedBudgetId = null;
+            renderCatalog();
+          });
+          return;
+        }
+      }
+
+      catalogGrid.innerHTML = `
+        <div class="budget-grid">
+          ${AKUN_MLBB_BUDGETS.map(
+            (b) => `
+            <button type="button" class="budget-card" data-budget="${b.id}" style="--budget-bg:${b.bg};">
+              <span class="budget-kicker">${b.kicker}</span>
+              <span class="budget-main-title">${b.title}</span>
+              <span class="budget-range-pill">${b.range}</span>
+            </button>
+          `
+          ).join("")}
+        </div>
+      `;
+
+      catalogGrid.querySelectorAll(".budget-card").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          selectedBudgetId = btn.dataset.budget;
+          renderCatalog();
+        });
+      });
+    }
+
     function renderCatalog() {
       const q = keyword.trim().toLowerCase();
+
+      if (!q && currentCat === "jual-akun-mlbb") {
+        renderAkunMlbbCatalog("");
+        return;
+      }
+
+      if (q && currentCat === "jual-akun-mlbb") {
+        renderAkunMlbbCatalog(q);
+        return;
+      }
+
+      catalogGrid.className = "grid";
+
       const filtered = ITEMS.filter((item) => {
         const matchCat = q ? true : item.cat === currentCat;
         const matchText =
@@ -865,6 +1370,9 @@
 
     function setCategory(cat) {
       currentCat = cat;
+      if (cat !== "jual-akun-mlbb") {
+        selectedBudgetId = null;
+      }
       tabs.forEach((btn) => btn.classList.toggle("active", btn.dataset.cat === cat));
       renderCatalog();
     }
