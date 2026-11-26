@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Katalog - KABUKI JOKI</title>
+  <style>
+    :root {
+      --bg-main: #060e16;
+      --bg-card: #0c1824;
+      --bg-input: #08121c;
+      --accent-green: #16a34a;
+      --accent-green-bright: #22c55e;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --border-soft: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.15), transparent 45%),
+                  var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(6, 14, 22, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .region-badge {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(160deg, #0e1d2b 0%, #081a13 100%);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .thumb {
+      width: 78px;
+      height: 102px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #102536;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.14);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 3px 8px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      margin-top: 10px;
+    }
+
+    .label:first-of-type {
+      margin-top: 0;
+    }
+
+    .input {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--accent-green-bright);
+    }
+
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (min-width: 600px) {
+      .pkg-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .pkg-btn {
+      text-align: left;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-input);
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .pkg-btn.active {
+      border-color: var(--accent-green-bright);
+      background: rgba(34, 197, 94, 0.14);
+    }
+
+    .pkg-name {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .pkg-price {
+      font-size: 12px;
+      font-weight: 800;
+      color: #4ade80;
+    }
+
+    .summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .sum-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .sum-price {
+      font-size: 18px;
+      font-weight: 900;
+      color: #4ade80;
+    }
+
+    .btn-wa {
+      background: var(--accent-green-bright);
+      color: #052010;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .status-msg {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="back-btn">← Kembali</a>
+    <div class="region-badge">🇮🇩 ID / IDR</div>
+  </header>
+
+  <main id="order-app" class="wrap">
+    <div class="status-msg">Memuat detail katalog...</div>
+  </main>
+
+  <script>
+    const orderApp = document.getElementById("order-app");
+    let selectedItem = null;
+    let selectedPkg = null;
+
+    function formatRupiah(num) {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
+      }).format(num);
+    }
+
+    async function loadOrderPage() {
+      const params = new URLSearchParams(window.location.search);
+      const idParam = params.get("id");
+
+      try {
+        const res = await fetch("data/catalog.json");
+        const list = await res.json();
+        selectedItem = list.find((item) => item.id === idParam) || list[0];
+
+        if (!selectedItem) {
+          orderApp.innerHTML = `<div class="status-msg">Data katalog tidak ditemukan.</div>`;
+          return;
+        }
+
+        document.title = `${selectedItem.name} - Order | KABUKI JOKI`;
+
+        const packages = selectedItem.packages && selectedItem.packages.length
+          ? selectedItem.packages
+          : [{ label: "Paket Standar", price: 25000 }];
+
+        orderApp.innerHTML = `
+          <section class="hero-box">
+            <img
+              src="${selectedItem.image}"
+              alt="${selectedItem.name}"
+              class="thumb"
+              onerror="this.style.opacity='0'"
+            />
+            <div>
+              <span class="badge">KATALOG #${selectedItem.badge || ""}</span>
+              <h1 class="title">${selectedItem.name}</h1>
+              <p class="subtitle">Lengkapi data tujuan dan pilih paket untuk melanjutkan order.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">1. Data Pesanan</h2>
+            <label for="target-field" class="label">${selectedItem.inputLabel || "Data Tujuan"}</label>
+            <input
+              type="text"
+              id="target-field"
+              class="input"
+              placeholder="Contoh: 12345678 (1234) atau nomor tujuan..."
+            />
+
+            <label for="pay-field" class="label">Metode Pembayaran</label>
+            <select id="pay-field" class="input">
+              <option value="QRIS">QRIS</option>
+              <option value="Transfer Bank">Transfer Bank</option>
+              <option value="E-Wallet (DANA / OVO / GoPay)">E-Wallet (DANA / OVO / GoPay)</option>
+            </select>
+          </section>
+
+          <section class="card">
+            <h2 class="card-title">2. Pilih Paket / Nominal</h2>
+            <div id="pkg-list" class="pkg-grid">
+              ${packages
+                .map(
+                  (pkg, idx) => `
+                  <button type="button" class="pkg-btn" data-idx="${idx}">
+                    <div class="pkg-name">${pkg.label}</div>
+                    <div class="pkg-price">${formatRupiah(pkg.price)}</div>
+                  </button>
+                `
+                )
+                .join("")}
+            </div>
+          </section>
+
+          <section class="summary">
+            <div>
+              <div class="sum-label">Total Pembayaran</div>
+              <div id="sum-price" class="sum-price">${formatRupiah(packages[0].price)}</div>
+            </div>
+            <button type="button" id="btn-kirim-wa" class="btn-wa">Order via WhatsApp</button>
+          </section>
+        `;
+
+        const pkgBtns = document.querySelectorAll(".pkg-btn");
+        const sumPrice = document.getElementById("sum-price");
+
+        pkgBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            pkgBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const idx = Number(btn.dataset.idx);
+            selectedPkg = packages[idx];
+            sumPrice.textContent = formatRupiah(selectedPkg.price);
+          });
+        });
+
+        pkgBtns[0].click();
+
+        document.getElementById("btn-kirim-wa").addEventListener("click", () => {
+          const targetVal = document.getElementById("target-field").value.trim();
+          const payVal = document.getElementById("pay-field").value;
+
+          if (!targetVal) {
+            alert("Silakan isi data tujuan terlebih dahulu.");
+            document.getElementById("target-field").focus();
+            return;
+          }
+
+          const waNum = selectedItem.waNumber || "6281234567890";
+          const pesan = [
+            "Halo Admin KABUKI JOKI, saya mau order:",
+            `• Katalog: ${selectedItem.name}`,
+            `• Paket: ${selectedPkg.label}`,
+            `• Harga: ${formatRupiah(selectedPkg.price)}`,
+            `• ${selectedItem.inputLabel || "Tujuan"}: ${targetVal}`,
+            `• Pembayaran: ${payVal}`
+          ].join("\n");
+
+          window.open(
+            `https://wa.me/${waNum}?text=${encodeURIComponent(pesan)}`,
+            "_blank",
+            "noopener,noreferrer"
+          );
+        });
+      } catch (err) {
+        orderApp.innerHTML = `<div class="status-msg">Gagal memuat data dari data/catalog.json.</div>`;
+      }
+    }
+
+    loadOrderPage();
+  </script>
+</body>
+</html>
