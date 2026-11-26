@@ -342,7 +342,7 @@
     <!-- Info Layanan -->
     <section class="panel">
       <div class="service-hero">
-        <img id="svc-img" src="" alt="" class="service-img" onerror="this.style.opacity='0.2'" />
+        <img id="svc-img" src="" alt="" class="service-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
         <div>
           <span id="svc-cat" class="cat-pill">KATALOG</span>
           <h1 id="svc-title" class="service-title">Memuat Layanan...</h1>
@@ -452,13 +452,21 @@
   <script>
     const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
 
+    const FALLBACK_ART =
+      "data:image/svg+xml;charset=UTF-8," +
+      encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="320" height="340" viewBox="0 0 320 340">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e3a8a"/><stop offset="100%" stop-color="#090d16"/></linearGradient></defs>
+        <rect width="320" height="340" fill="url(#g)"/>
+        <text x="160" y="175" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="900" fill="#e2e8f0">KABUKI JOKI</text>
+      </svg>`);
+
     const SERVICES = {
       "joki-rank": {
         title: "Joki Rank",
         sub: "Jasa Joki (Up Rank)",
         cat: "joki-ml",
         catLabel: "Joki ML",
-        image: "assets/catalog/1795684016988.png",
+        image: "1795684016988.png",
         note: "Pastikan verifikasi akun dua langkah (2FA) dimatikan sementara saat proses joki berlangsung, atau pilih Mabar jika tidak ingin akun di-login."
       },
       "joki-hero-mmr": {
@@ -466,7 +474,7 @@
         sub: "1 Hero (Up MMR)",
         cat: "joki-ml",
         catLabel: "Joki ML",
-        image: "assets/catalog/joki-hero-mmr.webp",
+        image: "1795684363565.png",
         note: "Fokus push MMR untuk 1 hero pilihan. Cantumkan nama hero target di kolom catatan."
       },
       "jasa-gendong": {
@@ -474,7 +482,7 @@
         sub: "Party Bareng Pro",
         cat: "joki-ml",
         catLabel: "Joki ML",
-        image: "assets/catalog/jasa-gendong.webp",
+        image: "1795684340955.png",
         note: "Main bareng tim/joki tanpa perlu menyerahkan password akun. Siapkan ID & nickname saat antrean dimulai."
       },
       "joki-classic": {
@@ -482,7 +490,7 @@
         sub: "Up Winrate Hero",
         cat: "joki-ml",
         catLabel: "Joki ML",
-        image: "assets/catalog/joki-classic.webp",
+        image: "file_00000000fde082118279351be4988263.webp",
         note: "Bantu naikkan winrate hero/akun di mode Classic sesuai paket match yang dipilih."
       },
       "joki-magic-chess": {
@@ -490,7 +498,7 @@
         sub: "Push Rank Magic Chess",
         cat: "joki-ml",
         catLabel: "Joki ML",
-        image: "assets/catalog/joki-magic-chess.webp",
+        image: "1795684487111.png",
         note: "Jasa push rank mode Magic Chess secara aman dan bertahap."
       },
       "joki-montage": {
@@ -498,7 +506,7 @@
         sub: "Jasa Video Highlight",
         cat: "joki-ml",
         catLabel: "Joki ML",
-        image: "assets/catalog/joki-montage.webp",
+        image: "1795684433125.png",
         note: "Pembuatan video highlight/montage gameplay MLBB. Kirimkan ID/replay atau catatan konsep di catatan pesanan."
       },
       "topup-mlbb": {
@@ -507,7 +515,7 @@
         cat: "topup-game",
         catLabel: "Top Up Game",
         needZone: true,
-        image: "assets/catalog/topup-mlbb.webp",
+        image: "miya_moonlight_archer_transparent.png",
         note: "Masukkan User ID dan Zone ID dengan benar. Diamonds / WDP masuk otomatis sesuai antrean."
       },
       "topup-ff": {
@@ -516,7 +524,7 @@
         cat: "topup-game",
         catLabel: "Top Up Game",
         needZone: false,
-        image: "assets/catalog/topup-ff.webp",
+        image: "images.jpeg",
         note: "Masukkan Player ID Free Fire dengan benar sebelum melanjutkan pembayaran."
       },
       "topup-ff-max": {
@@ -525,7 +533,7 @@
         cat: "topup-game",
         catLabel: "Top Up Game",
         needZone: false,
-        image: "assets/catalog/topup-ff-max.webp",
+        image: "images.jpeg",
         note: "Top up diamond untuk akun Free Fire / Free Fire Max menggunakan Player ID."
       },
       "topup-pubgm": {
@@ -534,7 +542,7 @@
         cat: "topup-game",
         catLabel: "Top Up Game",
         needZone: false,
-        image: "assets/catalog/topup-pubgm.webp",
+        image: "images.jpeg",
         note: "Masukkan Character ID PUBG Mobile secara tepat agar UC masuk tanpa kendala."
       },
       "topup-hok": {
@@ -543,7 +551,7 @@
         cat: "topup-game",
         catLabel: "Top Up Game",
         needZone: false,
-        image: "assets/catalog/topup-hok.webp",
+        image: "honor-of-kings-1w5l.png",
         note: "Masukkan Player ID Honor of Kings untuk pengisian Tokens."
       },
       "topup-genshin": {
@@ -552,7 +560,7 @@
         cat: "topup-game",
         catLabel: "Top Up Game",
         needZone: true,
-        image: "assets/catalog/topup-genshin.webp",
+        image: "genshin-impact-hqdph.jpg",
         note: "Masukkan UID dan pilih Server (Asia / America / Europe / TW,HK,MO) dengan tepat."
       }
     };
