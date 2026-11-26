@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KABUKI JOKI - Katalog Layanan</title>
+  <title>KABUKI JOKI - Joki ML &amp; Top Up Game</title>
   <style>
     :root {
-      --bg-main: #060e16;
-      --bg-card: #0c1824;
-      --bg-pill: #112130;
-      --accent-green: #16a34a;
-      --accent-green-bright: #22c55e;
-      --accent-blue: #38bdf8;
-      --text-main: #ffffff;
+      --bg-main: #111214;
+      --bg-surface: #181a1f;
+      --bg-card: #1d2129;
+      --accent: #1d74f5;
+      --accent-bright: #3b82f6;
+      --cyan-edge: #38bdf8;
+      --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border-soft: rgba(255, 255, 255, 0.09);
+      --border-soft: rgba(255, 255, 255, 0.1);
     }
 
     * {
@@ -23,30 +23,24 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: radial-gradient(circle at top right, rgba(22, 163, 74, 0.15), transparent 45%),
-                  radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 40%),
-                  var(--bg-main);
+      background: var(--bg-main);
       color: var(--text-main);
       min-height: 100vh;
-      padding-bottom: 92px;
+      padding-bottom: 48px;
     }
 
-    /* Header */
+    /* Top Header */
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 20;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(6, 14, 22, 0.92);
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(17, 18, 20, 0.94);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border-soft);
     }
@@ -54,313 +48,181 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text-main);
-    }
-
-    .brand-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      object-fit: cover;
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      background: var(--bg-pill);
-    }
-
-    .brand-name {
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
       gap: 8px;
-    }
-
-    .icon-btn,
-    .region-pill {
-      height: 34px;
-      padding: 0 11px;
-      border-radius: 9px;
-      border: 1px solid var(--border-soft);
-      background: var(--bg-pill);
-      color: var(--text-main);
-      font-size: 12px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
       text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
     }
 
-    .icon-btn:hover {
-      border-color: var(--accent-green-bright);
-    }
-
-    /* Hero */
-    .hero {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 28px 16px 14px;
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #1d74f5, #0ea5e9);
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .hero {
-        grid-template-columns: 1.35fr 0.65fr;
-        padding: 36px 20px 18px;
-      }
-    }
-
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--accent-green-bright);
-      margin-bottom: 8px;
-    }
-
-    .hero-title {
-      font-size: 32px;
-      line-height: 1.1;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-
-    @media (min-width: 768px) {
-      .hero-title {
-        font-size: 42px;
-      }
-    }
-
-    .hero-desc {
+      place-items: center;
       font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.55;
-      max-width: 540px;
-      margin-bottom: 18px;
-    }
-
-    .hero-highlights {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .highlight-chip {
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      font-size: 12px;
-      font-weight: 600;
-      color: #e2e8f0;
-    }
-
-    .hero-badge-card {
-      background: linear-gradient(160deg, #0f2336 0%, #091b16 100%);
-      border: 1px solid rgba(34, 197, 94, 0.28);
-      border-radius: 18px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .hero-badge-card img {
-      width: 110px;
-      height: 110px;
-      object-fit: contain;
-      margin: 0 auto 10px;
-      display: block;
-    }
-
-    .hero-badge-caption {
-      font-size: 11px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 700;
-    }
-
-    /* Catalog Section */
-    .catalog-wrap {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 16px 16px 32px;
-    }
-
-    .catalog-head {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: 24px;
       font-weight: 900;
-      letter-spacing: 0.3px;
     }
 
-    .catalog-count {
-      font-size: 12px;
-      color: var(--accent-green-bright);
-      font-weight: 700;
-    }
-
-    /* Search & Filter Bar */
-    .search-box {
-      margin-bottom: 12px;
-    }
-
-    .search-box.hidden {
-      display: none;
+    .search-wrap {
+      flex: 1;
+      min-width: 0;
     }
 
     .search-input {
       width: 100%;
-      padding: 11px 14px;
-      border-radius: 11px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 7px;
       border: 1px solid var(--border-soft);
-      background: var(--bg-card);
+      background: var(--bg-surface);
       color: var(--text-main);
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
     }
 
     .search-input:focus {
-      border-color: var(--accent-green-bright);
+      border-color: var(--accent-bright);
     }
 
-    .category-bar {
-      display: flex;
+    .region-tag {
+      height: 34px;
+      padding: 0 10px;
+      border-radius: 7px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-surface);
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
       align-items: center;
+      flex-shrink: 0;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 14px 0;
+    }
+
+    /* Category Tabs (2 Katalog) */
+    .tabs {
+      display: flex;
       gap: 8px;
       margin-bottom: 16px;
-    }
-
-    .arrow-btn {
-      flex: 0 0 34px;
-      height: 36px;
-      border-radius: 10px;
-      border: none;
-      background: var(--accent-green);
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .category-scroll {
-      display: flex;
-      gap: 8px;
       overflow-x: auto;
       scrollbar-width: none;
-      scroll-behavior: smooth;
-      flex: 1;
     }
 
-    .category-scroll::-webkit-scrollbar {
+    .tabs::-webkit-scrollbar {
       display: none;
     }
 
-    .cat-btn {
-      flex: 0 0 auto;
-      height: 36px;
-      padding: 0 14px;
-      border-radius: 10px;
+    .tab-btn {
       border: 1px solid var(--border-soft);
-      background: var(--bg-pill);
-      color: #e2e8f0;
-      font-size: 13px;
+      background: var(--bg-surface);
+      color: #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 7px;
+      font-size: 12.5px;
       font-weight: 700;
-      white-space: nowrap;
       cursor: pointer;
+      white-space: nowrap;
     }
 
-    .cat-btn.active {
-      background: var(--accent-green);
-      border-color: var(--accent-green-bright);
+    .tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent-bright);
       color: #ffffff;
     }
 
-    /* Grid Katalog Banyak */
-    .catalog-grid {
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Grid */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
     }
 
-    @media (min-width: 640px) {
-      .catalog-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 14px;
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
       }
     }
 
-    @media (min-width: 1024px) {
-      .catalog-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        gap: 14px;
-      }
-    }
-
-    .catalog-card {
-      position: relative;
-      display: block;
-      aspect-ratio: 3 / 4.2;
-      border-radius: 15px;
-      overflow: hidden;
+    /* Card Style */
+    .card {
+      display: flex;
+      flex-direction: column;
       text-decoration: none;
-      background: linear-gradient(180deg, #102536 0%, #095c2d 100%);
-      border: 1px solid rgba(34, 197, 94, 0.28);
-      transition: transform 0.16s ease, border-color 0.16s ease;
+      background: linear-gradient(180deg, #1b222e 0%, #151b26 100%);
+      border-radius: 12px;
+      padding: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      transition: transform 0.15s ease, border-color 0.15s ease;
     }
 
-    .catalog-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--accent-green-bright);
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan-edge);
     }
 
-    .catalog-card img {
+    .thumb-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 4.3;
+      border-radius: 9px;
+      overflow: hidden;
+      background: #0d131c;
+    }
+
+    .thumb-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .card-badge {
+    .thumb-tag {
       position: absolute;
-      top: 7px;
-      right: 7px;
+      left: 50%;
+      bottom: 7px;
+      transform: translateX(-50%);
+      background: rgba(10, 22, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.55);
+      color: #e0f2fe;
       font-size: 9px;
       font-weight: 800;
-      padding: 3px 6px;
-      border-radius: 6px;
-      background: rgba(6, 14, 22, 0.78);
-      color: #86efac;
-      border: 1px solid rgba(34, 197, 94, 0.35);
+      letter-spacing: 0.4px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      white-space: nowrap;
+      text-transform: uppercase;
     }
 
-    .card-bottom {
-      position: absolute;
-      inset: auto 0 0 0;
-      padding: 24px 7px 9px;
-      background: linear-gradient(
-        to top,
-        rgba(8, 138, 63, 0.98) 0%,
-        rgba(8, 138, 63, 0.85) 62%,
-        transparent 100%
-      );
+    .card-body {
+      padding: 8px 4px 4px;
       text-align: center;
     }
 
@@ -368,299 +230,224 @@
       font-size: 11.5px;
       font-weight: 800;
       color: #ffffff;
-      text-transform: uppercase;
-      line-height: 1.15;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
+      line-height: 1.25;
+      margin-bottom: 2px;
     }
 
-    .empty-msg {
+    .card-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.25;
+    }
+
+    .empty {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 36px 16px;
+      padding: 32px 16px;
       color: var(--text-muted);
-      background: var(--bg-card);
-      border-radius: 14px;
+      background: var(--bg-surface);
+      border-radius: 10px;
       border: 1px solid var(--border-soft);
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 28px 16px 24px;
-      border-top: 1px solid var(--border-soft);
-      color: var(--text-muted);
-      font-size: 12px;
-    }
-
-    .footer strong {
-      display: block;
-      color: var(--text-main);
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    /* Bottom Banner */
-    .install-bar {
-      position: fixed;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      z-index: 40;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: #101e2c;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
-    }
-
-    .install-bar.hidden {
-      display: none;
-    }
-
-    .install-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .install-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 9px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .install-title {
       font-size: 13px;
-      font-weight: 700;
-    }
-
-    .install-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .install-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-
-    .btn-pasang {
-      background: var(--accent-green-bright);
-      color: #052010;
-      border: none;
-      border-radius: 8px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .btn-tutup {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 15px;
-      cursor: pointer;
-      padding: 4px;
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <a href="#" class="brand">
-      <img src="assets/logo.png" alt="Kabuki Joki" class="brand-logo" onerror="this.style.display='none'" />
-      <span class="brand-name">KABUKI JOKI</span>
+      <div class="brand-mark">KJ</div>
+      <span>KABUKI JOKI</span>
     </a>
-
-    <div class="topbar-right">
-      <button type="button" id="btn-search-toggle" class="icon-btn" aria-label="Cari Katalog">🔍</button>
-      <div class="region-pill">🇮🇩 ID / IDR</div>
-      <a href="#pilih-katalog" class="icon-btn">Katalog</a>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div>
-      <div class="eyebrow">● KABUKI JOKI • KATALOG LENGKAP</div>
-      <h1 class="hero-title">PILIH LAYANANMU.</h1>
-      <p class="hero-desc">
-        Selamat datang di Kabuki Joki. Pilih katalog layanan, joki rank, top up game, voucher, e-money, maupun pulsa untuk melanjutkan pemesanan.
-      </p>
-      <div class="hero-highlights">
-        <div class="highlight-chip">⚡ Proses Cepat</div>
-        <div class="highlight-chip">📦 Banyak Pilihan Katalog</div>
-        <div class="highlight-chip">🛡️ Layanan Terpercaya</div>
-      </div>
-    </div>
-
-    <div class="hero-badge-card">
-      <img src="assets/kabuki-emblem.png" alt="Kabuki Emblem" onerror="this.style.display='none'" />
-      <div class="hero-badge-caption">PLAY SMART • RANK UP</div>
-    </div>
-  </section>
-
-  <main id="pilih-katalog" class="catalog-wrap">
-    <div class="catalog-head">
-      <div>
-        <div class="eyebrow">MAU PESAN APA?</div>
-        <h2 class="section-title">PILIH KATALOG</h2>
-      </div>
-      <div id="catalog-count" class="catalog-count">Memuat katalog...</div>
-    </div>
-
-    <div id="search-box" class="search-box">
+    <div class="search-wrap">
       <input
-        type="search"
         id="search-input"
+        type="search"
         class="search-input"
-        placeholder="Cari nama game, joki, voucher, e-money, atau pulsa..."
+        placeholder="Cari Joki ML atau Top Up Game..."
         autocomplete="off"
       />
     </div>
+    <div class="region-tag">🇮🇩 ID / IDR</div>
+  </header>
 
-    <div class="category-bar">
-      <button type="button" id="scroll-left" class="arrow-btn" aria-label="Geser kiri">&lt;</button>
-      <div id="category-scroll" class="category-scroll">
-        <button type="button" class="cat-btn active" data-category="all">✨ Semua Katalog</button>
-        <button type="button" class="cat-btn" data-category="joki">⚔️ Joki</button>
-        <button type="button" class="cat-btn" data-category="games">🎮 Top Up Games</button>
-        <button type="button" class="cat-btn" data-category="voucher">🏷️ Voucher &amp; Tagihan</button>
-        <button type="button" class="cat-btn" data-category="emoney">💳 E-Money</button>
-        <button type="button" class="cat-btn" data-category="pulsa">📱 Pulsa &amp; Masa Aktif</button>
-      </div>
-      <button type="button" id="scroll-right" class="arrow-btn" aria-label="Geser kanan">&gt;</button>
+  <main class="container">
+    <div class="tabs" id="category-tabs">
+      <button type="button" class="tab-btn active" data-cat="joki-ml">⚔️ Joki ML</button>
+      <button type="button" class="tab-btn" data-cat="topup-game">🎮 Top Up Game</button>
     </div>
 
-    <div id="catalog-grid" class="catalog-grid"></div>
+    <div class="section-header">
+      <h1 id="section-title" class="section-title">Joki Mobile Legends</h1>
+      <span id="section-count" class="section-count"></span>
+    </div>
+
+    <div id="catalog-grid" class="grid"></div>
   </main>
 
-  <footer class="footer">
-    <strong>KABUKI JOKI</strong>
-    <div>Push rank dan top up dengan lebih praktis.</div>
-    <div style="margin-top: 6px;">© 2026 Kabuki Joki. Semua katalog siap dipilih.</div>
-  </footer>
-
-  <div id="install-bar" class="install-bar">
-    <div class="install-left">
-      <img src="assets/logo.png" alt="Kabuki Joki" class="install-icon" onerror="this.style.display='none'" />
-      <div>
-        <div class="install-title">Pasang Aplikasi KABUKI JOKI</div>
-        <div class="install-sub">Tambah ke home screen buat pengalaman lebih baik!</div>
-      </div>
-    </div>
-    <div class="install-actions">
-      <button type="button" id="btn-install" class="btn-pasang">Pasang</button>
-      <button type="button" id="btn-close-bar" class="btn-tutup" aria-label="Tutup">✕</button>
-    </div>
-  </div>
-
   <script>
-    function makeArt(tag, topColor, botColor) {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420" viewBox="0 0 300 420">
+    function makePoster(label, badge, c1, c2) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="340" viewBox="0 0 320 340">
         <defs>
-          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="${topColor}"/>
-            <stop offset="100%" stop-color="${botColor}"/>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="${c1}"/>
+            <stop offset="100%" stop-color="${c2}"/>
           </linearGradient>
         </defs>
-        <rect width="300" height="420" fill="url(#g)"/>
-        <circle cx="150" cy="145" r="68" fill="rgba(255,255,255,0.10)"/>
-        <text x="150" y="166" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="900" fill="#ffffff" opacity="0.92">${tag}</text>
+        <rect width="320" height="340" fill="url(#bg)"/>
+        <polygon points="160,42 255,105 225,225 95,225 65,105" fill="rgba(255,255,255,0.08)" stroke="rgba(125,211,252,0.45)" stroke-width="2"/>
+        <text x="160" y="155" text-anchor="middle" font-family="system-ui,sans-serif" font-size="38" font-weight="900" fill="#ffffff">${label}</text>
+        <text x="160" y="192" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#bae6fd" letter-spacing="2">${badge}</text>
       </svg>`;
       return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
     }
 
-    const BUILTIN_CATALOG = [
-      { id: "joki-mlbb", name: "Joki MLBB", category: "joki", badge: "JOKI", image: makeArt("⚔️", "#14532d", "#052e16") },
-      { id: "sword-of-justice", name: "Sword of Justice", category: "games", badge: "01", image: makeArt("SOJ", "#1e3a8a", "#0f172a") },
-      { id: "mobile-legends", name: "Mobile Legends", category: "games", badge: "02", image: makeArt("MLBB", "#1d4ed8", "#090d16") },
-      { id: "magic-chess-go-go", name: "Magic Chess Go Go", category: "games", badge: "03", image: makeArt("MCGG", "#0e7490", "#083344") },
-      { id: "honor-of-kings", name: "Honor of Kings", category: "games", badge: "04", image: makeArt("HOK", "#b45309", "#451a03") },
-      { id: "arena-of-valor", name: "Arena of Valor", category: "games", badge: "05", image: makeArt("AOV", "#6d28d9", "#2e1065") },
-      { id: "free-fire", name: "Free Fire", category: "games", badge: "06", image: makeArt("FF", "#ea580c", "#431407") },
-      { id: "free-fire-max", name: "Free Fire Max", category: "games", badge: "07", image: makeArt("FFM", "#c2410c", "#270c04") },
-      { id: "genshin-impact", name: "Genshin Impact", category: "games", badge: "08", image: makeArt("GI", "#2563eb", "#172554") },
-      { id: "honkai-impact-3", name: "Honkai Impact 3", category: "games", badge: "09", image: makeArt("HI3", "#be185d", "#500724") },
-      { id: "honkai-star-rail", name: "Honkai: Star Rail", category: "games", badge: "10", image: makeArt("HSR", "#4f46e5", "#1e1b4b") },
-      { id: "wuthering-waves", name: "Wuthering Waves", category: "games", badge: "11", image: makeArt("WW", "#0f766e", "#042f2e") },
-      { id: "haikyu-fly-high", name: "Haikyu!! Fly High", category: "games", badge: "12", image: makeArt("10", "#d97706", "#451a03") },
-      { id: "voucher-tagihan", name: "Voucher & Tagihan", category: "voucher", badge: "13", image: makeArt("VOU", "#15803d", "#052e16") },
-      { id: "e-money", name: "E-Money", category: "emoney", badge: "14", image: makeArt("WAL", "#0284c7", "#082f49") },
-      { id: "pulsa-masa-aktif", name: "Pulsa & Masa Aktif", category: "pulsa", badge: "15", image: makeArt("PUL", "#059669", "#022c22") }
+    const ITEMS = [
+      // KATALOG 1: JOKI ML
+      {
+        id: "joki-rank",
+        cat: "joki-ml",
+        tag: "JOKI RANK",
+        title: "Joki Rank",
+        sub: "Jasa Joki (Up Rank)",
+        image: makePoster("RANK", "MOBILE LEGENDS", "#1e3a8a", "#0f172a")
+      },
+      {
+        id: "joki-hero-mmr",
+        cat: "joki-ml",
+        tag: "HERO MMR",
+        title: "Jasa Joki Ranked",
+        sub: "1 Hero (Up MMR)",
+        image: makePoster("MMR", "TITLE HERO", "#312e81", "#090d16")
+      },
+      {
+        id: "jasa-gendong",
+        cat: "joki-ml",
+        tag: "GENDONG",
+        title: "Jasa Mabar / Gendong",
+        sub: "Main Bareng Pro",
+        image: makePoster("MABAR", "PARTY RANK", "#0369a1", "#082f49")
+      },
+      {
+        id: "joki-classic",
+        cat: "joki-ml",
+        tag: "CLASSIC WR",
+        title: "Joki Classic",
+        sub: "Up Winrate Hero",
+        image: makePoster("WR %", "CLASSIC MODE", "#1d4ed8", "#172554")
+      },
+      {
+        id: "joki-magic-chess",
+        cat: "joki-ml",
+        tag: "MAGIC CHESS",
+        title: "Joki Magic Chess",
+        sub: "Push Rank Magic Chess",
+        image: makePoster("CHESS", "STRATEGY MODE", "#0f766e", "#042f2e")
+      },
+      {
+        id: "joki-montage",
+        cat: "joki-ml",
+        tag: "MONTAGE",
+        title: "Joki Video Montage",
+        sub: "Jasa Video Highlight",
+        image: makePoster("CLIP", "HIGHLIGHT ML", "#6d28d9", "#2e1065")
+      },
+
+      // KATALOG 2: TOP UP GAME
+      {
+        id: "topup-mlbb",
+        cat: "topup-game",
+        tag: "DIAMONDS",
+        title: "Mobile Legends",
+        sub: "Diamonds & Weekly Pass",
+        image: makePoster("MLBB", "DIAMONDS", "#1d4ed8", "#0f172a")
+      },
+      {
+        id: "topup-ff",
+        cat: "topup-game",
+        tag: "DIAMONDS",
+        title: "Free Fire",
+        sub: "Diamond & Membership",
+        image: makePoster("FF", "DIAMONDS", "#c2410c", "#1c1917")
+      },
+      {
+        id: "topup-ff-max",
+        cat: "topup-game",
+        tag: "TOP UP",
+        title: "Free Fire Max",
+        sub: "Diamond Instan",
+        image: makePoster("FF MAX", "DIAMONDS", "#b45309", "#1c1917")
+      },
+      {
+        id: "topup-pubgm",
+        cat: "topup-game",
+        tag: "UC",
+        title: "PUBG Mobile",
+        sub: "Unknown Cash (UC)",
+        image: makePoster("PUBGM", "UC INSTAN", "#0369a1", "#090d16")
+      },
+      {
+        id: "topup-hok",
+        cat: "topup-game",
+        tag: "TOKENS",
+        title: "Honor of Kings",
+        sub: "Tokens Resmi",
+        image: makePoster("HOK", "TOKENS", "#7e22ce", "#1e1b4b")
+      },
+      {
+        id: "topup-genshin",
+        cat: "topup-game",
+        tag: "GENESIS",
+        title: "Genshin Impact",
+        sub: "Genesis Crystals & Welkin",
+        image: makePoster("GI", "CRYSTALS", "#0f766e", "#042f2e")
+      }
     ];
 
-    let CATALOG_DATA = BUILTIN_CATALOG;
-    let activeCategory = "all";
-    let queryText = "";
-    let deferredInstallPrompt = null;
+    let currentCat = "joki-ml";
+    let keyword = "";
 
-    const gridEl = document.getElementById("catalog-grid");
-    const countEl = document.getElementById("catalog-count");
-    const searchBox = document.getElementById("search-box");
+    const tabs = document.querySelectorAll(".tab-btn");
+    const grid = document.getElementById("catalog-grid");
+    const titleEl = document.getElementById("section-title");
+    const countEl = document.getElementById("section-count");
     const searchInput = document.getElementById("search-input");
-    const toggleSearchBtn = document.getElementById("btn-search-toggle");
-    const categoryScroll = document.getElementById("category-scroll");
-    const catButtons = document.querySelectorAll(".cat-btn");
-    const scrollLeftBtn = document.getElementById("scroll-left");
-    const scrollRightBtn = document.getElementById("scroll-right");
 
-    const installBar = document.getElementById("install-bar");
-    const installBtn = document.getElementById("btn-install");
-    const closeBarBtn = document.getElementById("btn-close-bar");
-
-    async function initCatalogPage() {
-      try {
-        const res = await fetch("data/catalog.json?v=" + Date.now());
-        if (res.ok) {
-          const data = await res.json();
-          if (Array.isArray(data) && data.length) {
-            CATALOG_DATA = data;
-          }
-        }
-      } catch (err) {
-        CATALOG_DATA = BUILTIN_CATALOG;
-      }
-      renderGrid();
-    }
-
-    function renderGrid() {
-      const filtered = CATALOG_DATA.filter((item) => {
-        const okCat = activeCategory === "all" || item.category === activeCategory;
-        const okName = item.name.toLowerCase().includes(queryText.toLowerCase().trim());
-        return okCat && okName;
+    function render() {
+      const q = keyword.trim().toLowerCase();
+      const filtered = ITEMS.filter((item) => {
+        const matchCat = q ? true : item.cat === currentCat;
+        const matchText =
+          !q ||
+          item.title.toLowerCase().includes(q) ||
+          item.sub.toLowerCase().includes(q) ||
+          item.tag.toLowerCase().includes(q);
+        return matchCat && matchText;
       });
 
-      countEl.textContent = `${filtered.length} Katalog Ditampilkan`;
+      titleEl.textContent = q
+        ? "Hasil Pencarian"
+        : currentCat === "joki-ml"
+        ? "Joki Mobile Legends"
+        : "Top Up Game";
+
+      countEl.textContent = `${filtered.length} item`;
 
       if (!filtered.length) {
-        gridEl.innerHTML = `<div class="empty-msg">Katalog tidak ditemukan. Coba kata kunci atau kategori lain.</div>`;
+        grid.innerHTML = `<div class="empty">Item tidak ditemukan.</div>`;
         return;
       }
 
-      gridEl.innerHTML = filtered
+      grid.innerHTML = filtered
         .map(
           (item) => `
-          <a href="order.html?id=${encodeURIComponent(item.id)}" class="catalog-card">
-            <img
-              src="${item.image}"
-              alt="${item.name}"
-              loading="lazy"
-            />
-            <span class="card-badge">#${item.badge || ""}</span>
-            <div class="card-bottom">
-              <div class="card-title">${item.name}</div>
+          <a href="order.html?id=${encodeURIComponent(item.id)}" class="card">
+            <div class="thumb-box">
+              <img src="${item.image}" alt="${item.title}" loading="lazy" />
+              <span class="thumb-tag">${item.tag}</span>
+            </div>
+            <div class="card-body">
+              <div class="card-title">${item.title}</div>
+              <div class="card-sub">${item.sub}</div>
             </div>
           </a>
         `
@@ -668,56 +455,23 @@
         .join("");
     }
 
-    catButtons.forEach((btn) => {
+    tabs.forEach((btn) => {
       btn.addEventListener("click", () => {
-        catButtons.forEach((b) => b.classList.remove("active"));
+        tabs.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        activeCategory = btn.dataset.category;
-        renderGrid();
+        currentCat = btn.dataset.cat;
+        searchInput.value = "";
+        keyword = "";
+        render();
       });
     });
 
-    scrollLeftBtn.addEventListener("click", () => {
-      categoryScroll.scrollBy({ left: -160, behavior: "smooth" });
-    });
-
-    scrollRightBtn.addEventListener("click", () => {
-      categoryScroll.scrollBy({ left: 160, behavior: "smooth" });
-    });
-
-    toggleSearchBtn.addEventListener("click", () => {
-      searchBox.classList.toggle("hidden");
-      if (!searchBox.classList.contains("hidden")) {
-        searchInput.focus();
-      }
-    });
-
     searchInput.addEventListener("input", (e) => {
-      queryText = e.target.value;
-      renderGrid();
+      keyword = e.target.value;
+      render();
     });
 
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredInstallPrompt = e;
-    });
-
-    installBtn.addEventListener("click", async () => {
-      if (deferredInstallPrompt) {
-        deferredInstallPrompt.prompt();
-        await deferredInstallPrompt.userChoice;
-        deferredInstallPrompt = null;
-        installBar.classList.add("hidden");
-      } else {
-        alert("Buka menu browser (⋮) lalu pilih 'Tambahkan ke layar utama' / 'Add to Home Screen'.");
-      }
-    });
-
-    closeBarBtn.addEventListener("click", () => {
-      installBar.classList.add("hidden");
-    });
-
-    initCatalogPage();
+    render();
   </script>
 </body>
 </html>
