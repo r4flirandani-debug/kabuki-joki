@@ -1,0 +1,213 @@
+[
+  {
+    "id": "sword-of-justice",
+    "name": "Sword of Justice",
+    "category": "games",
+    "badge": "01",
+    "image": "assets/catalog/sword-of-justice.webp",
+    "inputLabel": "User ID & Server / Role ID",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Paket Starter", "price": 25000 },
+      { "label": "Paket Reguler", "price": 50000 },
+      { "label": "Paket Sultan", "price": 100000 }
+    ]
+  },
+  {
+    "id": "mobile-legends",
+    "name": "Mobile Legends",
+    "category": "games",
+    "badge": "02",
+    "image": "assets/catalog/mobile-legends.webp",
+    "inputLabel": "User ID & Zone ID (contoh: 12345678 (1234))",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "86 Diamonds", "price": 22000 },
+      { "label": "172 Diamonds", "price": 44000 },
+      { "label": "257 Diamonds", "price": 66000 },
+      { "label": "Weekly Diamond Pass", "price": 29500 }
+    ]
+  },
+  {
+    "id": "magic-chess-go-go",
+    "name": "Magic Chess Go Go",
+    "category": "games",
+    "badge": "03",
+    "image": "assets/catalog/magic-chess-go-go.webp",
+    "inputLabel": "User ID & Server ID",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Paket Hemat", "price": 18000 },
+      { "label": "Paket Standar", "price": 36000 },
+      { "label": "Paket Pro", "price": 75000 }
+    ]
+  },
+  {
+    "id": "honor-of-kings",
+    "name": "Honor of Kings",
+    "category": "games",
+    "badge": "04",
+    "image": "assets/catalog/honor-of-kings.webp",
+    "inputLabel": "Player ID Honor of Kings",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "80 Tokens", "price": 17000 },
+      { "label": "240 Tokens", "price": 49000 },
+      { "label": "560 Tokens", "price": 112000 }
+    ]
+  },
+  {
+    "id": "arena-of-valor",
+    "name": "Arena of Valor",
+    "category": "games",
+    "badge": "05",
+    "image": "assets/catalog/arena-of-valor.webp",
+    "inputLabel": "Open ID / Player ID AoV",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "90 Vouchers", "price": 25000 },
+      { "label": "230 Vouchers", "price": 60000 },
+      { "label": "470 Vouchers", "price": 120000 }
+    ]
+  },
+  {
+    "id": "free-fire",
+    "name": "Free Fire",
+    "category": "games",
+    "badge": "06",
+    "image": "assets/catalog/free-fire.webp",
+    "inputLabel": "Player ID Free Fire",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "70 Diamonds", "price": 10000 },
+      { "label": "140 Diamonds", "price": 20000 },
+      { "label": "355 Diamonds", "price": 50000 }
+    ]
+  },
+  {
+    "id": "free-fire-max",
+    "name": "Free Fire Max",
+    "category": "games",
+    "badge": "07",
+    "image": "assets/catalog/free-fire-max.webp",
+    "inputLabel": "Player ID Free Fire Max",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "70 Diamonds", "price": 10500 },
+      { "label": "140 Diamonds", "price": 20500 },
+      { "label": "355 Diamonds", "price": 51000 }
+    ]
+  },
+  {
+    "id": "genshin-impact",
+    "name": "Genshin Impact",
+    "category": "games",
+    "badge": "08",
+    "image": "assets/catalog/genshin-impact.webp",
+    "inputLabel": "UID & Server (Asia / OS / etc.)",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Welkin Moon", "price": 75000 },
+      { "label": "60 Genesis Crystals", "price": 16000 },
+      { "label": "300+30 Genesis Crystals", "price": 76000 }
+    ]
+  },
+  {
+    "id": "honkai-impact-3",
+    "name": "Honkai Impact 3",
+    "category": "games",
+    "badge": "09",
+    "image": "assets/catalog/honkai-impact-3.webp",
+    "inputLabel": "UID & Server",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "65 B-Chips", "price": 16500 },
+      { "label": "330 B-Chips", "price": 78000 },
+      { "label": "710 B-Chips", "price": 155000 }
+    ]
+  },
+  {
+    "id": "honkai-star-rail",
+    "name": "Honkai: Star Rail",
+    "category": "games",
+    "badge": "10",
+    "image": "assets/catalog/honkai-star-rail.webp",
+    "inputLabel": "UID & Server",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Express Supply Pass", "price": 75000 },
+      { "label": "60 Oneiric Shards", "price": 16000 },
+      { "label": "300+30 Oneiric Shards", "price": 76000 }
+    ]
+  },
+  {
+    "id": "wuthering-waves",
+    "name": "Wuthering Waves",
+    "category": "games",
+    "badge": "11",
+    "image": "assets/catalog/wuthering-waves.webp",
+    "inputLabel": "UID & Server",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Lunite Subscription", "price": 75000 },
+      { "label": "60 Lunite", "price": 16000 },
+      { "label": "300 Lunite", "price": 76000 }
+    ]
+  },
+  {
+    "id": "haikyu-fly-high",
+    "name": "Haikyu!! Fly High",
+    "category": "games",
+    "badge": "12",
+    "image": "assets/catalog/haikyu-fly-high.webp",
+    "inputLabel": "Player ID & Server",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Paket Awal", "price": 20000 },
+      { "label": "Paket Menengah", "price": 50000 },
+      { "label": "Paket Lengkap", "price": 100000 }
+    ]
+  },
+  {
+    "id": "voucher-tagihan",
+    "name": "Voucher & Tagihan",
+    "category": "voucher",
+    "badge": "13",
+    "image": "assets/catalog/voucher-tagihan.webp",
+    "inputLabel": "ID Pelanggan / Nomor Tujuan",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Voucher Rp 25.000", "price": 26500 },
+      { "label": "Voucher Rp 50.000", "price": 51500 },
+      { "label": "Tagihan / Paket Custom", "price": 100000 }
+    ]
+  },
+  {
+    "id": "e-money",
+    "name": "E-Money",
+    "category": "emoney",
+    "badge": "14",
+    "image": "assets/catalog/e-money.webp",
+    "inputLabel": "Nomor HP / ID E-Money (DANA, OVO, GoPay, dll.)",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Saldo Rp 25.000", "price": 26500 },
+      { "label": "Saldo Rp 50.000", "price": 51500 },
+      { "label": "Saldo Rp 100.000", "price": 102000 }
+    ]
+  },
+  {
+    "id": "pulsa-masa-aktif",
+    "name": "Pulsa & Masa Aktif",
+    "category": "pulsa",
+    "badge": "15",
+    "image": "assets/catalog/pulsa-masa-aktif.webp",
+    "inputLabel": "Nomor HP Tujuan",
+    "waNumber": "6281234567890",
+    "packages": [
+      { "label": "Pulsa Rp 15.000", "price": 16500 },
+      { "label": "Pulsa Rp 30.000", "price": 31500 },
+      { "label": "Pulsa Rp 50.000", "price": 51500 }
+    ]
+  }
+]
