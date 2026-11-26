@@ -333,9 +333,8 @@
 
     .catalog-card img {
       width: 100%;
-      height: 78%;
+      height: 100%;
       object-fit: cover;
-      object-position: center top;
       display: block;
     }
 
@@ -568,122 +567,41 @@
   </div>
 
   <script>
-    const DIRECT_IMAGE_CATALOG = [
-      {
-        id: "joki-mlbb",
-        name: "Joki MLBB",
-        category: "joki",
-        badge: "JOKI",
-        image: "https://img.layarkaca.org/wp-content/uploads/2022/03/Fanny-Lightborn-Skin.png"
-      },
-      {
-        id: "sword-of-justice",
-        name: "Sword of Justice",
-        category: "games",
-        badge: "01",
-        image: "https://i.ytimg.com/vi/O0vEwYv6j9U/maxresdefault.jpg"
-      },
-      {
-        id: "mobile-legends",
-        name: "Mobile Legends",
-        category: "games",
-        badge: "02",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Mobile_Legends_Bang_Bang_logo.png/1200px-Mobile_Legends_Bang_Bang_logo.png"
-      },
-      {
-        id: "magic-chess-go-go",
-        name: "Magic Chess Go Go",
-        category: "games",
-        badge: "03",
-        image: "https://mmoculture.com/wp-content/uploads/2020/02/Magic-Chess-logo.jpg"
-      },
-      {
-        id: "honor-of-kings",
-        name: "Honor of Kings",
-        category: "games",
-        badge: "04",
-        image: "https://play-lh.googleusercontent.com/OQJ-m2R6-53m_v7j8Zg7X7s-5W-w3-w3-w3-w3-w3-w3-w3-w3-w3-w3-w3-w3=w240-h480-rw"
-      },
-      {
-        id: "arena-of-valor",
-        name: "Arena of Valor",
-        category: "games",
-        badge: "05",
-        image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Arena_of_Valor_logo.png"
-      },
-      {
-        id: "free-fire",
-        name: "Free Fire",
-        category: "games",
-        badge: "06",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Garena_Free_Fire_logo.png/640px-Garena_Free_Fire_logo.png"
-      },
-      {
-        id: "free-fire-max",
-        name: "Free Fire Max",
-        category: "games",
-        badge: "07",
-        image: "https://img.gurugamer.com/resize/740x-/2021/01/18/free-fire-max-logo-3732.jpg"
-      },
-      {
-        id: "genshin-impact",
-        name: "Genshin Impact",
-        category: "games",
-        badge: "08",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Genshin_Impact_logo.svg/2560px-Genshin_Impact_logo.svg.png"
-      },
-      {
-        id: "honkai-impact-3",
-        name: "Honkai Impact 3",
-        category: "games",
-        badge: "09",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Honkai_Impact_3rd_logo.png/640px-Honkai_Impact_3rd_logo.png"
-      },
-      {
-        id: "honkai-star-rail",
-        name: "Honkai: Star Rail",
-        category: "games",
-        badge: "10",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Honkai_Star_Rail_logo.png/640px-Honkai_Star_Rail_logo.png"
-      },
-      {
-        id: "wuthering-waves",
-        name: "Wuthering Waves",
-        category: "games",
-        badge: "11",
-        image: "https://pbs.twimg.com/profile_images/1660249381672529920/iN9U-1gK_400x400.jpg"
-      },
-      {
-        id: "haikyu-fly-high",
-        name: "Haikyu!! Fly High",
-        category: "games",
-        badge: "12",
-        image: "https://img.game.tv/community/Game.tv/game_tv_com/1687875021800.jpg"
-      },
-      {
-        id: "voucher-tagihan",
-        name: "Voucher & Tagihan",
-        category: "voucher",
-        badge: "13",
-        image: "https://cdn-icons-png.flaticon.com/512/3308/3308356.png"
-      },
-      {
-        id: "e-money",
-        name: "E-Money",
-        category: "emoney",
-        badge: "14",
-        image: "https://cdn-icons-png.flaticon.com/512/11325/11325388.png"
-      },
-      {
-        id: "pulsa-masa-aktif",
-        name: "Pulsa & Masa Aktif",
-        category: "pulsa",
-        badge: "15",
-        image: "https://cdn-icons-png.flaticon.com/512/3135/3135763.png"
-      }
+    function makeArt(tag, topColor, botColor) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420" viewBox="0 0 300 420">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="${topColor}"/>
+            <stop offset="100%" stop-color="${botColor}"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="420" fill="url(#g)"/>
+        <circle cx="150" cy="145" r="68" fill="rgba(255,255,255,0.10)"/>
+        <text x="150" y="166" text-anchor="middle" font-family="system-ui,sans-serif" font-size="56" font-weight="900" fill="#ffffff" opacity="0.92">${tag}</text>
+      </svg>`;
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
+
+    const BUILTIN_CATALOG = [
+      { id: "joki-mlbb", name: "Joki MLBB", category: "joki", badge: "JOKI", image: makeArt("⚔️", "#14532d", "#052e16") },
+      { id: "sword-of-justice", name: "Sword of Justice", category: "games", badge: "01", image: makeArt("SOJ", "#1e3a8a", "#0f172a") },
+      { id: "mobile-legends", name: "Mobile Legends", category: "games", badge: "02", image: makeArt("MLBB", "#1d4ed8", "#090d16") },
+      { id: "magic-chess-go-go", name: "Magic Chess Go Go", category: "games", badge: "03", image: makeArt("MCGG", "#0e7490", "#083344") },
+      { id: "honor-of-kings", name: "Honor of Kings", category: "games", badge: "04", image: makeArt("HOK", "#b45309", "#451a03") },
+      { id: "arena-of-valor", name: "Arena of Valor", category: "games", badge: "05", image: makeArt("AOV", "#6d28d9", "#2e1065") },
+      { id: "free-fire", name: "Free Fire", category: "games", badge: "06", image: makeArt("FF", "#ea580c", "#431407") },
+      { id: "free-fire-max", name: "Free Fire Max", category: "games", badge: "07", image: makeArt("FFM", "#c2410c", "#270c04") },
+      { id: "genshin-impact", name: "Genshin Impact", category: "games", badge: "08", image: makeArt("GI", "#2563eb", "#172554") },
+      { id: "honkai-impact-3", name: "Honkai Impact 3", category: "games", badge: "09", image: makeArt("HI3", "#be185d", "#500724") },
+      { id: "honkai-star-rail", name: "Honkai: Star Rail", category: "games", badge: "10", image: makeArt("HSR", "#4f46e5", "#1e1b4b") },
+      { id: "wuthering-waves", name: "Wuthering Waves", category: "games", badge: "11", image: makeArt("WW", "#0f766e", "#042f2e") },
+      { id: "haikyu-fly-high", name: "Haikyu!! Fly High", category: "games", badge: "12", image: makeArt("10", "#d97706", "#451a03") },
+      { id: "voucher-tagihan", name: "Voucher & Tagihan", category: "voucher", badge: "13", image: makeArt("VOU", "#15803d", "#052e16") },
+      { id: "e-money", name: "E-Money", category: "emoney", badge: "14", image: makeArt("WAL", "#0284c7", "#082f49") },
+      { id: "pulsa-masa-aktif", name: "Pulsa & Masa Aktif", category: "pulsa", badge: "15", image: makeArt("PUL", "#059669", "#022c22") }
     ];
 
-    let CATALOG_DATA = [];
+    let CATALOG_DATA = BUILTIN_CATALOG;
     let activeCategory = "all";
     let queryText = "";
     let deferredInstallPrompt = null;
@@ -704,12 +622,15 @@
 
     async function initCatalogPage() {
       try {
-        const res = await fetch("data/catalog.json");
-        if (!res.ok) throw new Error("JSON not found");
-        const data = await res.json();
-        CATALOG_DATA = Array.isArray(data) && data.length ? data : DIRECT_IMAGE_CATALOG;
+        const res = await fetch("data/catalog.json?v=" + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length) {
+            CATALOG_DATA = data;
+          }
+        }
       } catch (err) {
-        CATALOG_DATA = DIRECT_IMAGE_CATALOG;
+        CATALOG_DATA = BUILTIN_CATALOG;
       }
       renderGrid();
     }
@@ -736,7 +657,6 @@
               src="${item.image}"
               alt="${item.name}"
               loading="lazy"
-              onerror="this.style.opacity='0'"
             />
             <span class="card-badge">#${item.badge || ""}</span>
             <div class="card-bottom">
