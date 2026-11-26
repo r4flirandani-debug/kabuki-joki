@@ -221,16 +221,20 @@
       width: 52px;
       height: 54px;
       border-radius: 7px;
-      background: linear-gradient(160deg, #1d4ed8, #0284c7);
+      background: #14161a;
       border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 4px;
       display: grid;
       place-items: center;
-      font-size: 9.5px;
-      font-weight: 900;
-      color: #fff;
-      text-align: center;
-      line-height: 1.15;
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .game-hero-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
     }
 
     .game-hero-title {
@@ -478,8 +482,9 @@
       width: 24px;
       height: 24px;
       border-radius: 5px;
-      object-fit: cover;
+      object-fit: contain;
       background: #14161a;
+      padding: 2px;
       flex-shrink: 0;
     }
 
@@ -834,7 +839,9 @@
         <p>Top Up Diamonds, Membership, &amp; Level Up Pass Free Fire cepat dan aman</p>
       </div>
       <div class="game-hero-meta">
-        <div class="game-hero-thumb">FREE<br />FIRE</div>
+        <div class="game-hero-thumb">
+          <img id="ff-hero-img" src="file_00000000847882118a0b7240f460e3f9.webp" alt="Free Fire" />
+        </div>
         <div>
           <div class="game-hero-title">FREE FIRE</div>
           <div class="game-hero-sub">Garena</div>
@@ -1028,6 +1035,13 @@
         <rect width="120" height="120" rx="14" fill="#1d4ed8"/>
         <polygon points="60,20 96,52 60,100 24,52" fill="#93c5fd"/>
       </svg>`);
+
+    const ffHeroImg = document.getElementById("ff-hero-img");
+    if (ffHeroImg) {
+      ffHeroImg.addEventListener("error", () => {
+        ffHeroImg.src = FALLBACK_ART;
+      }, { once: true });
+    }
 
     function detectInitialGame() {
       const hrefLower = window.location.href.toLowerCase();
