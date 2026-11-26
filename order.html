@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Top Up Mobile Legends - KABUKI JOKI</title>
+  <title>Top Up Game - KABUKI JOKI</title>
   <style>
     :root {
       --bg-page: #18191c;
@@ -142,6 +142,120 @@
       padding: 10px 10px 0;
     }
 
+    /* Game Switcher */
+    .game-switch {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .game-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--bg-panel);
+      color: #e5e7eb;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .game-btn.active {
+      background: var(--blue-bar);
+      border-color: #60a5fa;
+      color: #fff;
+    }
+
+    /* Game Hero Banner (Free Fire) */
+    .game-hero {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .game-hero-banner {
+      background: linear-gradient(135deg, #0b2458 0%, #1565d8 55%, #0284c7 100%);
+      padding: 16px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .game-hero-badge {
+      display: inline-block;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #e0f2fe;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .game-hero-banner h1 {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .game-hero-banner p {
+      font-size: 11.5px;
+      color: #e0f2fe;
+      margin-top: 3px;
+    }
+
+    .game-hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 12px;
+      background: #202227;
+    }
+
+    .game-hero-thumb {
+      width: 52px;
+      height: 54px;
+      border-radius: 7px;
+      background: linear-gradient(160deg, #1d4ed8, #0284c7);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: grid;
+      place-items: center;
+      font-size: 9.5px;
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      line-height: 1.15;
+      flex-shrink: 0;
+    }
+
+    .game-hero-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .game-hero-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .game-hero-perks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e5e7eb;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
     /* Top Mode Tabs (Transaksi / Keterangan) */
     .mode-tabs {
       display: grid;
@@ -235,6 +349,12 @@
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .grid-1 {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 10px;
     }
 
@@ -692,7 +812,7 @@
         <div class="region-badge">🇮🇩 ID / IDR</div>
       </div>
       <div class="quick-links">
-        <a href="order.html?id=topup-mlbb">⊙ Topup</a>
+        <a href="order.html?game=mlbb">⊙ Topup</a>
         <a href="index.html">↺ Cek Transaksi</a>
         <a href="#langkah-2">🧮 Kalkulator</a>
       </div>
@@ -700,6 +820,33 @@
   </header>
 
   <main class="container">
+    <!-- Switcher Game (Mobile Legends / Free Fire) -->
+    <div class="game-switch">
+      <button type="button" id="btn-game-mlbb" class="game-btn">Mobile Legends</button>
+      <button type="button" id="btn-game-ff" class="game-btn">Free Fire</button>
+    </div>
+
+    <!-- Banner Khusus Mode Free Fire -->
+    <section id="ff-hero" class="game-hero hidden">
+      <div class="game-hero-banner">
+        <span class="game-hero-badge">KABUKI JOKI • GARENA FREE FIRE</span>
+        <h1>FREE FIRE</h1>
+        <p>Top Up Diamonds, Membership, &amp; Level Up Pass Free Fire cepat dan aman</p>
+      </div>
+      <div class="game-hero-meta">
+        <div class="game-hero-thumb">FREE<br />FIRE</div>
+        <div>
+          <div class="game-hero-title">FREE FIRE</div>
+          <div class="game-hero-sub">Garena</div>
+        </div>
+      </div>
+      <div class="game-hero-perks">
+        <span>⚡ Proses Cepat</span>
+        <span>💬 Layanan Chat 24/7</span>
+        <span>🛡️ Pembayaran Aman</span>
+      </div>
+    </section>
+
     <!-- Transaksi / Keterangan Tabs -->
     <div class="mode-tabs">
       <button type="button" id="tab-transaksi" class="mode-tab active">Transaksi</button>
@@ -708,11 +855,11 @@
 
     <!-- Keterangan Panel -->
     <section id="panel-keterangan" class="info-box hidden">
-      <h3>Ketentuan Top Up Mobile Legends - KABUKI JOKI</h3>
+      <h3>Ketentuan Top Up Game - KABUKI JOKI</h3>
       <ul>
-        <li>Pastikan <strong>ID</strong> dan <strong>Server</strong> akun Mobile Legends sudah benar sebelum klik <strong>Pesan Sekarang!</strong>.</li>
-        <li>Diamonds, Weekly Diamond Pass, Twilight Pass, maupun Bundle diproses sesuai antrean setelah pembayaran dikonfirmasi.</li>
-        <li>Simpan nomor WhatsApp aktif agar admin mudah menghubungi bila ada kendala.</li>
+        <li>Untuk <strong>Free Fire</strong>, cukup masukkan <strong>ID</strong> akun Free Fire kamu dengan benar.</li>
+        <li>Untuk <strong>Mobile Legends</strong>, masukkan <strong>ID</strong> dan <strong>Server</strong> akun Mobile Legends dengan benar.</li>
+        <li>Pesanan diproses sesuai antrean setelah pembayaran dikonfirmasi.</li>
       </ul>
     </section>
 
@@ -724,16 +871,7 @@
           <h2 class="step-title">Masukkan Data Akun</h2>
         </div>
         <div class="step-body">
-          <div class="grid-2">
-            <div class="field">
-              <label for="f-user-id">ID <span class="q-icon">?</span></label>
-              <input id="f-user-id" type="text" placeholder="Masukkan ID" required />
-            </div>
-            <div class="field">
-              <label for="f-server-id">Server</label>
-              <input id="f-server-id" type="text" placeholder="Masukkan Server" required />
-            </div>
-          </div>
+          <div id="account-fields" class="grid-2"></div>
         </div>
       </section>
 
@@ -872,9 +1010,17 @@
   <script>
     const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
 
+    // Logo Mobile Legends
     const IMG_DIAMOND = "1795689988582.png";
     const IMG_WDP = "IMG_9437.webp";
     const IMG_TWILIGHT = "8a146325-ef40-4ac0-8e09-47911ec4d46b.png.webp";
+
+    // Logo Khusus Free Fire
+    const FF_IMG_DIAMOND = "file_00000000847882118a0b7240f460e3f9.webp";
+    const FF_IMG_WEEKLY = "file_000000003bfc8207a27076d26c311ca1.webp";
+    const FF_IMG_LEVEL_UP = "file_00000000d4ac82119bc17c5107f7d0d8.webp";
+    const FF_IMG_MONTHLY = "file_0000000063f082118919f31d903f3815.webp";
+    const FF_IMG_BP_CARD = "file_00000000479c821199a5e83e4456e29d.webp";
 
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
@@ -882,6 +1028,27 @@
         <rect width="120" height="120" rx="14" fill="#1d4ed8"/>
         <polygon points="60,20 96,52 60,100 24,52" fill="#93c5fd"/>
       </svg>`);
+
+    function detectInitialGame() {
+      const hrefLower = window.location.href.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const raw = [
+        params.get("game"),
+        params.get("layanan"),
+        params.get("id"),
+        params.get("mode")
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      if (raw.includes("ff") || raw.includes("free") || hrefLower.includes("/fr") || hrefLower.includes("free-fire") || hrefLower.includes("free_fire")) {
+        return "ff";
+      }
+      return "mlbb";
+    }
+
+    let currentGame = detectInitialGame();
 
     const MLBB_GROUPS = [
       {
@@ -1012,16 +1179,259 @@
       }
     ];
 
+    const FF_GROUPS = [
+      {
+        title: "✨ Membership",
+        items: [
+          { name: "Level Up Pass - Level 6", price: 5233, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 10", price: 8702, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 15", price: 8702, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 25", price: 8702, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 20", price: 8702, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 30", price: 13907, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Member Mingguan", price: 28279, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_WEEKLY },
+          { name: "BP Card", price: 42417, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_BP_CARD },
+          { name: "Member Bulanan", price: 84833, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_MONTHLY }
+        ]
+      },
+      {
+        title: "⚡ Promo Diamonds Terbatas",
+        items: [
+          { name: "5 Diamonds (ID) - PROMO", price: 765, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "Level Up Pass - Level 6 (ID) - PROMO", price: 4585, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "50 Diamonds (ID) - PROMO", price: 6114, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "Level Up Pass - Level 10 (ID) - PROMO", price: 7641, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 20 (ID) - PROMO", price: 7641, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 25 (ID) - PROMO", price: 7641, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "Level Up Pass - Level 15 (ID) - PROMO", price: 7641, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "70 Diamonds (ID) - PROMO", price: 8253, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "Level Up Pass - Level 30 (ID) - PROMO", price: 12227, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_LEVEL_UP },
+          { name: "140 Diamonds (ID) - PROMO", price: 16506, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "Member Mingguan (ID) - PROMO", price: 25468, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_WEEKLY },
+          { name: "BP Card (ID) - PROMO", price: 38202, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_BP_CARD },
+          { name: "355 Diamonds (ID) - PROMO", price: 41251, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "Member Bulanan (ID) - PROMO", price: 76404, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_MONTHLY },
+          { name: "720 Diamonds (ID) - PROMO", price: 82501, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1450 Diamonds (ID) - PROMO", price: 165002, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2180 Diamonds (ID) - PROMO", price: 247502, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3640 Diamonds (ID) - PROMO", price: 412503, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7290 Diamonds (ID) - PROMO", price: 840437, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "36500 Diamonds (ID) - PROMO", price: 4202184, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "73100 Diamonds (ID) - PROMO", price: 8404368, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND }
+        ]
+      },
+      {
+        title: "Region (Indonesia) 🇮🇩",
+        items: [
+          { name: "5 Diamonds", price: 940, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "12 Diamonds (ID) - PROMO", price: 1751, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "10 Diamonds", price: 1879, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "12 Diamonds", price: 1901, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "15 Diamonds", price: 2819, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "20 Diamonds", price: 3758, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "25 Diamonds", price: 4697, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "30 Diamonds", price: 5637, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "50 Diamonds", price: 7510, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "40 Diamonds", price: 7515, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "55 Diamonds", price: 8450, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "70 Diamonds", price: 9384, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "60 Diamonds", price: 9389, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "75 Diamonds", price: 10323, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "80 Diamonds", price: 11263, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "90 Diamonds", price: 13141, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "95 Diamonds", price: 14081, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "100 Diamonds", price: 15020, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "120 Diamonds", price: 16894, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "125 Diamonds", price: 17833, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "140 Diamonds", price: 18767, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "130 Diamonds", price: 18772, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "145 Diamonds", price: 19706, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "150 Diamonds", price: 20646, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "160 Diamonds", price: 22525, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "170 Diamonds", price: 24405, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "190 Diamonds", price: 26277, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "180 Diamonds", price: 26282, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "210 Diamonds", price: 28150, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "200 Diamonds", price: 28156, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "230 Diamonds", price: 31900, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "240 Diamonds", price: 35660, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "250 Diamonds", price: 35660, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "280 Diamonds", price: 37534, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "300 Diamonds", price: 41291, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "355 Diamonds", price: 46916, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "350 Diamonds", price: 46917, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "360 Diamonds", price: 47855, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "375 Diamonds", price: 50673, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "405 Diamonds", price: 54426, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "400 Diamonds", price: 54426, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "425 Diamonds", price: 57244, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "420 Diamonds", price: 57244, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "455 Diamonds", price: 61935, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "475 Diamonds", price: 63809, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "495 Diamonds", price: 65683, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "500 Diamonds", price: 66622, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "510 Diamonds", price: 68501, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "512 Diamonds", price: 68813, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "515 Diamonds", price: 69440, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "520 Diamonds", price: 70379, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "545 Diamonds", price: 73192, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "565 Diamonds", price: 75066, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "600 Diamonds", price: 81641, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "635 Diamonds", price: 84448, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "645 Diamonds", price: 86328, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "655 Diamonds", price: 88207, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "720 Diamonds", price: 91830, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "710 Diamonds", price: 93831, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "725 Diamonds", price: 94770, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "700 Diamonds", price: 94777, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "740 Diamonds", price: 97588, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "770 Diamonds", price: 101340, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "790 Diamonds", price: 103214, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "800 Diamonds", price: 105092, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "820 Diamonds", price: 108850, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "840 Diamonds", price: 110723, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "860 Diamonds", price: 112597, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "910 Diamonds", price: 118223, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "930 Diamonds", price: 120102, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "925 Diamonds", price: 122910, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1000 Diamonds", price: 131364, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1050 Diamonds", price: 138873, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1075 Diamonds", price: 140746, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1060 Diamonds", price: 140752, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1080 Diamonds", price: 141685, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1125 Diamonds", price: 148256, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1145 Diamonds", price: 150129, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1200 Diamonds", price: 156578, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1215 Diamonds", price: 159512, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1300 Diamonds", price: 171714, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1450 Diamonds", price: 187659, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1440 Diamonds", price: 187660, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1490 Diamonds", price: 195174, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1510 Diamonds", price: 197048, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1580 Diamonds", price: 206421, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1795 Diamonds", price: 233820, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1800 Diamonds", price: 236460, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1875 Diamonds", price: 243958, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "1975 Diamonds", price: 258976, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2000 Diamonds", price: 261790, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2005 Diamonds", price: 262730, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2020 Diamonds", price: 265548, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2100 Diamonds", price: 274926, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2140 Diamonds", price: 280557, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2180 Diamonds", price: 281489, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2160 Diamonds", price: 282428, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2190 Diamonds", price: 286181, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2225 Diamonds", price: 289943, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2280 Diamonds", price: 296504, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2350 Diamonds", price: 305892, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2355 Diamonds", price: 306831, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2400 Diamonds", price: 311518, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2575 Diamonds", price: 335920, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2720 Diamonds", price: 355626, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "2750 Diamonds", price: 357496, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3000 Diamonds", price: 390339, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3310 Diamonds", price: 430684, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3640 Diamonds", price: 469148, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3620 Diamonds", price: 469149, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3675 Diamonds", price: 475724, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "3800 Diamonds", price: 491672, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4000 Diamonds", price: 517003, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4050 Diamonds", price: 524513, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4340 Diamonds", price: 563924, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4450 Diamonds", price: 576119, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4720 Diamonds", price: 610833, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4800 Diamonds", price: 623979, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "4850 Diamonds", price: 631488, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "5500 Diamonds", price: 712171, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "5600 Diamonds", price: 725307, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "6000 Diamonds", price: 776913, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "6480 Diamonds", price: 839782, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "6650 Diamonds", price: 866345, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "6900 Diamonds", price: 892321, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7290 Diamonds", price: 938676, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7295 Diamonds", price: 939615, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7310 Diamonds", price: 942433, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7340 Diamonds", price: 946185, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7360 Diamonds", price: 948059, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7430 Diamonds", price: 957442, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7645 Diamonds", price: 985591, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "7650 Diamonds", price: 986530, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "8010 Diamonds", price: 1032505, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "8730 Diamonds", price: 1126335, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "9290 Diamonds", price: 1202345, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "9800 Diamonds", price: 1265207, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "14580 Diamonds", price: 1877351, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "36500 Diamonds", price: 4693376, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "37050 Diamonds", price: 4767507, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND },
+          { name: "73100 Diamonds", price: 9386751, strike: 0, disc: "", tag: "🛒", icon: FF_IMG_DIAMOND }
+        ]
+      }
+    ];
+
     let selectedItem = null;
     let selectedPayment = "QRIS (All Payment)";
     let promoDiscount = 0;
     let searchFilter = "";
 
+    const btnGameMlbb = document.getElementById("btn-game-mlbb");
+    const btnGameFf = document.getElementById("btn-game-ff");
+    const ffHero = document.getElementById("ff-hero");
+    const accountFields = document.getElementById("account-fields");
     const nominalGroupsEl = document.getElementById("nominal-groups");
     const filterInput = document.getElementById("filter-paket");
     const qtyInput = document.getElementById("f-qty");
     const bottomSummary = document.getElementById("bottom-summary");
     const btnPesan = document.getElementById("btn-pesan");
+
+    function getActiveGroups() {
+      return currentGame === "ff" ? FF_GROUPS : MLBB_GROUPS;
+    }
+
+    function renderAccountForm() {
+      if (currentGame === "ff") {
+        accountFields.className = "grid-1";
+        accountFields.innerHTML = `
+          <div class="field">
+            <label for="f-user-id">ID <span class="q-icon">?</span></label>
+            <input id="f-user-id" type="text" placeholder="Masukkan ID" required />
+          </div>
+        `;
+      } else {
+        accountFields.className = "grid-2";
+        accountFields.innerHTML = `
+          <div class="field">
+            <label for="f-user-id">ID <span class="q-icon">?</span></label>
+            <input id="f-user-id" type="text" placeholder="Masukkan ID" required />
+          </div>
+          <div class="field">
+            <label for="f-server-id">Server</label>
+            <input id="f-server-id" type="text" placeholder="Masukkan Server" required />
+          </div>
+        `;
+      }
+    }
+
+    function applyGameMode() {
+      btnGameMlbb.classList.toggle("active", currentGame === "mlbb");
+      btnGameFf.classList.toggle("active", currentGame === "ff");
+      ffHero.classList.toggle("hidden", currentGame !== "ff");
+      document.title = currentGame === "ff"
+        ? "Top Up Free Fire - KABUKI JOKI"
+        : "Top Up Mobile Legends - KABUKI JOKI";
+      renderAccountForm();
+    }
+
+    function switchGame(nextGame) {
+      if (currentGame === nextGame) return;
+      currentGame = nextGame;
+      selectedItem = null;
+      applyGameMode();
+      renderNominals();
+      updateSummary();
+    }
+
+    btnGameMlbb.addEventListener("click", () => switchGame("mlbb"));
+    btnGameFf.addEventListener("click", () => switchGame("ff"));
 
     function rupiah(n) {
       return "Rp " + Number(n || 0).toLocaleString("id-ID");
@@ -1052,8 +1462,9 @@
 
     function renderNominals() {
       const q = searchFilter.trim().toLowerCase();
+      const activeGroups = getActiveGroups();
 
-      const html = MLBB_GROUPS.map((group, gIdx) => {
+      const html = activeGroups.map((group, gIdx) => {
         const matched = group.items
           .map((item, iIdx) => ({ item, iIdx }))
           .filter(({ item }) => !q || item.name.toLowerCase().includes(q) || group.title.toLowerCase().includes(q));
@@ -1075,7 +1486,7 @@
         btn.addEventListener("click", () => {
           const g = Number(btn.dataset.g);
           const i = Number(btn.dataset.i);
-          selectedItem = { ...MLBB_GROUPS[g].items[i], gIdx: g, iIdx: i };
+          selectedItem = { ...getActiveGroups()[g].items[i], gIdx: g, iIdx: i };
           renderNominals();
           updateSummary();
         });
@@ -1201,22 +1612,28 @@
         return;
       }
 
-      const userId = document.getElementById("f-user-id").value.trim();
-      const serverId = document.getElementById("f-server-id").value.trim();
+      const userId = (document.getElementById("f-user-id")?.value || "").trim();
+      const serverId = (document.getElementById("f-server-id")?.value || "").trim();
       const waBuyer = document.getElementById("f-wa-buyer").value.trim();
       const emailBuyer = document.getElementById("f-email-buyer").value.trim() || "-";
       const promoCode = promoInput.value.trim() || "-";
 
-      if (!userId || !serverId || !waBuyer) {
+      if (currentGame === "ff") {
+        if (!userId || !waBuyer) {
+          alert("Mohon lengkapi ID Free Fire dan No. Whatsapp.");
+          return;
+        }
+      } else if (!userId || !serverId || !waBuyer) {
         alert("Mohon lengkapi ID, Server, dan No. Whatsapp.");
         return;
       }
 
       const qty = getQty();
       const total = getFinalTotal();
+      const gameLabel = currentGame === "ff" ? "FREE FIRE" : "MLBB";
 
       const lines = [
-        "*ORDER TOP UP MLBB - KABUKI JOKI*",
+        `*ORDER TOP UP ${gameLabel} - KABUKI JOKI*`,
         "-----------------------------",
         `Item: *${selectedItem.name}*`,
         `Jumlah: ${qty}`,
@@ -1224,11 +1641,15 @@
         `Pembayaran: ${selectedPayment}`,
         `Kode Promo: ${promoCode}`,
         "-----------------------------",
-        `ID: ${userId}`,
-        `Server: ${serverId}`,
-        `No. WA: +62${waBuyer.replace(/^0+/, "")}`,
-        `Email: ${emailBuyer}`
+        `ID: ${userId}`
       ];
+
+      if (currentGame !== "ff") {
+        lines.push(`Server: ${serverId}`);
+      }
+
+      lines.push(`No. WA: +62${waBuyer.replace(/^0+/, "")}`);
+      lines.push(`Email: ${emailBuyer}`);
 
       window.open(
         `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`,
@@ -1237,6 +1658,7 @@
       );
     });
 
+    applyGameMode();
     renderNominals();
     updateSummary();
   </script>
