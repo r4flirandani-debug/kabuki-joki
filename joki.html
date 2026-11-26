@@ -513,6 +513,31 @@
       flex-shrink: 0;
     }
 
+    .nom-multi-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #191c22;
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      border-radius: 6px;
+      padding: 2px 4px;
+      flex-shrink: 0;
+    }
+
+    .nom-multi-box .nom-img {
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      padding: 0;
+    }
+
+    .nom-multi-arrow {
+      font-size: 10px;
+      font-weight: 900;
+      color: #60a5fa;
+      line-height: 1;
+    }
+
     .nom-name {
       font-size: 11px;
       font-weight: 700;
@@ -525,6 +550,13 @@
       font-weight: 800;
       color: var(--blue-price);
       padding-left: 35px;
+    }
+
+    .nom-card.no-logo .nom-price,
+    .nom-card.no-logo .nom-strike,
+    .nom-card.is-multi .nom-price,
+    .nom-card.is-multi .nom-strike {
+      padding-left: 0;
     }
 
     .nom-strike {
@@ -541,6 +573,16 @@
       align-items: center;
       gap: 4px;
       margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .badge-multi {
+      background: #0f766e;
+      color: #ccfbf1;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 2px 5px;
+      border-radius: 3px;
     }
 
     .badge-disc {
@@ -881,6 +923,7 @@
     <section id="panel-keterangan" class="info-box hidden">
       <h3>Ketentuan Joki Mobile Legends - KABUKI JOKI</h3>
       <ul>
+        <li>Logo rank dan label <strong>MULTI RANK</strong> (<code>Awal → Tujuan</code>) diterapkan pada <strong>Joki Rank Biasa</strong>, <strong>Joki Hero 1 MMR</strong>, dan <strong>Joki Gendong / Mabar</strong>.</li>
         <li>Untuk <strong>Joki Gendong / Mabar</strong>, tidak perlu memberikan email maupun password akun. Siapkan jadwal main dan role kamu.</li>
         <li>Untuk <strong>Joki Rank / 1 Hero MMR / Classic / Magic Chess / Video Montage</strong>, matikan sementara verifikasi akun dua langkah (2FA) saat proses login berlangsung.</li>
         <li>Setelah klik <strong>Pesan Sekarang!</strong>, detail pesanan otomatis tersusun untuk dikirim ke WhatsApp admin.</li>
@@ -1054,7 +1097,7 @@
   <script>
     const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
 
-    // Logo Rank Mobile Legends
+    // Logo Rank Mobile Legends (khusus Joki Rank Biasa, Joki Hero 1 MMR, dan Joki Gendong / Mabar)
     const RANK_IMG_EPIC = "1795693074925.png";
     const RANK_IMG_LEGEND = "1795693166692.png";
     const RANK_IMG_MYTHIC = "1795693214147.png";
@@ -1080,12 +1123,36 @@
       return fallback;
     }
 
+    function getMultiRankPair(name) {
+      const parts = String(name || "").split(/\s*-\s*/);
+      if (parts.length < 2) return null;
+      const fromIcon = resolveRankIcon(parts[0], null);
+      const toIcon = resolveRankIcon(parts[parts.length - 1], null);
+      if (!fromIcon || !toIcon || fromIcon === toIcon) return null;
+      return { fromIcon, toIcon };
+    }
+
     function withRankIcons(groups, fallback = RANK_IMG_MYTHIC) {
+      return groups.map((group) => ({
+        ...group,
+        items: group.items.map((item) => {
+          const multiPair = getMultiRankPair(item.name);
+          return {
+            ...item,
+            multiPair,
+            icon: multiPair ? multiPair.toIcon : resolveRankIcon(item.name || group.title, fallback)
+          };
+        })
+      }));
+    }
+
+    function withoutIcons(groups) {
       return groups.map((group) => ({
         ...group,
         items: group.items.map((item) => ({
           ...item,
-          icon: resolveRankIcon(item.name || group.title, fallback)
+          multiPair: null,
+          icon: ""
         }))
       }));
     }
@@ -1139,6 +1206,7 @@
         strike: 250000,
         disc: "Disc 52%",
         tag: "⚡",
+        multiPair: null,
         icon: RANK_IMG_MYTHIC
       }
     ];
@@ -1174,7 +1242,7 @@
       }
     ], RANK_IMG_MYTHIC);
 
-    const CLASSIC_GROUPS = withRankIcons([
+    const CLASSIC_GROUPS = withoutIcons([
       {
         title: "⚔️ Joki Classic / Match",
         items: [
@@ -1186,9 +1254,9 @@
           { name: "Classic Winrate / 10 Match", price: 54000, strike: 85000, disc: "Disc 36%", tag: "🛒" }
         ]
       }
-    ], RANK_IMG_MYTHIC);
+    ]);
 
-    const MAGIC_CHESS_GROUPS = withRankIcons([
+    const MAGIC_CHESS_GROUPS = withoutIcons([
       {
         title: "Joki Magic Chess: Go Go",
         items: [
@@ -1199,9 +1267,9 @@
           { name: "Mythic Honor / 4 Star", price: 20000, strike: 32000, disc: "Disc 38%", tag: "🛒" }
         ]
       }
-    ], RANK_IMG_MYTHIC);
+    ]);
 
-    const MONTAGE_GROUPS = withRankIcons([
+    const MONTAGE_GROUPS = withoutIcons([
       {
         title: "Pilih Joki Video Montage",
         items: [
@@ -1209,7 +1277,7 @@
           { name: "Video Montage (+ Edit) / 1 Menit", price: 100000, strike: 150000, disc: "Disc 33%", tag: "🛒" }
         ]
       }
-    ], RANK_IMG_MYTHIC);
+    ]);
 
     const RANK_GROUPS = withRankIcons([
       {
@@ -1587,15 +1655,38 @@
         selectedItem.gIdx === gIdx &&
         selectedItem.iIdx === iIdx;
 
+      const isMulti = Boolean(item.multiPair);
+      const hasLogo = Boolean(item.icon || isMulti);
+
+      let visualHtml = "";
+      if (isMulti) {
+        visualHtml = `<div class="nom-multi-box" title="Paket Multi Rank">
+          <img src="${item.multiPair.fromIcon}" alt="${item.name}" class="nom-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+          <span class="nom-multi-arrow">→</span>
+          <img src="${item.multiPair.toIcon}" alt="${item.name}" class="nom-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+        </div>`;
+      } else if (item.icon) {
+        visualHtml = `<img src="${item.icon}" alt="${item.name}" class="nom-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />`;
+      }
+
+      const multiBadgeHtml = isMulti ? `<span class="badge-multi">MULTI RANK</span>` : "";
+      const cardClasses = [
+        "nom-card",
+        !hasLogo ? "no-logo" : "",
+        isMulti ? "is-multi" : "",
+        isSelected ? "active" : ""
+      ].filter(Boolean).join(" ");
+
       return `
-        <button type="button" class="nom-card ${isSelected ? "active" : ""}" data-src="${sourceType}" data-g="${gIdx}" data-i="${iIdx}">
+        <button type="button" class="${cardClasses}" data-src="${sourceType}" data-g="${gIdx}" data-i="${iIdx}">
           <div class="nom-top">
-            <img src="${item.icon}" alt="${item.name}" class="nom-img" onerror="this.onerror=null;this.src=FALLBACK_ART;" />
+            ${visualHtml}
             <span class="nom-name">${item.name}</span>
           </div>
           <div class="nom-price">${rupiah(item.price)}</div>
           <div class="nom-strike">${rupiah(item.strike)}</div>
           <div class="nom-badges">
+            ${multiBadgeHtml}
             <span class="badge-disc">${item.disc}</span>
             <span class="badge-tag">${item.tag}</span>
           </div>
@@ -1668,7 +1759,8 @@
       }
       const qty = getQty();
       const total = getFinalTotal();
-      bottomSummary.textContent = `${selectedItem.name} ×${qty} • ${rupiah(total)} • ${selectedPayment}`;
+      const tipeLabel = selectedItem.multiPair ? " [Multi Rank]" : "";
+      bottomSummary.textContent = `${selectedItem.name}${tipeLabel} ×${qty} • ${rupiah(total)} • ${selectedPayment}`;
       btnPesan.classList.add("ready");
     }
 
@@ -1800,7 +1892,7 @@
       const lines = [
         `*ORDER ${modeLabel} - KABUKI JOKI*`,
         "-----------------------------",
-        `Paket: *${selectedItem.name}*`,
+        `Paket: *${selectedItem.name}*${selectedItem.multiPair ? " (Multi Rank)" : ""}`,
         `Jumlah: ${qty}`,
         `Total: *${rupiah(total)}*`,
         `Pembayaran: ${selectedPayment}`,
