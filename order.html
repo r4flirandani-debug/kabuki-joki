@@ -167,7 +167,7 @@
       color: #fff;
     }
 
-    /* Game Hero Banner (Free Fire & PUBG Mobile) */
+    /* Game Hero Banner (Free Fire, PUBG Mobile, & Honor of Kings) */
     .game-hero {
       background: var(--bg-panel);
       border: 1px solid var(--border-line);
@@ -825,11 +825,12 @@
   </header>
 
   <main class="container">
-    <!-- Switcher Game (Mobile Legends / Free Fire / PUBG Mobile) -->
+    <!-- Switcher Game (Mobile Legends / Free Fire / PUBG Mobile / Honor of Kings) -->
     <div class="game-switch">
       <button type="button" id="btn-game-mlbb" class="game-btn">Mobile Legends</button>
       <button type="button" id="btn-game-ff" class="game-btn">Free Fire</button>
       <button type="button" id="btn-game-pubg" class="game-btn">PUBG Mobile</button>
+      <button type="button" id="btn-game-hok" class="game-btn">Honor of Kings</button>
     </div>
 
     <!-- Banner Khusus Mode Free Fire -->
@@ -878,6 +879,29 @@
       </div>
     </section>
 
+    <!-- Banner Khusus Mode Honor of Kings -->
+    <section id="hok-hero" class="game-hero hidden">
+      <div class="game-hero-banner">
+        <span class="game-hero-badge">KABUKI JOKI • HONOR OF KINGS</span>
+        <h1>HONOR OF KINGS</h1>
+        <p>Top Up Tokens Honor of Kings cepat dan aman</p>
+      </div>
+      <div class="game-hero-meta">
+        <div class="game-hero-thumb">
+          <img id="hok-hero-img" src="file_0000000073a48207a660881771a2a3e9.png" alt="Honor of Kings" />
+        </div>
+        <div>
+          <div class="game-hero-title">HONOR OF KINGS</div>
+          <div class="game-hero-sub">Tencent Games</div>
+        </div>
+      </div>
+      <div class="game-hero-perks">
+        <span>⚡ Proses Cepat</span>
+        <span>💬 Layanan Chat 24/7</span>
+        <span>🛡️ Pembayaran Aman</span>
+      </div>
+    </section>
+
     <!-- Transaksi / Keterangan Tabs -->
     <div class="mode-tabs">
       <button type="button" id="tab-transaksi" class="mode-tab active">Transaksi</button>
@@ -890,6 +914,7 @@
       <ul>
         <li>Untuk <strong>Free Fire</strong>, cukup masukkan <strong>ID</strong> akun Free Fire kamu dengan benar.</li>
         <li>Untuk <strong>PUBG Mobile</strong>, cukup masukkan <strong>UID</strong> akun PUBG Mobile kamu dengan benar.</li>
+        <li>Untuk <strong>Honor of Kings</strong>, cukup masukkan <strong>UID</strong> akun Honor of Kings kamu dengan benar.</li>
         <li>Untuk <strong>Mobile Legends</strong>, masukkan <strong>ID</strong> dan <strong>Server</strong> akun Mobile Legends dengan benar.</li>
         <li>Pesanan diproses sesuai antrean setelah pembayaran dikonfirmasi.</li>
       </ul>
@@ -1040,7 +1065,7 @@
   </div>
 
   <script>
-    const WA_NUMBER = "6281234567890"; // Ganti dengan nomor WhatsApp admin kamu
+    const WA_NUMBER = "628984814123";
 
     // Logo Mobile Legends
     const IMG_DIAMOND = "1795689988582.png";
@@ -1057,6 +1082,9 @@
     // Logo Khusus PUBG Mobile
     const PUBG_IMG_GLOBAL = "file_000000008d2882079eb392497d561655.webp";
     const PUBG_IMG_INDO = "file_00000000d1dc8211aa022d70fea60957.webp";
+
+    // Logo Token Khusus Honor of Kings
+    const HOK_IMG_TOKEN = "file_0000000073a48207a660881771a2a3e9.png";
 
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
@@ -1079,6 +1107,13 @@
       }, { once: true });
     }
 
+    const hokHeroImg = document.getElementById("hok-hero-img");
+    if (hokHeroImg) {
+      hokHeroImg.addEventListener("error", () => {
+        hokHeroImg.src = FALLBACK_ART;
+      }, { once: true });
+    }
+
     function detectInitialGame() {
       const hrefLower = window.location.href.toLowerCase();
       const params = new URLSearchParams(window.location.search);
@@ -1092,6 +1127,9 @@
         .join(" ")
         .toLowerCase();
 
+      if (raw.includes("hok") || raw.includes("honor") || hrefLower.includes("hok") || hrefLower.includes("honor-of-kings") || hrefLower.includes("honor_of_kings")) {
+        return "hok";
+      }
       if (raw.includes("pubg") || hrefLower.includes("pubg")) {
         return "pubg";
       }
@@ -1478,6 +1516,24 @@
       }
     ];
 
+    const HOK_GROUPS = [
+      {
+        title: "Top Up Instant",
+        items: [
+          { name: "16 Tokens", price: 3214, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "80 Tokens", price: 16066, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "240 Tokens", price: 48575, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "400 Tokens", price: 80895, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "560 Tokens", price: 113403, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "830 (800+30) Tokens", price: 161978, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "1245 (1200+45) Tokens", price: 243061, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "2500 (2400+200) Tokens", price: 486311, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "4180 (4000+180) Tokens", price: 810643, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN },
+          { name: "8360 (8000+360) Tokens", price: 1621475, strike: 0, disc: "", tag: "🛒", icon: HOK_IMG_TOKEN }
+        ]
+      }
+    ];
+
     let selectedItem = null;
     let selectedPayment = "QRIS (All Payment)";
     let promoDiscount = 0;
@@ -1486,8 +1542,10 @@
     const btnGameMlbb = document.getElementById("btn-game-mlbb");
     const btnGameFf = document.getElementById("btn-game-ff");
     const btnGamePubg = document.getElementById("btn-game-pubg");
+    const btnGameHok = document.getElementById("btn-game-hok");
     const ffHero = document.getElementById("ff-hero");
     const pubgHero = document.getElementById("pubg-hero");
+    const hokHero = document.getElementById("hok-hero");
     const accountFields = document.getElementById("account-fields");
     const nominalGroupsEl = document.getElementById("nominal-groups");
     const filterInput = document.getElementById("filter-paket");
@@ -1498,6 +1556,7 @@
     function getActiveGroups() {
       if (currentGame === "ff") return FF_GROUPS;
       if (currentGame === "pubg") return PUBG_GROUPS;
+      if (currentGame === "hok") return HOK_GROUPS;
       return MLBB_GROUPS;
     }
 
@@ -1510,7 +1569,7 @@
             <input id="f-user-id" type="text" placeholder="Masukkan ID" required />
           </div>
         `;
-      } else if (currentGame === "pubg") {
+      } else if (currentGame === "pubg" || currentGame === "hok") {
         accountFields.className = "grid-1";
         accountFields.innerHTML = `
           <div class="field">
@@ -1537,13 +1596,17 @@
       btnGameMlbb.classList.toggle("active", currentGame === "mlbb");
       btnGameFf.classList.toggle("active", currentGame === "ff");
       btnGamePubg.classList.toggle("active", currentGame === "pubg");
+      btnGameHok.classList.toggle("active", currentGame === "hok");
       ffHero.classList.toggle("hidden", currentGame !== "ff");
       pubgHero.classList.toggle("hidden", currentGame !== "pubg");
+      hokHero.classList.toggle("hidden", currentGame !== "hok");
 
       if (currentGame === "ff") {
         document.title = "Top Up Free Fire - KABUKI JOKI";
       } else if (currentGame === "pubg") {
         document.title = "Top Up PUBG Mobile - KABUKI JOKI";
+      } else if (currentGame === "hok") {
+        document.title = "Top Up Honor of Kings - KABUKI JOKI";
       } else {
         document.title = "Top Up Mobile Legends - KABUKI JOKI";
       }
@@ -1563,6 +1626,7 @@
     btnGameMlbb.addEventListener("click", () => switchGame("mlbb"));
     btnGameFf.addEventListener("click", () => switchGame("ff"));
     btnGamePubg.addEventListener("click", () => switchGame("pubg"));
+    btnGameHok.addEventListener("click", () => switchGame("hok"));
 
     function rupiah(n) {
       return "Rp " + Number(n || 0).toLocaleString("id-ID");
@@ -1759,6 +1823,11 @@
           alert("Mohon lengkapi UID PUBG Mobile dan No. Whatsapp.");
           return;
         }
+      } else if (currentGame === "hok") {
+        if (!userId || !waBuyer) {
+          alert("Mohon lengkapi UID Honor of Kings dan No. Whatsapp.");
+          return;
+        }
       } else if (!userId || !serverId || !waBuyer) {
         alert("Mohon lengkapi ID, Server, dan No. Whatsapp.");
         return;
@@ -1770,9 +1839,11 @@
         ? "FREE FIRE"
         : currentGame === "pubg"
           ? "PUBG MOBILE"
-          : "MLBB";
+          : currentGame === "hok"
+            ? "HONOR OF KINGS"
+            : "MLBB";
 
-      const idLabel = currentGame === "pubg" ? "UID" : "ID";
+      const idLabel = (currentGame === "pubg" || currentGame === "hok") ? "UID" : "ID";
 
       const lines = [
         `*ORDER TOP UP ${gameLabel} - KABUKI JOKI*`,
