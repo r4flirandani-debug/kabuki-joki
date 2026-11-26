@@ -231,6 +231,31 @@
       padding: 11px;
     }
 
+    /* Layanan Switcher */
+    .joki-switch {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 11px;
+      flex-wrap: wrap;
+    }
+
+    .switch-btn {
+      padding: 6px 11px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--bg-card);
+      color: #e5e7eb;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .switch-btn.active {
+      background: var(--blue-bar);
+      border-color: #60a5fa;
+      color: #fff;
+    }
+
     /* Form Grid */
     .grid-2 {
       display: grid;
@@ -746,7 +771,7 @@
       <h3>Ketentuan Joki Mobile Legends - KABUKI JOKI</h3>
       <ul>
         <li>Matikan sementara verifikasi akun dua langkah (2FA) saat proses login berlangsung, atau pilih opsi Mabar/Gendong jika tidak ingin akun di-login.</li>
-        <li>Cantumkan minimal 3 hero request beserta catatan jam login akun agar pengerjaan berjalan lancar.</li>
+        <li>Cantumkan request hero serta catatan jam login akun agar pengerjaan berjalan lancar.</li>
         <li>Setelah klik <strong>Pesan Sekarang!</strong>, detail pesanan otomatis tersusun untuk dikirim ke WhatsApp admin.</li>
       </ul>
     </section>
@@ -791,7 +816,7 @@
               <input id="f-pesan-joki" type="text" placeholder="Masukkan Pesan Untuk Penjoki" />
             </div>
             <div class="field field-full">
-              <label for="f-req-hero">Free Request Minimal 3 Hero</label>
+              <label id="lbl-req-hero" for="f-req-hero">Free Request Minimal 3 Hero</label>
               <input id="f-req-hero" type="text" placeholder="Masukkan Free Request Minimal 3 Hero" />
             </div>
           </div>
@@ -809,13 +834,18 @@
           <h2 class="step-title">Pilih Nominal</h2>
         </div>
         <div class="step-body">
-          <!-- Flash Sale Box -->
-          <div class="flash-box">
+          <div class="joki-switch">
+            <button type="button" id="sw-rank" class="switch-btn">Joki Rank Biasa</button>
+            <button type="button" id="sw-mmr" class="switch-btn">Joki Hero 1 MMR</button>
+          </div>
+
+          <!-- Flash Sale Box (khusus Joki Rank Biasa) -->
+          <div id="flash-box-wrap" class="flash-box">
             <div class="flash-label">⚡ FLASH SALE</div>
             <div id="flash-grid" class="nominal-grid"></div>
           </div>
 
-          <!-- Kategori Paket Lainnya -->
+          <!-- Kategori Paket -->
           <div id="regular-groups"></div>
         </div>
       </section>
@@ -951,6 +981,32 @@
         <text x="60" y="66" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="900" fill="#60a5fa">KJ ML</text>
       </svg>`);
 
+    function detectInitialMmrMode() {
+      const hrefLower = window.location.href.toLowerCase();
+      const params = new URLSearchParams(window.location.search);
+      const raw = [
+        params.get("layanan"),
+        params.get("id"),
+        params.get("mode"),
+        params.get("joki"),
+        params.get("paket")
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        raw.includes("mmr") ||
+        raw.includes("1-hero") ||
+        raw.includes("1_hero") ||
+        raw.includes("hero-mmr") ||
+        hrefLower.includes("joki-hero-mmr") ||
+        hrefLower.includes("mmr")
+      );
+    }
+
+    let isHeroMmrMode = detectInitialMmrMode();
+
     const FLASH_ITEMS = [
       {
         name: "Open Grading 0/10",
@@ -959,6 +1015,23 @@
         disc: "Disc 52%",
         tag: "⚡",
         icon: "1795684016988.png"
+      }
+    ];
+
+    const HERO_MMR_GROUPS = [
+      {
+        title: "✨ Joki / Star Rank 1 Hero MMR",
+        items: [
+          { name: "Master / Star", price: 6000, strike: 10000, disc: "Disc 40%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "GrandMaster / Star", price: 7000, strike: 11000, disc: "Disc 36%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Epic / Star", price: 9000, strike: 14000, disc: "Disc 36%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Legend / Star", price: 10000, strike: 16000, disc: "Disc 37%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Mythic / Star", price: 19000, strike: 25000, disc: "Disc 24%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Honor 25+ / Star", price: 21000, strike: 29000, disc: "Disc 28%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Glory 50+ / Star", price: 26000, strike: 36000, disc: "Disc 28%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Immortal 100+ / Star", price: 30000, strike: 40000, disc: "Disc 25%", tag: "🛒", icon: "1795684363565.png" },
+          { name: "Open Grading 0/10", price: 180000, strike: 260000, disc: "Disc 31%", tag: "🛒", icon: "1795684363565.png" }
+        ]
       }
     ];
 
@@ -1050,12 +1123,48 @@
     let promoDiscount = 0;
     let searchFilter = "";
 
+    const flashBoxWrap = document.getElementById("flash-box-wrap");
     const flashGrid = document.getElementById("flash-grid");
     const regularGroups = document.getElementById("regular-groups");
     const filterPaketInput = document.getElementById("filter-paket");
     const qtyInput = document.getElementById("f-qty");
     const bottomSummary = document.getElementById("bottom-summary");
     const btnPesan = document.getElementById("btn-pesan");
+    const swRank = document.getElementById("sw-rank");
+    const swMmr = document.getElementById("sw-mmr");
+
+    function getActiveGroups() {
+      return isHeroMmrMode ? HERO_MMR_GROUPS : REGULAR_GROUPS;
+    }
+
+    function applyLayananMode() {
+      swRank.classList.toggle("active", !isHeroMmrMode);
+      swMmr.classList.toggle("active", isHeroMmrMode);
+
+      if (isHeroMmrMode) {
+        document.title = "Joki / Star Rank 1 Hero MMR - KABUKI JOKI";
+        document.getElementById("lbl-req-hero").textContent = "Request 1 Hero (Opsi jika di Ban/Pick) 1 Role";
+        document.getElementById("f-req-hero").placeholder = "Masukkan Request 1 Hero (Opsi jika di Ban/Pick) 1 Role";
+        flashBoxWrap.classList.add("hidden");
+      } else {
+        document.title = "Joki Mobile Legends - KABUKI JOKI";
+        document.getElementById("lbl-req-hero").textContent = "Free Request Minimal 3 Hero";
+        document.getElementById("f-req-hero").placeholder = "Masukkan Free Request Minimal 3 Hero";
+        flashBoxWrap.classList.remove("hidden");
+      }
+    }
+
+    function switchMode(mmrMode) {
+      if (isHeroMmrMode === mmrMode) return;
+      isHeroMmrMode = mmrMode;
+      selectedItem = null;
+      applyLayananMode();
+      renderNominals();
+      updateSummary();
+    }
+
+    swRank.addEventListener("click", () => switchMode(false));
+    swMmr.addEventListener("click", () => switchMode(true));
 
     function rupiah(n) {
       return "Rp " + Number(n || 0).toLocaleString("id-ID");
@@ -1086,30 +1195,35 @@
 
     function renderNominals() {
       const q = searchFilter.trim().toLowerCase();
+      const activeGroups = getActiveGroups();
 
-      const flashFiltered = FLASH_ITEMS.map((item, idx) => ({ item, idx })).filter(
-        ({ item }) => !q || item.name.toLowerCase().includes(q)
-      );
+      if (!isHeroMmrMode) {
+        const flashFiltered = FLASH_ITEMS.map((item, idx) => ({ item, idx })).filter(
+          ({ item }) => !q || item.name.toLowerCase().includes(q)
+        );
 
-      flashGrid.innerHTML = flashFiltered.length
-        ? flashFiltered.map(({ item, idx }) => cardTemplate(item, "flash", 0, idx)).join("")
-        : `<div class="nom-name" style="grid-column:1/-1;color:#9ca3af;">Tidak ada paket flash sale sesuai pencarian.</div>`;
+        flashGrid.innerHTML = flashFiltered.length
+          ? flashFiltered.map(({ item, idx }) => cardTemplate(item, "flash", 0, idx)).join("")
+          : `<div class="nom-name" style="grid-column:1/-1;color:#9ca3af;">Tidak ada paket flash sale sesuai pencarian.</div>`;
+      }
 
-      const groupsHtml = REGULAR_GROUPS.map((group, gIdx) => {
-        const matched = group.items
-          .map((item, iIdx) => ({ item, iIdx }))
-          .filter(({ item }) => !q || item.name.toLowerCase().includes(q) || group.title.toLowerCase().includes(q));
+      const groupsHtml = activeGroups
+        .map((group, gIdx) => {
+          const matched = group.items
+            .map((item, iIdx) => ({ item, iIdx }))
+            .filter(({ item }) => !q || item.name.toLowerCase().includes(q) || group.title.toLowerCase().includes(q));
 
-        if (!matched.length) return "";
-        return `
-          <div class="cat-block">
-            <div class="cat-heading">${group.title}</div>
-            <div class="nominal-grid">
-              ${matched.map(({ item, iIdx }) => cardTemplate(item, "reg", gIdx, iIdx)).join("")}
+          if (!matched.length) return "";
+          return `
+            <div class="cat-block">
+              <div class="cat-heading">${group.title}</div>
+              <div class="nominal-grid">
+                ${matched.map(({ item, iIdx }) => cardTemplate(item, "reg", gIdx, iIdx)).join("")}
+              </div>
             </div>
-          </div>
-        `;
-      }).join("");
+          `;
+        })
+        .join("");
 
       regularGroups.innerHTML = groupsHtml || `<div class="nom-name" style="color:#9ca3af;">Paket tidak ditemukan.</div>`;
 
@@ -1118,7 +1232,7 @@
           const src = btn.dataset.src;
           const g = Number(btn.dataset.g);
           const i = Number(btn.dataset.i);
-          const obj = src === "flash" ? FLASH_ITEMS[i] : REGULAR_GROUPS[g].items[i];
+          const obj = src === "flash" ? FLASH_ITEMS[i] : getActiveGroups()[g].items[i];
           selectedItem = { ...obj, sourceType: src, gIdx: g, iIdx: i };
           renderNominals();
           updateSummary();
@@ -1265,7 +1379,7 @@
       const total = getFinalTotal();
 
       const msg = [
-        "*ORDER JOKI ML - KABUKI JOKI*",
+        `*ORDER ${isHeroMmrMode ? "JOKI 1 HERO MMR" : "JOKI ML"} - KABUKI JOKI*`,
         "-----------------------------",
         `Paket: *${selectedItem.name}*`,
         `Jumlah: ${qty}`,
@@ -1279,7 +1393,7 @@
         `Email ML / Username: ${emailMl}`,
         `Password: ${password}`,
         `Pesan Untuk Penjoki: ${pesanJoki}`,
-        `Request Hero: ${reqHero}`,
+        `${isHeroMmrMode ? "Request 1 Hero & Role" : "Request Hero"}: ${reqHero}`,
         "-----------------------------",
         `No. WA: +62${waBuyer.replace(/^0+/, "")}`,
         `Email: ${emailBuyer}`
@@ -1288,8 +1402,10 @@
       window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
     });
 
+    applyLayananMode();
     renderNominals();
     updateSummary();
   </script>
 </body>
 </html>
+ 
