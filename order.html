@@ -799,6 +799,155 @@
       color: #052010;
     }
 
+    /* Welcome Popup Modal */
+    .popup-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+    }
+
+    .popup-backdrop.is-hidden {
+      display: none;
+    }
+
+    .popup-card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: #24262b;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      color: #f3f4f6;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(17, 24, 39, 0.8);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .popup-close:hover {
+      background: #ef4444;
+      border-color: #ef4444;
+    }
+
+    .popup-media {
+      background: #14161a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .popup-media img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .popup-banner-text {
+      background: linear-gradient(135deg, #0b2458 0%, #1565d8 60%, #0284c7 100%);
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .popup-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .popup-banner-text h2 {
+      font-size: 17px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .popup-banner-text p {
+      font-size: 11.5px;
+      color: #e0f2fe;
+      line-height: 1.45;
+    }
+
+    .popup-body {
+      padding: 13px 16px 15px;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .popup-lead {
+      color: #d1d5db;
+      margin-bottom: 11px;
+    }
+
+    .popup-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 13px;
+    }
+
+    .popup-link-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 11px;
+      border-radius: 8px;
+      background: #2c2f36;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f9fafb;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .popup-link-item:hover {
+      border-color: #4ea8ff;
+      background: #25334a;
+    }
+
+    .popup-dont-show {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11.5px;
+      color: #9ca3af;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .popup-dont-show input {
+      width: 14px;
+      height: 14px;
+      accent-color: #1565d8;
+      cursor: pointer;
+    }
+
     .hidden {
       display: none;
     }
@@ -1064,6 +1213,44 @@
     </div>
   </div>
 
+  <!-- Popup Modal Saat Masuk Web -->
+  <div id="welcome-popup" class="popup-backdrop" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="popup-card">
+      <button type="button" id="popup-close" class="popup-close" aria-label="Tutup">×</button>
+
+      <div class="popup-media">
+        <img id="welcome-popup-img" src="file_0000000013f0821184e49e5ddbb38530.png" alt="KABUKI JOKI Info Resmi" />
+        <div class="popup-banner-text">
+          <span class="popup-badge">KABUKI JOKI OFFICIAL</span>
+          <h2 id="popup-title">INFORMASI RESMI TOP UP</h2>
+          <p>Pastikan ID / Server / UID akun sudah sesuai sebelum melakukan pemesanan.</p>
+        </div>
+      </div>
+
+      <div class="popup-body">
+        <p class="popup-lead">
+          Transaksi resmi <strong>KABUKI JOKI</strong> diproses langsung ke WhatsApp admin resmi:
+        </p>
+
+        <div class="popup-links">
+          <a href="https://wa.me/628984814123" target="_blank" rel="noopener noreferrer" class="popup-link-item">
+            <span>💬</span>
+            <span>WhatsApp Official KABUKI JOKI (+62 898-4814-123)</span>
+          </a>
+          <a href="#langkah-2" id="popup-order-now" class="popup-link-item">
+            <span>⚡</span>
+            <span>Langsung Pilih Nominal &amp; Top Up Sekarang</span>
+          </a>
+        </div>
+
+        <label class="popup-dont-show">
+          <input type="checkbox" id="popup-hide-forever" />
+          <span>Jangan tampilkan lagi</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
   <script>
     const WA_NUMBER = "628984814123";
 
@@ -1085,6 +1272,9 @@
 
     // Logo Token Khusus Honor of Kings
     const HOK_IMG_TOKEN = "file_0000000073a48207a660881771a2a3e9.png";
+
+    // Gambar Popup Sambutan
+    const POPUP_IMG = "file_0000000013f0821184e49e5ddbb38530.png";
 
     const FALLBACK_ART =
       "data:image/svg+xml;charset=UTF-8," +
@@ -1111,6 +1301,14 @@
     if (hokHeroImg) {
       hokHeroImg.addEventListener("error", () => {
         hokHeroImg.src = FALLBACK_ART;
+      }, { once: true });
+    }
+
+    const welcomePopupImg = document.getElementById("welcome-popup-img");
+    if (welcomePopupImg) {
+      welcomePopupImg.src = POPUP_IMG;
+      welcomePopupImg.addEventListener("error", () => {
+        welcomePopupImg.parentElement.querySelector("img")?.remove();
       }, { once: true });
     }
 
@@ -1870,6 +2068,40 @@
         "noopener,noreferrer"
       );
     });
+
+    // Welcome Popup Logic
+    (function () {
+      const STORAGE_KEY = "kabuki_hide_welcome_popup";
+      const popup = document.getElementById("welcome-popup");
+      const closeBtn = document.getElementById("popup-close");
+      const hideCheckbox = document.getElementById("popup-hide-forever");
+      const orderNowLink = document.getElementById("popup-order-now");
+
+      if (!popup) return;
+
+      if (localStorage.getItem(STORAGE_KEY) === "1") {
+        popup.classList.add("is-hidden");
+      }
+
+      function closePopup() {
+        if (hideCheckbox && hideCheckbox.checked) {
+          localStorage.setItem(STORAGE_KEY, "1");
+        }
+        popup.classList.add("is-hidden");
+      }
+
+      closeBtn.addEventListener("click", closePopup);
+
+      popup.addEventListener("click", (e) => {
+        if (e.target === popup) {
+          closePopup();
+        }
+      });
+
+      if (orderNowLink) {
+        orderNowLink.addEventListener("click", closePopup);
+      }
+    })();
 
     applyGameMode();
     renderNominals();
